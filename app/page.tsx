@@ -86,14 +86,14 @@ export default function Home() {
           Built with 🖤 by TheHelpfulDev.
         </p>
         <a 
-          href="https://buymeacoffee.com/YOUR_USERNAME" 
+          href="https://ko-fi.com/robogirl96" 
           target="_blank"
           className="inline-flex items-center gap-2 px-6 py-3 bg-yellow-400 text-yellow-900 font-bold rounded-full hover:bg-yellow-300 transition-colors shadow-sm"
         >
           ☕ Buy me a coffee
         </a>
         <p className="mt-4 text-sm text-slate-400">
-          Your support keeps these servers running.
+          I promise to turn coffee into code.
         </p>
       </footer>
 
