@@ -52,7 +52,7 @@ export default function Home() {
               A simple, distraction-free timer to track your fasting windows. No login required.
             </p>
             {/* REPLACE '#' WITH YOUR ACTUAL VERCEL APP LINK BELOW */}
-            <a href="https://fasting-tracker-tau.vercel.app/" target="_blank" className="block text-center w-full py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700">
+            <a href="https://fasting-tracker-tau.vercel.app/" target="https://fasting-tracker-tau.vercel.app/" className="block text-center w-full py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700">
               Launch App &rarr;
             </a>
           </div>
