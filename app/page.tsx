@@ -1,3 +1,4 @@
+import NewsletterForm from './components/NewsletterForm';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -27,18 +28,7 @@ export default function Home() {
           <br />
           Open source and supported by people like you.
         </p>
-        {/* Email Capture Placeholder - Connect this to a form service later */}
-          <div className="flex flex-col sm:flex-row justify-center gap-3 max-w-md mx-auto">
-            <input
-                type="email"
-                placeholder="Enter your email for updates..."
-                className="px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none w-full"
-                disabled
-            />
-            <button className="px-6 py-3 bg-slate-900 text-white font-medium rounded-lg hover:bg-slate-800 transition-colors w-full sm:w-auto">
-              Get Updates
-            </button>
-          </div>
+        <NewsletterForm />
       </header>
       {/* 2. THE DIRECTORY: Your Apps */}
       <section className="max-w-4xl mx-auto px-6 py-10">
