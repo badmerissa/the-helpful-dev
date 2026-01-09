@@ -62,19 +62,23 @@ export default function Home() {
 			</a>
           </div>
 
-          {/* App 2: Potty Training (COMING SOON) */}
-          <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 border-dashed relative overflow-hidden">
+         {/* App 2: Potty Panda (LIVE) */}
+          <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
             <div className="flex items-center justify-between mb-4">
-              <span className="text-3xl">👶</span>
-              <span className="bg-amber-100 text-amber-700 text-xs font-bold px-2 py-1 rounded-full">IN PROGRESS</span>
+              <span className="text-3xl">🐼</span>
+              <span className="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded-full">LIVE</span>
             </div>
             <h3 className="text-xl font-bold mb-2">Potty Panda</h3>
             <p className="text-slate-600 mb-6 h-12">
               Logging and timer tools to help parents through the potty training journey.
             </p>
-            <button disabled className="block w-full py-2 bg-slate-200 text-slate-400 rounded-lg font-medium cursor-not-allowed">
-              Coming Early 2026
-            </button>
+            <a 
+              href="https://potty-panda.vercel.app/" 
+              target="_blank" 
+              className="block text-center w-full py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700"
+            >
+              Launch App &rarr;
+            </a>
           </div>
 
         </div>
