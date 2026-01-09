@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Home() {
@@ -6,35 +7,39 @@ export default function Home() {
       
       {/* 1. HERO SECTION: The Mission */}
       <header className="max-w-3xl mx-auto px-6 py-20 text-center">
-        <div className="mb-4 inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold">
-          TheHelpfulDev
+        {/* LOGO ADDED HERE */}
+        <div className="flex justify-center mb-8 opacity-80">
+          <Image
+              src="/icon.png"    // Make sure this matches your filename in 'public'
+              alt="TheHelpfulDev Logo"
+              width={80}
+              height={80}
+          />
         </div>
         <h1 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight text-slate-900">
-          Free, privacy-focused tools <br /> for everyday problems.
+          Truly <span className="text-blue-600">helpful</span> tools <br />
+          for everyday problems.
         </h1>
         <p className="text-xl text-slate-600 mb-8 leading-relaxed">
-          I build simple apps to help the community. No ads, no tracking, just useful code.
+          Simple apps that help the community.
+          <br />
+          No ads, no tracking, just useful code.
           <br />
           Open source and supported by people like you.
         </p>
-        
         {/* Email Capture Placeholder - Connect this to a form service later */}
-        <div className="flex flex-col sm:flex-row justify-center gap-3 max-w-md mx-auto">
-          <input 
-            type="email" 
-            placeholder="Enter your email for updates..." 
-            className="px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none w-full"
-            disabled 
-          />
-          <button className="px-6 py-3 bg-slate-900 text-white font-medium rounded-lg hover:bg-slate-800 transition-colors w-full sm:w-auto">
-            Get Updates
-          </button>
-        </div>
-        <p className="text-xs text-slate-400 mt-2">
-          (Mailing list coming soon — bookmark this page!)
-        </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-3 max-w-md mx-auto">
+            <input
+                type="email"
+                placeholder="Enter your email for updates..."
+                className="px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none w-full"
+                disabled
+            />
+            <button className="px-6 py-3 bg-slate-900 text-white font-medium rounded-lg hover:bg-slate-800 transition-colors w-full sm:w-auto">
+              Get Updates
+            </button>
+          </div>
       </header>
-
       {/* 2. THE DIRECTORY: Your Apps */}
       <section className="max-w-4xl mx-auto px-6 py-10">
         <h2 className="text-2xl font-bold mb-8 border-b pb-4 border-slate-200">The Toolbox</h2>
@@ -85,8 +90,10 @@ export default function Home() {
 
       {/* 3. FOOTER: The Monetization */}
       <footer className="text-center py-12 px-6 border-t border-slate-200 mt-12 bg-white">
+
+
         <p className="mb-6 text-slate-600">
-          Built with 🖤 by TheHelpfulDev.
+          Built with 🖤 by The Helpful Dev.
         </p>
         <a 
           href="https://ko-fi.com/robogirl96" 
@@ -98,6 +105,15 @@ export default function Home() {
         <p className="mt-4 text-sm text-slate-400">
           I promise to turn coffee into code.
         </p>
+        {/* LOGO ADDED HERE */}
+        <div className="flex justify-center mb-4 opacity-80">
+          <Image
+              src="/icon.png"    // Make sure this matches your filename in 'public'
+              alt="TheHelpfulDev Logo"
+              width={48}         // Adjust size (48px is a nice icon size)
+              height={48}
+          />
+        </div>
       </footer>
 
     </main>
