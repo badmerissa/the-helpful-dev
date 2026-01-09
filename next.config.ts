@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/fasting',
-        destination: 'https://fasting-tracker-tau.vercel.app/',
+        destination: 'https://fasting.thehelpfuldev.com/',
         permanent: false,
       },
     ];

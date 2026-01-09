@@ -51,9 +51,8 @@ export default function Home() {
             <p className="text-slate-600 mb-6 h-12">
               A simple, distraction-free timer to track your fasting windows. No login required.
             </p>
-            {/* REPLACE '#' WITH YOUR ACTUAL VERCEL APP LINK BELOW */}
            <a 
-			  href="https://fasting-tracker-tau.vercel.app/" 
+			  href="https://fasting.thehelpfuldev.com/"
 			  target="_blank" 
 			  rel="noopener noreferrer"
 			  className="block text-center w-full py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700"
@@ -73,7 +72,7 @@ export default function Home() {
               Logging and timer tools to help parents through the potty training journey.
             </p>
             <a 
-              href="https://potty-panda.vercel.app/" 
+              href="https://pottypanda.thehelpfuldev.com/"
               target="_blank" 
               className="block text-center w-full py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700"
             >
