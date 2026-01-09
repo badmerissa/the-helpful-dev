@@ -69,7 +69,7 @@ export default function Home() {
          {/* App 2: Potty Panda (LIVE) */}
           <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
             <div className="flex items-center justify-between mb-4">
-              <span className="text-3xl">🐼</span>
+              <img src="/pp-icon.png" alt="Panda" className="w-8 h-8 object-contain" />
               <span className="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded-full">LIVE</span>
             </div>
             <h3 className="text-xl font-bold mb-2">Potty Panda</h3>
