@@ -90,21 +90,15 @@ export default function Home() {
 
       {/* 3. FOOTER: The Monetization */}
       <footer className="text-center py-12 px-6 border-t border-slate-200 mt-12 bg-white">
-
-
-        <p className="mb-6 text-slate-600">
-          Built with 🖤 by The Helpful Dev.
-        </p>
         <a 
           href="https://ko-fi.com/robogirl96" 
           target="_blank"
-          className="inline-flex items-center gap-2 px-6 py-3 bg-yellow-400 text-yellow-900 font-bold rounded-full hover:bg-yellow-300 transition-colors shadow-sm"
+          className="inline-flex items-center gap-2 px-6 py-3 bg-slate-300 text-white font-bold rounded-full hover:bg-slate-600 transition-colors shadow-sm"
         >
           ☕ Buy me a coffee
         </a>
-        <p className="mt-4 text-sm text-slate-400">
-          I promise to turn coffee into code.
-        </p>
+        <br/>
+        <br/>
         {/* LOGO ADDED HERE */}
         <div className="flex justify-center mb-4 opacity-80">
           <Image
