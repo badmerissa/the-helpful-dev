@@ -1,4 +1,6 @@
 import NewsletterForm from './components/NewsletterForm';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faRobot } from '@fortawesome/free-solid-svg-icons'
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -19,7 +21,7 @@ export default function Home() {
         </div>
         <h1 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight text-slate-900">
           Truly <span className="text-blue-600">helpful</span> tools <br />
-          for everyday problems.
+          for everyday problems.<br /> With a dash of fun on the side.
         </h1>
         <p className="text-xl text-slate-600 mb-8 leading-relaxed">
           Simple apps that help the community.
@@ -32,7 +34,7 @@ export default function Home() {
       </header>
       {/* 2. THE DIRECTORY: Your Apps */}
       <section className="max-w-4xl mx-auto px-6 py-10">
-        <h2 className="text-2xl font-bold mb-8 border-b pb-4 border-slate-200">The Toolbox</h2>
+        <h2 className="text-2xl font-bold mb-8 border-b pb-4 border-slate-200">The App Hub</h2>
         
         <div className="grid md:grid-cols-2 gap-6">
           
@@ -70,6 +72,27 @@ export default function Home() {
               href="https://pottypanda.thehelpfuldev.com/"
               target="_blank" 
               className="block text-center w-full py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700"
+            >
+              Launch App &rarr;
+            </a>
+          </div>
+
+          {/* App 3: Real AI Game (LIVE) */}
+          <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+            <div className="flex items-center justify-between mb-4">
+              <FontAwesomeIcon icon={faRobot} className="w-8 h-8 text-black-600" />
+              <span
+                  className="bg-orange-100 text-orange-400 text-xs font-bold px-2 py-1 rounded-full">Coming Soon</span>
+            </div>
+            <h3 className="text-xl font-bold mb-2">unvAIl</h3>
+            <p className="text-slate-600 mb-6 h-12">
+              Is it Real or is it AI? Unveil the truth in this daily reality check game.
+            </p>
+            {/*href="https://unvail.thehelpfuldev.com/"*/}
+            <a
+                href="#"
+                target="_blank"
+                className="block text-center w-full py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700"
             >
               Launch App &rarr;
             </a>
