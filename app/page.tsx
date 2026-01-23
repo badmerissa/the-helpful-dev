@@ -82,7 +82,7 @@ export default function Home() {
             <div className="flex items-center justify-between mb-4">
               <FontAwesomeIcon icon={faRobot} className="w-8 h-8 text-black-600" />
               <span
-                  className="bg-orange-100 text-orange-400 text-xs font-bold px-2 py-1 rounded-full">Coming Soon</span>
+                  className="bg-purple-100 text-purple-400 text-xs font-bold px-2 py-1 rounded-full">BETA</span>
             </div>
             <h3 className="text-xl font-bold mb-2">unvAIl</h3>
             <p className="text-slate-600 mb-6 h-12">
