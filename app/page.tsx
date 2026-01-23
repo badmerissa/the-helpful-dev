@@ -88,9 +88,8 @@ export default function Home() {
             <p className="text-slate-600 mb-6 h-12">
               Is it Real or is it AI? Unveil the truth in this daily reality check game.
             </p>
-            {/*href="https://unvail.thehelpfuldev.com/"*/}
             <a
-                href="#"
+                href="https://unvail.thehelpfuldev.com/"
                 target="_blank"
                 className="block text-center w-full py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700"
             >
