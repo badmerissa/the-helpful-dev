@@ -26,8 +26,6 @@ export default function Home() {
         <p className="text-xl text-slate-600 mb-8 leading-relaxed">
           Simple apps that help the community.
           <br />
-          No ads, no tracking, just useful code.
-          <br />
           Open source and supported by people like you.
         </p>
         <NewsletterForm />
