@@ -94,6 +94,25 @@ export default function Home() {
             </a>
           </div>
 
+          {/* App 4: Timeagotchi (BETA) */}
+          <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+            <div className="flex items-center justify-between mb-4">
+              <FontAwesomeIcon icon={faRobot} className="w-8 h-8 text-black-600" />
+              <span className="bg-purple-100 text-purple-700 text-xs font-bold px-2 py-1 rounded-full">BETA</span>
+            </div>
+            <h3 className="text-xl font-bold mb-2">Timeagotchi</h3>
+            <p className="text-slate-600 mb-6 h-12">
+              Hate doing your timesheets? Timeagotchi turns your time tracking into a fun, interactive experience. (Launching soon!)
+            </p>
+            <a
+                href="https://timeagotchi.thehelpfuldev.com/"
+                target="_blank"
+                className="block text-center w-full py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700"
+            >
+              Launch App &rarr;
+            </a>
+          </div>
+
         </div>
       </section>
 
