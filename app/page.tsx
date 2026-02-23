@@ -81,8 +81,7 @@ export default function Home() {
           <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
             <div className="flex items-center justify-between mb-4">
               <FontAwesomeIcon icon={faRobot} className="w-8 h-8 text-black-600" />
-              <span
-                  className="bg-purple-100 text-purple-400 text-xs font-bold px-2 py-1 rounded-full">BETA</span>
+              <span className="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded-full">LIVE</span>
             </div>
             <h3 className="text-xl font-bold mb-2">unvAIl</h3>
             <p className="text-slate-600 mb-6 h-12">
