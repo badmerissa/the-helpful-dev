@@ -107,7 +107,7 @@ export default function Home() {
             <a
                 href="#"
                 target="_blank"
-                className="block text-center w-full py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700"
+                className="pointer-events-none opacity-50 block text-center w-full py-2 bg-gray-600 text-white rounded-lg font-medium hover:bg-gray-700"
             >
               Launch App &rarr;
             </a>
