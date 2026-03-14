@@ -6,85 +6,50 @@ import NewsletterForm from "./components/NewsletterForm";
 
 function FastingPreview() {
   return (
-    <div className="text-center py-4 space-y-3">
-      <Image src="/f-icon.png" alt="" width={56} height={56} className="mx-auto object-contain" />
-      <div>
-        <p className="text-xs font-semibold text-slate-400 uppercase tracking-widest">
-          Active fast
-        </p>
-        <p className="text-5xl font-bold font-mono text-slate-900 mt-1">14:32:07</p>
+      <div className="relative w-full h-150 rounded-lg overflow-hidden border border-slate-200">
+          {/* The Shield */}
+          <div className="absolute inset-0 z-10 bg-transparent cursor-default overflow-hidden"></div>
+
+          {/* The Iframe */}
+          <iframe
+              src="https://fasting.thehelpfuldev.com/"
+              className="w-full h-full border-0 overflow-hidden"
+              loading="lazy"
+          ></iframe>
       </div>
-      <div className="h-2 rounded-full bg-slate-200 mx-4 overflow-hidden">
-        <div className="h-full w-3/4 rounded-full bg-gradient-to-r from-cyan-500 to-violet-500" />
-      </div>
-      <p className="text-xs text-slate-500">75% of 20-hour goal · Est. end 6:00 AM</p>
-      <div className="flex justify-center gap-3 pt-2">
-        <span className="px-3 py-1 rounded-full bg-red-100 text-red-600 text-xs font-semibold">
-          Stop Fast
-        </span>
-        <span className="px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-semibold">
-          Change Goal
-        </span>
-      </div>
-    </div>
   );
 }
 
-function PottyPreview() {
-  const entries = [
-    { time: "8:14 AM", type: "Success", emoji: "✅" },
-    { time: "10:32 AM", type: "Accident", emoji: "💧" },
-    { time: "1:05 PM", type: "Success", emoji: "✅" },
-    { time: "3:48 PM", type: "Success", emoji: "✅" },
-  ];
-
+function PottyPreview()
+{
   return (
-    <div className="space-y-3 py-2">
-      <div className="flex items-center justify-between mb-2">
-        <span className="text-sm font-semibold text-slate-700">Today&apos;s Log</span>
-        <span className="text-xs text-slate-400">Day 12 🐼</span>
+      <div className="relative w-full h-150 rounded-lg overflow-hidden border border-slate-200">
+          {/* The Shield */}
+          <div className="absolute inset-0 z-10 bg-transparent cursor-default overflow-hidden"></div>
+
+          {/* The Iframe */}
+          <iframe
+              src="https://pottypanda.thehelpfuldev.com/"
+              className="w-full h-full border-0 overflow-hidden"
+              loading="lazy"
+          ></iframe>
       </div>
-      {entries.map((entry) => (
-        <div
-          key={entry.time}
-          className="flex items-center justify-between bg-white rounded-lg border border-slate-200 px-3 py-2"
-        >
-          <span className="text-xs text-slate-400">{entry.time}</span>
-          <span className="text-sm font-medium text-slate-700">
-            {entry.emoji} {entry.type}
-          </span>
-        </div>
-      ))}
-      <div className="flex items-center gap-2 bg-green-50 rounded-lg border border-green-200 px-3 py-2">
-        <span className="text-green-600 text-sm font-semibold">3/4 successes today</span>
-      </div>
-    </div>
   );
 }
 
 function UnvailPreview() {
   return (
-    <div className="space-y-3">
-      <div className="flex items-center justify-between">
-        <span className="text-sm font-semibold text-slate-700">Today&apos;s Challenge</span>
-        <span className="text-xs text-slate-400">#142</span>
+      <div className="relative w-full h-150 rounded-lg overflow-hidden border border-slate-200">
+          {/* The Shield */}
+          <div className="absolute inset-0 z-10 bg-transparent cursor-default overflow-hidden"></div>
+
+          {/* The Iframe */}
+          <iframe
+              src="https://unvail.thehelpfuldev.com/"
+              className="w-full h-full border-0 overflow-hidden"
+              loading="lazy"
+          ></iframe>
       </div>
-      <div className="rounded-xl bg-slate-200 h-36 flex items-center justify-center">
-        <span className="text-slate-400 text-xs font-medium">📷 Image hidden until you guess</span>
-      </div>
-      <p className="text-sm text-slate-700 font-medium">
-        Is this image <span className="text-cyan-600">Real</span> or{" "}
-        <span className="text-cyan-600">AI-Generated</span>?
-      </p>
-      <div className="grid grid-cols-2 gap-2">
-        <div className="py-2 rounded-lg bg-cyan-600 text-white text-sm font-semibold text-center">
-          Real 📷
-        </div>
-        <div className="py-2 rounded-lg bg-cyan-800 text-white text-sm font-semibold text-center">
-          AI 🤖
-        </div>
-      </div>
-    </div>
   );
 }
 
