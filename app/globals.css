@@ -3,9 +3,9 @@
 :root {
   --brand-primary: #0F4C75;
   --brand-primary-dark: #1B262C;
-  --brand-gradient-from: #0F4C75;
-  --brand-gradient-to: #3282B8;
-  --brand-accent: #3282B8;
+  --brand-gradient-from: #0092ae;
+  --brand-gradient-to: #00637d;
+  --brand-accent: #00637d;
   --brand-light: #BBE1FA;
 
   --bg-base: #ffffff;

@@ -253,7 +253,7 @@ export default function Home() {
       {/* CTA BAND */}
       <section
         id="newsletter"
-        className="bg-gradient-to-br from-cyan-600 to-violet-600 scroll-mt-20"
+        className="bg-gradient-to-br from-cyan-400 to-cyan-800 scroll-mt-20"
       >
         <div className="max-w-4xl mx-auto px-6 py-20 text-center text-white">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4">More apps are on the way.</h2>
