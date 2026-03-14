@@ -31,7 +31,7 @@ export default function Navbar() {
                 href={app.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors"
+                className="text-sm font-medium text-slate-600 hover:text-cyan-600 transition-colors"
               >
                 {app.label}
               </a>
@@ -42,7 +42,7 @@ export default function Navbar() {
         <div className="flex items-center gap-3">
           <a
             href="#newsletter"
-            className="hidden sm:inline-flex items-center px-4 py-2 rounded-lg bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-700 transition-colors"
+            className="hidden sm:inline-flex items-center px-4 py-2 rounded-lg bg-cyan-600 text-white text-sm font-semibold hover:bg-cyan-700 transition-colors"
           >
             Stay in the loop
           </a>
@@ -71,7 +71,7 @@ export default function Navbar() {
               href={app.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm font-medium text-slate-700 hover:text-indigo-600"
+              className="text-sm font-medium text-slate-700 hover:text-cyan-600"
               onClick={() => setMenuOpen(false)}
             >
               {app.label}
@@ -79,7 +79,7 @@ export default function Navbar() {
           ))}
           <a
             href="#newsletter"
-            className="mt-2 text-center px-4 py-2 rounded-lg bg-indigo-600 text-white text-sm font-semibold"
+            className="mt-2 text-center px-4 py-2 rounded-lg bg-cyan-600 text-white text-sm font-semibold"
             onClick={() => setMenuOpen(false)}
           >
             Stay in the loop

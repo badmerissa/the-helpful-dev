@@ -36,7 +36,7 @@ export default function AppSpotlight({
       >
         <div className="flex-1 w-full">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-cyan-50 flex items-center justify-center">
               {icon}
             </div>
             <span
@@ -48,7 +48,7 @@ export default function AppSpotlight({
             </span>
           </div>
 
-          <p className="text-sm font-semibold text-indigo-600 mb-2 uppercase tracking-widest">
+          <p className="text-sm font-semibold text-cyan-600 mb-2 uppercase tracking-widest">
             {tagline}
           </p>
           <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight mb-4">
@@ -60,7 +60,7 @@ export default function AppSpotlight({
             {bullets.map((bullet) => (
               <li key={bullet} className="flex items-center gap-2 text-slate-600 text-sm">
                 <svg
-                  className="w-4 h-4 text-indigo-500 shrink-0"
+                  className="w-4 h-4 text-cyan-500 shrink-0"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -82,7 +82,7 @@ export default function AppSpotlight({
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-700 transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-cyan-600 text-white text-sm font-semibold hover:bg-cyan-700 transition-colors"
             >
               {ctaLabel} →
             </a>
