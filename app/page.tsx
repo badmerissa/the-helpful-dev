@@ -74,13 +74,13 @@ function UnvailPreview() {
       </div>
       <p className="text-sm text-slate-700 font-medium">
         Is this image <span className="text-cyan-600">Real</span> or{" "}
-        <span className="text-violet-600">AI-Generated</span>?
+        <span className="text-cyan-600">AI-Generated</span>?
       </p>
       <div className="grid grid-cols-2 gap-2">
         <div className="py-2 rounded-lg bg-cyan-600 text-white text-sm font-semibold text-center">
           Real 📷
         </div>
-        <div className="py-2 rounded-lg bg-violet-600 text-white text-sm font-semibold text-center">
+        <div className="py-2 rounded-lg bg-cyan-800 text-white text-sm font-semibold text-center">
           AI 🤖
         </div>
       </div>
@@ -154,7 +154,7 @@ export default function Home() {
             </h1>
 
             <p className="text-lg lg:text-xl text-slate-500 leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
-              Simple, focused tools for health tracking, parenting, and fun.
+              Simple, focused tools for life.
               No logins. No data collected. Just stuff that works.
             </p>
 
@@ -176,42 +176,15 @@ export default function Home() {
 
           <div className="flex-1 w-full max-w-md lg:max-w-none">
             <div className="bg-slate-50 rounded-2xl border border-slate-200 shadow-xl p-6 space-y-4">
-              <div className="flex items-center gap-1.5 mb-2">
-                <span className="w-3 h-3 rounded-full bg-red-400" />
-                <span className="w-3 h-3 rounded-full bg-yellow-400" />
-                <span className="w-3 h-3 rounded-full bg-green-400" />
-                <span className="flex-1 mx-3 h-6 rounded-md bg-slate-200 text-xs text-slate-400 flex items-center px-3">
-                  fasting.thehelpfuldev.com
-                </span>
-              </div>
               <div className="text-center py-6">
                 <Image
-                  src="/f-icon.png"
+                  src="/logo3.svg"
                   alt="Fasting Tracker"
-                  width={64}
-                  height={64}
+                  width={500}
+                  height={150}
                   className="mx-auto mb-4 object-contain"
                 />
-                <p className="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-2">
-                  Fasting Window
-                </p>
-                <p className="text-4xl font-bold text-slate-900 font-mono">14:32:07</p>
-                <p className="text-sm text-slate-500 mt-2">You&apos;re in the zone. Keep going!</p>
-                <div className="mt-4 h-2 rounded-full bg-slate-200 overflow-hidden mx-4">
-                  <div className="h-full w-3/4 rounded-full bg-gradient-to-r from-cyan-500 to-violet-500" />
-                </div>
-                <p className="text-xs text-slate-400 mt-1">75% of your 20-hour goal</p>
-              </div>
-              <div className="bg-white rounded-xl border border-slate-200 p-4 flex items-center justify-between">
-                <div>
-                  <p className="text-xs text-slate-400 font-medium">unvAIl — Daily Challenge</p>
-                  <p className="text-sm font-semibold text-slate-800 mt-0.5">
-                    Is this photo AI or real?
-                  </p>
-                </div>
-                <span className="px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs font-bold">
-                  LIVE
-                </span>
+
               </div>
             </div>
           </div>
@@ -219,15 +192,16 @@ export default function Home() {
         </div>
       </section>
 
+
       {/* STATS STRIP */}
       <section className="bg-slate-50 border-b border-slate-200">
         <div className="max-w-6xl mx-auto px-6 py-8">
           <dl className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {[
               { value: "4", label: "Free Apps" },
-              { value: "0 bytes", label: "Data Collected" },
               { value: "100%", label: "Runs in Browser" },
               { value: "Open Source", label: "Always" },
+              { value: "Utility Apps", label: "That Work" }
             ].map(({ value, label }) => (
               <div key={label}>
                 <dt className="text-2xl lg:text-3xl font-bold text-slate-900">{value}</dt>
@@ -343,7 +317,7 @@ export default function Home() {
 
           <div className="lg:col-span-1">
             <div className="flex items-center gap-2 mb-3">
-              <Image src="/icon.png" alt="The Helpful Dev" width={28} height={28} />
+              <Image src="/logo3.svg" alt="The Helpful Dev" width={28} height={28} />
               <span className="font-bold text-slate-900">The Helpful Dev</span>
             </div>
             <p className="text-sm text-slate-500 leading-relaxed">

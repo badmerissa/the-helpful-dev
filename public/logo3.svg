@@ -1,0 +1,55 @@
+<!-- 1: GLITCH.COFFEE — cyberpunk RGB-split -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 250" width="220" height="250">
+    <defs>
+        <style>
+            @keyframes steamUp{0%{transform:translateY(0);opacity:.85}100%{transform:translateY(-56px);opacity:0}}
+            @keyframes glitchMug{0%,85%,100%{filter:none;transform:none}86%{filter:drop-shadow(-5px 0 #BBE1FA) drop-shadow(5px 0 #3282B8);transform:skewX(-2deg) translateX(-3px)}87%{filter:none;transform:translate(3px,1px)}88%{filter:drop-shadow(3px 0 #BBE1FA);transform:translate(-2px,-1px)}89%{filter:none;transform:none}}
+            @keyframes flicker{0%,82%,84%,86%,100%{opacity:1}83%{opacity:0}85%{opacity:.3}}
+            @keyframes scanMove{0%{transform:translateY(-2px)}100%{transform:translateY(122px)}}
+            .st1{animation:steamUp 2.2s ease-out infinite}
+            .st2{animation:steamUp 2.2s ease-out .75s infinite}
+            .st3{animation:steamUp 2.2s ease-out 1.5s infinite}
+            .gm{animation:glitchMug 4.5s infinite}
+            .fl{animation:flicker 3.8s infinite}
+            .sc{animation:scanMove 2.5s linear infinite}
+        </style>
+        <filter id="gw" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <clipPath id="mc1"><rect x="28" y="90" width="144" height="118" rx="10"/></clipPath>
+    </defs>
+
+    <!-- BG + grid -->
+    <rect width="220" height="250" fill="#00000000"/>
+
+    <!-- Steam -->
+    <path class="st1" d="M73 88 Q67 73 73 58 Q79 43 73 26" stroke="#BBE1FA" stroke-width="2.5" fill="none" stroke-linecap="round" filter="url(#gw)"/>
+    <path class="st2" d="M110 88 Q104 71 110 54 Q116 37 110 20" stroke="#BBE1FA" stroke-width="2.5" fill="none" stroke-linecap="round" filter="url(#gw)"/>
+    <path class="st3" d="M147 88 Q141 73 147 58 Q153 43 147 26" stroke="#BBE1FA" stroke-width="2.5" fill="none" stroke-linecap="round" filter="url(#gw)"/>
+
+    <!-- Mug glitch group -->
+    <g class="gm">
+        <!-- Handle -->
+        <path d="M172 113 C207 113 217 131 217 149 C217 167 207 185 172 185 L172 173 C199 173 205 163 205 149 C205 135 199 125 172 125 Z" fill="#3282B8"/>
+        <!-- Body -->
+        <rect x="28" y="90" width="144" height="118" rx="10" fill="#0F4C75"/>
+        <!-- Scanline -->
+        <g clip-path="url(#mc1)">
+            <rect class="sc" x="28" y="90" width="144" height="3" fill="#BBE1FA" opacity=".07"/>
+        </g>
+        <!-- Rim -->
+        <rect x="28" y="90" width="144" height="16" rx="8" fill="#3282B8"/>
+        <!-- Coffee surface -->
+        <ellipse cx="100" cy="106" rx="57" ry="9" fill="#1B262C"/>
+        <ellipse cx="84" cy="104" rx="22" ry="4" fill="#0F4C75" opacity=".45"/>
+        <!-- Code text -->
+        <text class="fl" x="100" y="156" text-anchor="middle" font-family="Courier New,monospace" font-size="32" fill="#BBE1FA" font-weight="bold" filter="url(#gw)">THD</text>
+        <text x="100" y="175" text-anchor="middle" font-family="Courier New,monospace" font-size="8" fill="#3282B8" letter-spacing="4">The Helpful Dev</text>
+        <!-- Shine -->
+        <rect x="34" y="110" width="4" height="88" rx="2" fill="#3282B8" opacity=".28"/>
+        <!-- Base -->
+        <rect x="18" y="206" width="164" height="10" rx="5" fill="#3282B8"/>
+        <rect x="12" y="213" width="176" height="6" rx="3" fill="#0F4C75"/>
+    </g>
+</svg>
