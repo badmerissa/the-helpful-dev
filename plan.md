@@ -804,6 +804,95 @@ New:
 
 ---
 
+## Todo List
+
+### Phase 1 — Design Tokens & Global Styles
+- [ ] Add CSS custom property tokens to `globals.css` (brand colors, surfaces, text, borders, radii)
+- [ ] Add `gradient-text` utility class to `globals.css`
+- [ ] Set `font-family` on `body` to use the Geist variable
+- [ ] Add `scroll-behavior: smooth` to `html`
+- [ ] Verify dark mode variables are still respected (or explicitly scope to light-only for now)
+
+### Phase 2 — Navigation Bar
+- [ ] Create `app/components/Navbar.tsx`
+- [ ] Implement logo (icon + wordmark) linking to `/`
+- [ ] Implement desktop nav links for each live app
+- [ ] Implement "Stay in the loop" CTA button that scrolls to `#newsletter`
+- [ ] Implement mobile hamburger toggle with open/close state
+- [ ] Implement mobile dropdown menu with same links
+- [ ] Apply `sticky top-0 z-50 backdrop-blur` styling
+- [ ] Import and render `<Navbar />` in `app/layout.tsx` above `{children}`
+- [ ] Verify navbar does not cause layout shift on page load
+
+### Phase 3 — Hero Section
+- [ ] Remove existing centered logo, `<h1>`, `<p>`, and `<NewsletterForm />` from the hero in `page.tsx`
+- [ ] Build two-column hero wrapper (`flex-col lg:flex-row`)
+- [ ] Add pill badge ("4 apps · all free · open source") with pulsing dot
+- [ ] Write new `<h1>` with gradient-text accent word
+- [ ] Write new subtitle paragraph
+- [ ] Add "Browse the apps →" button linking to `#apps`
+- [ ] Add "Get notified of new apps" button linking to `#newsletter`
+- [ ] Build the right-side app preview card (browser chrome mockup)
+- [ ] Add Fasting Tracker preview inside the browser chrome (timer, progress bar)
+- [ ] Add unvAIl mini-card inside the browser chrome
+- [ ] Make layout responsive (stacks on mobile, side-by-side on `lg`)
+
+### Phase 4 — Stats Strip
+- [ ] Add stats strip section between hero and app spotlights
+- [ ] Define the four stats: "4 Free Apps", "0 bytes Data Collected", "100% Runs in Browser", "Open Source Always"
+- [ ] Style as a 2-col (mobile) / 4-col (desktop) grid with large number + label
+- [ ] Apply subtle `bg-slate-50` background with top/bottom borders
+
+### Phase 5 — App Spotlight Component & Sections
+- [ ] Create `app/components/AppSpotlight.tsx` with the full props interface
+- [ ] Implement text side: icon badge, status pill, tagline, `<h2>`, description, bullet list, CTA button
+- [ ] Implement visual side: rounded card container for preview content
+- [ ] Implement `reverse` prop to flip layout on alternate rows
+- [ ] Handle disabled state for "COMING SOON" apps (no link, greyed button)
+- [ ] Create `FastingPreview` inline component (icon, mono timer, progress bar, action pills)
+- [ ] Create `PottyPreview` inline component (log entry list or timer UI)
+- [ ] Create `UnvailPreview` inline component (image placeholder, Real/AI buttons)
+- [ ] Create `TimeagotchiPreview` inline component (coming-soon placeholder with tamagotchi concept)
+- [ ] Replace the `<section>` card grid in `page.tsx` with four `<AppSpotlight>` instances
+- [ ] Add `id="apps"` anchor to the spotlight wrapper div
+- [ ] Verify alternating layout (Fasting: normal, Potty: reversed, unvAIl: normal, Timeagotchi: reversed)
+
+### Phase 6 — CTA Band & NewsletterForm Dark Variant
+- [ ] Add `variant?: "light" | "dark"` prop to `NewsletterForm.tsx`
+- [ ] Implement conditional `inputClass` for dark variant (white/translucent input on indigo bg)
+- [ ] Implement conditional `btnClass` for dark variant (white button with indigo text)
+- [ ] Ensure success/error messages are legible on dark background
+- [ ] Build the CTA band section in `page.tsx` with `bg-gradient-to-br from-indigo-600 to-violet-600`
+- [ ] Add `id="newsletter"` anchor to the CTA band section
+- [ ] Write CTA headline ("More apps are on the way.")
+- [ ] Write CTA subtitle
+- [ ] Render `<NewsletterForm variant="dark" />` inside the CTA band
+- [ ] Add Ko-fi link as a secondary text link below the form
+
+### Phase 7 — Footer
+- [ ] Remove the existing `<footer>` from `page.tsx`
+- [ ] Build 4-column footer grid (brand, apps, categories, connect)
+- [ ] Brand column: logo + wordmark, one-liner description, Ko-fi link
+- [ ] Apps column: links to all 4 apps; Timeagotchi marked as disabled with "(soon)"
+- [ ] Categories column: static list (Health & Wellness, Parenting, Daily Games, Productivity)
+- [ ] Connect column: Newsletter anchor link, Ko-fi external link
+- [ ] Add bottom bar with copyright year (dynamic `new Date().getFullYear()`) and privacy note
+- [ ] Apply responsive grid collapse (4-col on `lg`, 2-col on `sm`, 1-col on mobile)
+
+### Phase 8 — Polish & QA
+- [ ] Audit all hover/focus states for consistency (indigo accent throughout)
+- [ ] Test full page on mobile (375px) — check no overflow, readable text, stacked layouts
+- [ ] Test on tablet (768px) — check grid transitions
+- [ ] Test on desktop (1280px+) — check max-width containers are centered
+- [ ] Verify sticky navbar doesn't overlap page content or anchor scroll targets (add `scroll-mt` offsets)
+- [ ] Check all external links open in `_blank` with `rel="noopener noreferrer"`
+- [ ] Verify "COMING SOON" card has `pointer-events-none` / `aria-disabled`
+- [ ] Run `npm run lint` and fix any warnings
+- [ ] Run `npm run build` and confirm zero errors
+- [ ] Spot-check Vercel preview deploy
+
+---
+
 ## What This Does NOT Change
 
 - No new npm dependencies
