@@ -15,7 +15,7 @@ function FastingPreview() {
         <p className="text-5xl font-bold font-mono text-slate-900 mt-1">14:32:07</p>
       </div>
       <div className="h-2 rounded-full bg-slate-200 mx-4 overflow-hidden">
-        <div className="h-full w-3/4 rounded-full bg-gradient-to-r from-indigo-500 to-violet-500" />
+        <div className="h-full w-3/4 rounded-full bg-gradient-to-r from-cyan-500 to-violet-500" />
       </div>
       <p className="text-xs text-slate-500">75% of 20-hour goal · Est. end 6:00 AM</p>
       <div className="flex justify-center gap-3 pt-2">
@@ -73,11 +73,11 @@ function UnvailPreview() {
         <span className="text-slate-400 text-xs font-medium">📷 Image hidden until you guess</span>
       </div>
       <p className="text-sm text-slate-700 font-medium">
-        Is this image <span className="text-indigo-600">Real</span> or{" "}
+        Is this image <span className="text-cyan-600">Real</span> or{" "}
         <span className="text-violet-600">AI-Generated</span>?
       </p>
       <div className="grid grid-cols-2 gap-2">
-        <div className="py-2 rounded-lg bg-indigo-600 text-white text-sm font-semibold text-center">
+        <div className="py-2 rounded-lg bg-cyan-600 text-white text-sm font-semibold text-center">
           Real 📷
         </div>
         <div className="py-2 rounded-lg bg-violet-600 text-white text-sm font-semibold text-center">
@@ -141,8 +141,8 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6 py-20 lg:py-28 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
 
           <div className="flex-1 text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 text-sm font-medium mb-6">
-              <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-50 border border-cyan-100 text-cyan-700 text-sm font-medium mb-6">
+              <span className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse" />
               4 apps · all free · open source
             </div>
 
@@ -161,13 +161,13 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
               <a
                 href="#apps"
-                className="px-6 py-3 rounded-lg bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition-colors text-sm"
+                className="px-6 py-3 rounded-lg bg-cyan-600 text-white font-semibold hover:bg-cyan-700 transition-colors text-sm"
               >
                 Browse the apps →
               </a>
               <a
                 href="#newsletter"
-                className="px-6 py-3 rounded-lg border border-slate-300 text-slate-700 font-semibold hover:border-indigo-400 hover:text-indigo-600 transition-colors text-sm"
+                className="px-6 py-3 rounded-lg border border-slate-300 text-slate-700 font-semibold hover:border-cyan-400 hover:text-cyan-600 transition-colors text-sm"
               >
                 Get notified of new apps
               </a>
@@ -198,7 +198,7 @@ export default function Home() {
                 <p className="text-4xl font-bold text-slate-900 font-mono">14:32:07</p>
                 <p className="text-sm text-slate-500 mt-2">You&apos;re in the zone. Keep going!</p>
                 <div className="mt-4 h-2 rounded-full bg-slate-200 overflow-hidden mx-4">
-                  <div className="h-full w-3/4 rounded-full bg-gradient-to-r from-indigo-500 to-violet-500" />
+                  <div className="h-full w-3/4 rounded-full bg-gradient-to-r from-cyan-500 to-violet-500" />
                 </div>
                 <p className="text-xs text-slate-400 mt-1">75% of your 20-hour goal</p>
               </div>
@@ -278,7 +278,7 @@ export default function Home() {
         />
 
         <AppSpotlight
-          icon={<FontAwesomeIcon icon={faRobot} className="w-5 h-5 text-indigo-600" />}
+          icon={<FontAwesomeIcon icon={faRobot} className="w-5 h-5 text-cyan-600" />}
           status="LIVE"
           title="unvAIl"
           tagline="Daily Game"
@@ -314,15 +314,15 @@ export default function Home() {
       {/* CTA BAND */}
       <section
         id="newsletter"
-        className="bg-gradient-to-br from-indigo-600 to-violet-600 scroll-mt-20"
+        className="bg-gradient-to-br from-cyan-600 to-violet-600 scroll-mt-20"
       >
         <div className="max-w-4xl mx-auto px-6 py-20 text-center text-white">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4">More apps are on the way.</h2>
-          <p className="text-indigo-100 text-lg mb-8 max-w-xl mx-auto leading-relaxed">
+          <p className="text-cyan-100 text-lg mb-8 max-w-xl mx-auto leading-relaxed">
             Subscribe to hear about new tools first. No spam — just a note when something ships.
           </p>
           <NewsletterForm variant="dark" />
-          <p className="mt-8 text-indigo-200 text-sm">
+          <p className="mt-8 text-cyan-200 text-sm">
             Or{" "}
             <a
               href="https://ko-fi.com/robogirl96"
@@ -354,7 +354,7 @@ export default function Home() {
               href="https://ko-fi.com/robogirl96"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 mt-4 text-sm text-slate-500 hover:text-indigo-600 transition-colors"
+              className="inline-flex items-center gap-1.5 mt-4 text-sm text-slate-500 hover:text-cyan-600 transition-colors"
             >
               ☕ Support on Ko-fi
             </a>
@@ -375,7 +375,7 @@ export default function Home() {
                     className={`text-sm transition-colors ${
                       disabled
                         ? "text-slate-300 cursor-not-allowed pointer-events-none"
-                        : "text-slate-500 hover:text-indigo-600"
+                        : "text-slate-500 hover:text-cyan-600"
                     }`}
                   >
                     {label}
@@ -408,7 +408,7 @@ export default function Home() {
                 <li key={label}>
                   <a
                     href={href}
-                    className="text-sm text-slate-500 hover:text-indigo-600 transition-colors"
+                    className="text-sm text-slate-500 hover:text-cyan-600 transition-colors"
                   >
                     {label}
                   </a>
