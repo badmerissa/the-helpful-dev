@@ -1,77 +1,94 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 
-export default function NewsletterForm() {
-    const [email, setEmail] = useState('');
-    const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+interface Props {
+  variant?: "light" | "dark";
+}
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setStatus('loading');
+export default function NewsletterForm({ variant = "light" }: Props) {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
-        const FORM_ID = '8957581';
-        const URL = `https://app.convertkit.com/forms/${FORM_ID}/subscriptions`;
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("loading");
 
-        try {
-            // We use a simple form POST to Kit's public endpoint
-            const data = new FormData();
-            data.append('email_address', email);
+    const FORM_ID = "8957581";
+    const URL = `https://app.convertkit.com/forms/${FORM_ID}/subscriptions`;
 
-            const response = await fetch(URL, {
-                method: 'POST',
-                body: data,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
+    try {
+      const data = new FormData();
+      data.append("email_address", email);
 
-            // Kit returns a 200 OK even if already subscribed, which is good for privacy
-            if (response.ok) {
-                setStatus('success');
-                setEmail('');
-            } else {
-                setStatus('error');
-            }
-        } catch (error) {
-            console.error(error);
-            setStatus('error');
-        }
-    };
+      const response = await fetch(URL, {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" },
+      });
 
-    if (status === 'success') {
-        return (
-            <div className="p-4 bg-green-50 text-green-700 rounded-lg text-center border border-green-200">
-                <p className="font-bold">🎉 Check your email!</p>
-                <p className="text-sm mt-1">I've sent you a confirmation link.</p>
-            </div>
-        );
+      if (response.ok) {
+        setStatus("success");
+        setEmail("");
+      } else {
+        setStatus("error");
+      }
+    } catch (error) {
+      console.error(error);
+      setStatus("error");
     }
+  };
 
+  if (status === "success") {
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row justify-center gap-3 max-w-md mx-auto">
-            <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email..."
-                className="px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none w-full text-slate-900"
-                required
-                disabled={status === 'loading'}
-            />
-            <button
-                type="submit"
-                disabled={status === 'loading'}
-                className="px-6 py-3 bg-slate-900 text-white font-medium rounded-lg hover:bg-slate-800 transition-colors w-full sm:w-auto disabled:opacity-50 whitespace-nowrap"
-            >
-                {status === 'loading' ? 'Joining...' : 'Get Updates'}
-            </button>
-
-            {status === 'error' && (
-                <p className="text-red-500 text-xs mt-2 w-full text-center">
-                    Oops! Something went wrong. Please try again.
-                </p>
-            )}
-        </form>
+      <div
+        className={`p-4 rounded-lg text-center ${
+          variant === "dark"
+            ? "bg-white/20 text-white border border-white/30"
+            : "bg-green-50 text-green-700 border border-green-200"
+        }`}
+      >
+        <p className="font-bold">🎉 Check your email!</p>
+        <p className="text-sm mt-1">I&apos;ve sent you a confirmation link.</p>
+      </div>
     );
+  }
+
+  const inputClass =
+    variant === "dark"
+      ? "flex-1 px-4 py-2.5 rounded-lg bg-white/20 border border-white/30 text-white placeholder:text-indigo-200 focus:outline-none focus:ring-2 focus:ring-white/50 text-sm min-w-0"
+      : "flex-1 px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 outline-none text-slate-900 text-sm min-w-0";
+
+  const btnClass =
+    variant === "dark"
+      ? "px-5 py-2.5 rounded-lg bg-white text-indigo-600 font-semibold text-sm hover:bg-indigo-50 transition-colors whitespace-nowrap disabled:opacity-50 shrink-0"
+      : "px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors whitespace-nowrap disabled:opacity-50 shrink-0 text-sm";
+
+  return (
+    <div className="w-full max-w-md mx-auto">
+      <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Enter your email..."
+          className={inputClass}
+          required
+          disabled={status === "loading"}
+        />
+        <button type="submit" disabled={status === "loading"} className={btnClass}>
+          {status === "loading" ? "Joining..." : "Get Updates"}
+        </button>
+      </form>
+      {status === "error" && (
+        <p
+          className={`text-xs mt-2 text-center ${
+            variant === "dark" ? "text-indigo-200" : "text-red-500"
+          }`}
+        >
+          Oops! Something went wrong. Please try again.
+        </p>
+      )}
+    </div>
+  );
 }
