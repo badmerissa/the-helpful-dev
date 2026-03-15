@@ -54,40 +54,26 @@ function UnvailPreview() {
 }
 
 function TimeagotchiPreview() {
-  const tasks = ["Design work", "Meetings", "Development"];
+    return (
+        <div className="relative w-full h-150 rounded-lg overflow-hidden border border-slate-200">
+            {/* The Shield */}
+            <div className="absolute inset-0 z-10 bg-transparent cursor-default overflow-hidden"></div>
 
-  return (
-    <div className="text-center py-6 space-y-4">
-      <div className="w-20 h-20 mx-auto rounded-2xl bg-slate-100 border-2 border-dashed border-slate-300 flex items-center justify-center">
-        <span className="text-3xl">🥚</span>
-      </div>
-      <div>
-        <p className="text-sm font-semibold text-slate-700">Your pet is waiting...</p>
-        <p className="text-xs text-slate-400 mt-1">Start logging time to hatch your companion</p>
-      </div>
-      <div className="space-y-2 text-left">
-        {tasks.map((task) => (
-          <div
-            key={task}
-            className="flex items-center justify-between bg-white rounded-lg border border-slate-200 px-3 py-2"
-          >
-            <span className="text-xs text-slate-500">{task}</span>
-            <span className="text-xs text-slate-300">0:00</span>
-          </div>
-        ))}
-      </div>
-      <span className="inline-block px-3 py-1 rounded-full bg-slate-100 text-slate-400 text-xs font-semibold">
-        Coming soon
-      </span>
-    </div>
-  );
+            {/* The Iframe */}
+            <iframe
+                src="https://timeagotchi.thehelpfuldev.com/"
+                className="w-full h-full border-0 overflow-hidden"
+                loading="lazy"
+            ></iframe>
+        </div>
+    );
 }
 
 const footerApps = [
   { label: "Fasting Tracker", href: "https://fasting.thehelpfuldev.com/", disabled: false },
   { label: "Potty Panda", href: "https://pottypanda.thehelpfuldev.com/", disabled: false },
   { label: "unvAIl", href: "https://unvail.thehelpfuldev.com/", disabled: false },
-  { label: "Timeagotchi", href: "#", disabled: true },
+  { label: "Timeagotchi", href: "https://timeagotchi.thehelpfuldev.com/", disabled: false },
 ];
 
 const connectLinks = [
@@ -235,7 +221,7 @@ export default function Home() {
         <AppSpotlight
           reverse
           icon={<FontAwesomeIcon icon={faRobot} className="w-5 h-5 text-slate-400" />}
-          status="COMING SOON"
+          status="LIVE"
           title="Timeagotchi"
           tagline="Productivity"
           description="Hate filling in timesheets? Timeagotchi turns your time tracking into an interactive tamagotchi-style experience. Your virtual pet lives or dies by your productivity."
@@ -244,7 +230,7 @@ export default function Home() {
             "Weekly review report included",
             "Export to CSV for any time tracking system",
           ]}
-          href="#"
+          href="https://timeagotchi.thehelpfuldev.com/"
           ctaLabel="Notify Me"
           previewContent={<TimeagotchiPreview />}
         />
