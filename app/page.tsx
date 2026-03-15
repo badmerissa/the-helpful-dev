@@ -231,7 +231,7 @@ export default function Home() {
             "Export to CSV for any time tracking system",
           ]}
           href="https://timeagotchi.thehelpfuldev.com/"
-          ctaLabel="Notify Me"
+          ctaLabel="Open Timeagotchi"
           previewContent={<TimeagotchiPreview />}
         />
       </div>
