@@ -81,11 +81,97 @@ const connectLinks = [
   { label: "Ko-fi", href: "https://ko-fi.com/robogirl96" },
 ];
 
-const categories = ["Health & Wellness", "Parenting", "Daily Games", "Productivity"];
+const categories = [
+  { label: "Health & Wellness", href: "/app/fasting" },
+  { label: "Parenting", href: "/app/potty-panda" },
+  { label: "Daily Games", href: "/app/unvail" },
+  { label: "Productivity", href: "/app/timeagotchi" },
+];
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "The Helpful Dev",
+  url: "https://thehelpfuldev.com",
+  description:
+    "Free browser-based tools for intermittent fasting, potty training, and daily games. No login. No data collected. Built by an indie dev.",
+};
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "The Helpful Dev",
+  url: "https://thehelpfuldev.com",
+  logo: "https://thehelpfuldev.com/icon.png",
+  sameAs: ["https://ko-fi.com/robogirl96"],
+};
+
+const appsJsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "Intermittent Fasting Tracker",
+    applicationCategory: "HealthApplication",
+    operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+    url: "https://fasting.thehelpfuldev.com/",
+    description:
+      "A distraction-free browser-based timer to track your fasting windows. Supports 16:8, 20:4, and OMAD protocols. No account needed.",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "Potty Panda",
+    applicationCategory: "LifestyleApplication",
+    operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+    url: "https://pottypanda.thehelpfuldev.com/",
+    description:
+      "Logging and timer tools to guide parents through the potty training journey. Track successes, accidents, and streaks with one tap.",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "unvAIl",
+    applicationCategory: "GameApplication",
+    operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+    url: "https://unvail.thehelpfuldev.com/",
+    description:
+      "A daily reality check game: is the image Real or AI? Train your eye to spot AI-generated content before it fools you.",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "Timeagotchi",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+    url: "https://timeagotchi.thehelpfuldev.com/",
+    description:
+      "Tamagotchi-style time tracking that turns timesheets into a virtual pet experience. Includes weekly reports and CSV export.",
+  },
+];
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-white text-slate-900 font-sans">
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+      />
+      {appsJsonLd.map((app) => (
+        <script
+          key={app.name}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(app) }}
+        />
+      ))}
 
       {/* HERO */}
       <section className="bg-white border-b border-slate-100">
@@ -130,9 +216,10 @@ export default function Home() {
               <div className="text-center py-6">
                 <Image
                   src="/logo3.svg"
-                  alt="Fasting Tracker"
+                  alt="The Helpful Dev"
                   width={500}
                   height={150}
+                  sizes="(max-width: 768px) 300px, 500px"
                   className="mx-auto mb-4 object-contain"
                 />
 
@@ -167,7 +254,7 @@ export default function Home() {
       <div id="apps" className="scroll-mt-20">
         <AppSpotlight
           icon={
-            <Image src="/f-icon.png" alt="" width={24} height={24} className="object-contain" />
+            <Image src="/f-icon.png" alt="" width={24} height={24} sizes="24px" className="object-contain" />
           }
           status="LIVE"
           title="Intermittent Fasting Tracker"
@@ -186,7 +273,7 @@ export default function Home() {
         <AppSpotlight
           reverse
           icon={
-            <Image src="/pp-icon.png" alt="" width={24} height={24} className="object-contain" />
+            <Image src="/pp-icon.png" alt="" width={24} height={24} sizes="24px" className="object-contain" />
           }
           status="LIVE"
           title="Potty Panda"
@@ -268,7 +355,7 @@ export default function Home() {
 
           <div className="lg:col-span-1">
             <div className="flex items-center gap-2 mb-3">
-              <Image src="/logo3.svg" alt="The Helpful Dev" width={28} height={28} />
+              <Image src="/logo3.svg" alt="The Helpful Dev" width={28} height={28} sizes="28px" />
               <span className="font-bold text-slate-900">The Helpful Dev</span>
             </div>
             <p className="text-sm text-slate-500 leading-relaxed">
@@ -318,8 +405,12 @@ export default function Home() {
               Categories
             </h3>
             <ul className="space-y-2 text-sm text-slate-500">
-              {categories.map((cat) => (
-                <li key={cat}>{cat}</li>
+              {categories.map(({ label, href }) => (
+                <li key={label}>
+                  <a href={href} className="hover:text-cyan-600 transition-colors">
+                    {label}
+                  </a>
+                </li>
               ))}
             </ul>
           </div>
