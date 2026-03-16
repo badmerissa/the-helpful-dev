@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
       {
         source: '/fasting',
         destination: 'https://fasting.thehelpfuldev.com/',
-        permanent: false,
+        permanent: true,
       },
     ];
   },

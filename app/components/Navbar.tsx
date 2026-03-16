@@ -4,10 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-const apps = [
-  { label: "Fasting Tracker", href: "https://fasting.thehelpfuldev.com/" },
-  { label: "Potty Panda", href: "https://pottypanda.thehelpfuldev.com/" },
-  { label: "unvAIl", href: "https://unvail.thehelpfuldev.com/" },
+const categories = [
+  { label: "Health & Wellness", href: "/app/fasting" },
+  { label: "Parenting", href: "/app/potty-panda" },
+  { label: "Daily Games", href: "/app/unvail" },
+  { label: "Productivity", href: "/app/timeagotchi" },
 ];
 
 export default function Navbar() {
@@ -25,16 +26,14 @@ export default function Navbar() {
         </Link>
 
         <ul className="hidden md:flex items-center gap-6">
-          {apps.map((app) => (
-            <li key={app.href}>
-              <a
-                href={app.href}
-                target="_blank"
-                rel="noopener noreferrer"
+          {categories.map((cat) => (
+            <li key={cat.href}>
+              <Link
+                href={cat.href}
                 className="text-sm font-medium text-slate-600 hover:text-cyan-600 transition-colors"
               >
-                {app.label}
-              </a>
+                {cat.label}
+              </Link>
             </li>
           ))}
         </ul>
@@ -65,17 +64,15 @@ export default function Navbar() {
 
       {menuOpen && (
         <div className="md:hidden border-t border-slate-200 bg-white px-6 py-4 flex flex-col gap-3">
-          {apps.map((app) => (
-            <a
-              key={app.href}
-              href={app.href}
-              target="_blank"
-              rel="noopener noreferrer"
+          {categories.map((cat) => (
+            <Link
+              key={cat.href}
+              href={cat.href}
               className="text-sm font-medium text-slate-700 hover:text-cyan-600"
               onClick={() => setMenuOpen(false)}
             >
-              {app.label}
-            </a>
+              {cat.label}
+            </Link>
           ))}
           <a
             href="#newsletter"
