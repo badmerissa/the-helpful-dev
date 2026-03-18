@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import { pottyAppJsonLd } from "@/lib/app-data";
 
 export const metadata: Metadata = {
   title: "Potty Panda — Free Potty Training App for Toddlers",
@@ -15,18 +16,6 @@ export const metadata: Metadata = {
       "A free browser-based potty training app for parents. Log successes and accidents, set potty timers, and track streaks — no account, no data collection.",
     url: "https://thehelpfuldev.com/app/potty-panda",
   },
-};
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  name: "Potty Panda",
-  applicationCategory: "LifestyleApplication",
-  operatingSystem: "Web",
-  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-  url: "https://pottypanda.thehelpfuldev.com/",
-  description:
-    "A free browser-based potty training app. Log successes and accidents, run a sit-on-potty timer, and track streaks. No account required.",
 };
 
 const faqJsonLd = {
@@ -79,9 +68,13 @@ const faqJsonLd = {
 export default function PottyPandaPage() {
   return (
     <main className="min-h-screen bg-white text-slate-900 font-sans">
+      {/*
+        WARNING: dangerouslySetInnerHTML is used here for JSON-LD script injection.
+        Data is static — do NOT interpolate dynamic/user-supplied values without sanitising first.
+      */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(pottyAppJsonLd) }}
       />
       <script
         type="application/ld+json"

@@ -3,13 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-
-const categories = [
-  { label: "Health & Wellness", href: "/app/fasting" },
-  { label: "Parenting", href: "/app/potty-panda" },
-  { label: "Daily Games", href: "/app/unvail" },
-  { label: "Productivity", href: "/app/timeagotchi" },
-];
+import { categories } from "@/lib/nav";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -19,7 +13,7 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between gap-8">
 
         <Link href="/" className="flex items-center gap-2.5 shrink-0">
-          <Image src="/logo3.svg" alt="The Helpful Dev" width={32} height={32} />
+          <Image src="/logo.svg" alt="The Helpful Dev" width={32} height={32} />
           <span className="font-bold text-slate-900 text-lg tracking-tight">
             The Helpful Dev
           </span>

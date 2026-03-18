@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import { fastingAppJsonLd } from "@/lib/app-data";
 
 export const metadata: Metadata = {
   title: "Intermittent Fasting Tracker — Free, No Login Required",
@@ -15,18 +16,6 @@ export const metadata: Metadata = {
       "A free browser-based intermittent fasting tracker. Supports 16:8, 20:4, OMAD, and 5:2 protocols. No account, no data collection.",
     url: "https://thehelpfuldev.com/app/fasting",
   },
-};
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  name: "Intermittent Fasting Tracker",
-  applicationCategory: "HealthApplication",
-  operatingSystem: "Web",
-  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-  url: "https://fasting.thehelpfuldev.com/",
-  description:
-    "A free browser-based intermittent fasting tracker supporting 16:8, 20:4, OMAD, and 5:2 protocols. No account or data collection required.",
 };
 
 const faqJsonLd = {
@@ -79,9 +68,13 @@ const faqJsonLd = {
 export default function FastingPage() {
   return (
     <main className="min-h-screen bg-white text-slate-900 font-sans">
+      {/*
+        WARNING: dangerouslySetInnerHTML is used here for JSON-LD script injection.
+        Data is static — do NOT interpolate dynamic/user-supplied values without sanitising first.
+      */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(fastingAppJsonLd) }}
       />
       <script
         type="application/ld+json"

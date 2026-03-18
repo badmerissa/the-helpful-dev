@@ -3,70 +3,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRobot } from "@fortawesome/free-solid-svg-icons";
 import AppSpotlight from "./components/AppSpotlight";
 import NewsletterForm from "./components/NewsletterForm";
+import { categories } from "@/lib/nav";
+import { appsJsonLd } from "@/lib/app-data";
 
-function FastingPreview() {
+// h-[600px]: explicit height for app preview iframes (approx. 37.5rem / 600px viewport)
+function AppPreview({ src }: { src: string }) {
   return (
-      <div className="relative w-full h-150 rounded-lg overflow-hidden border border-slate-200">
-          {/* The Shield */}
-          <div className="absolute inset-0 z-10 bg-transparent cursor-default overflow-hidden"></div>
-
-          {/* The Iframe */}
-          <iframe
-              src="https://fasting.thehelpfuldev.com/"
-              className="w-full h-full border-0 overflow-hidden"
-              loading="lazy"
-          ></iframe>
-      </div>
+    <div className="relative w-full h-[600px] rounded-lg overflow-hidden border border-slate-200">
+      {/* pointer-events-none prevents interaction with the embedded app preview */}
+      <iframe
+        src={src}
+        className="w-full h-full border-0 overflow-hidden pointer-events-none"
+        loading="lazy"
+        sandbox="allow-scripts allow-same-origin allow-forms"
+      ></iframe>
+    </div>
   );
-}
-
-function PottyPreview()
-{
-  return (
-      <div className="relative w-full h-150 rounded-lg overflow-hidden border border-slate-200">
-          {/* The Shield */}
-          <div className="absolute inset-0 z-10 bg-transparent cursor-default overflow-hidden"></div>
-
-          {/* The Iframe */}
-          <iframe
-              src="https://pottypanda.thehelpfuldev.com/"
-              className="w-full h-full border-0 overflow-hidden"
-              loading="lazy"
-          ></iframe>
-      </div>
-  );
-}
-
-function UnvailPreview() {
-  return (
-      <div className="relative w-full h-150 rounded-lg overflow-hidden border border-slate-200">
-          {/* The Shield */}
-          <div className="absolute inset-0 z-10 bg-transparent cursor-default overflow-hidden"></div>
-
-          {/* The Iframe */}
-          <iframe
-              src="https://unvail.thehelpfuldev.com/"
-              className="w-full h-full border-0 overflow-hidden"
-              loading="lazy"
-          ></iframe>
-      </div>
-  );
-}
-
-function TimeagotchiPreview() {
-    return (
-        <div className="relative w-full h-150 rounded-lg overflow-hidden border border-slate-200">
-            {/* The Shield */}
-            <div className="absolute inset-0 z-10 bg-transparent cursor-default overflow-hidden"></div>
-
-            {/* The Iframe */}
-            <iframe
-                src="https://timeagotchi.thehelpfuldev.com/"
-                className="w-full h-full border-0 overflow-hidden"
-                loading="lazy"
-            ></iframe>
-        </div>
-    );
 }
 
 const footerApps = [
@@ -79,13 +31,6 @@ const footerApps = [
 const connectLinks = [
   { label: "Newsletter", href: "#newsletter" },
   { label: "Ko-fi", href: "https://ko-fi.com/robogirl96" },
-];
-
-const categories = [
-  { label: "Health & Wellness", href: "/app/fasting" },
-  { label: "Parenting", href: "/app/potty-panda" },
-  { label: "Daily Games", href: "/app/unvail" },
-  { label: "Productivity", href: "/app/timeagotchi" },
 ];
 
 const websiteJsonLd = {
@@ -106,57 +51,17 @@ const organizationJsonLd = {
   sameAs: ["https://ko-fi.com/robogirl96"],
 };
 
-const appsJsonLd = [
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: "Intermittent Fasting Tracker",
-    applicationCategory: "HealthApplication",
-    operatingSystem: "Web",
-    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-    url: "https://fasting.thehelpfuldev.com/",
-    description:
-      "A distraction-free browser-based timer to track your fasting windows. Supports 16:8, 20:4, and OMAD protocols. No account needed.",
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: "Potty Panda",
-    applicationCategory: "LifestyleApplication",
-    operatingSystem: "Web",
-    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-    url: "https://pottypanda.thehelpfuldev.com/",
-    description:
-      "Logging and timer tools to guide parents through the potty training journey. Track successes, accidents, and streaks with one tap.",
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: "unvAIl",
-    applicationCategory: "GameApplication",
-    operatingSystem: "Web",
-    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-    url: "https://unvail.thehelpfuldev.com/",
-    description:
-      "A daily reality check game: is the image Real or AI? Train your eye to spot AI-generated content before it fools you.",
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: "Timeagotchi",
-    applicationCategory: "BusinessApplication",
-    operatingSystem: "Web",
-    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-    url: "https://timeagotchi.thehelpfuldev.com/",
-    description:
-      "Tamagotchi-style time tracking that turns timesheets into a virtual pet experience. Includes weekly reports and CSV export.",
-  },
-];
-
 export default function Home() {
   return (
     <main className="min-h-screen bg-white text-slate-900 font-sans">
 
+      {/*
+        WARNING: dangerouslySetInnerHTML is used here for JSON-LD script injection.
+        The data below is static/hardcoded — there is no immediate XSS risk.
+        Do NOT interpolate dynamic data (user input, URL params, CMS content) into
+        these objects without sanitising for HTML first. JSON.stringify does not
+        escape angle brackets, so unescaped dynamic values would create an XSS vector.
+      */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
@@ -215,7 +120,7 @@ export default function Home() {
             <div className="bg-slate-50 rounded-2xl border border-slate-200 shadow-xl p-6 space-y-4">
               <div className="text-center py-6">
                 <Image
-                  src="/logo3.svg"
+                  src="/logo.svg"
                   alt="The Helpful Dev"
                   width={500}
                   height={150}
@@ -242,8 +147,8 @@ export default function Home() {
               { value: "Utility Apps", label: "That Work" }
             ].map(({ value, label }) => (
               <div key={label}>
-                <dt className="text-2xl lg:text-3xl font-bold text-slate-900">{value}</dt>
-                <dd className="text-sm text-slate-500 mt-1">{label}</dd>
+                <dd className="text-2xl lg:text-3xl font-bold text-slate-900">{value}</dd>
+                <dt className="text-sm text-slate-500 mt-1">{label}</dt>
               </div>
             ))}
           </dl>
@@ -267,7 +172,7 @@ export default function Home() {
           ]}
           href="https://fasting.thehelpfuldev.com/"
           ctaLabel="Open Fasting Tracker"
-          previewContent={<FastingPreview />}
+          previewContent={<AppPreview src="https://fasting.thehelpfuldev.com/" />}
         />
 
         <AppSpotlight
@@ -286,7 +191,7 @@ export default function Home() {
           ]}
           href="https://pottypanda.thehelpfuldev.com/"
           ctaLabel="Open Potty Panda"
-          previewContent={<PottyPreview />}
+          previewContent={<AppPreview src="https://pottypanda.thehelpfuldev.com/" />}
         />
 
         <AppSpotlight
@@ -302,7 +207,7 @@ export default function Home() {
           ]}
           href="https://unvail.thehelpfuldev.com/"
           ctaLabel="Play Today's Round"
-          previewContent={<UnvailPreview />}
+          previewContent={<AppPreview src="https://unvail.thehelpfuldev.com/" />}
         />
 
         <AppSpotlight
@@ -319,7 +224,7 @@ export default function Home() {
           ]}
           href="https://timeagotchi.thehelpfuldev.com/"
           ctaLabel="Open Timeagotchi"
-          previewContent={<TimeagotchiPreview />}
+          previewContent={<AppPreview src="https://timeagotchi.thehelpfuldev.com/" />}
         />
       </div>
 
@@ -355,7 +260,7 @@ export default function Home() {
 
           <div className="lg:col-span-1">
             <div className="flex items-center gap-2 mb-3">
-              <Image src="/logo3.svg" alt="The Helpful Dev" width={28} height={28} sizes="28px" />
+              <Image src="/logo.svg" alt="The Helpful Dev" width={28} height={28} sizes="28px" />
               <span className="font-bold text-slate-900">The Helpful Dev</span>
             </div>
             <p className="text-sm text-slate-500 leading-relaxed">
