@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRobot } from "@fortawesome/free-solid-svg-icons";
+import { timeagotchiAppJsonLd } from "@/lib/app-data";
 
 export const metadata: Metadata = {
   title: "Timeagotchi — Make Time Tracking Fun with a Virtual Pet",
@@ -16,18 +17,6 @@ export const metadata: Metadata = {
       "A free browser-based time tracking app that turns your timesheet into a Tamagotchi. Log hours by feeding your virtual pet. Weekly reports and CSV export included.",
     url: "https://thehelpfuldev.com/app/timeagotchi",
   },
-};
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  name: "Timeagotchi",
-  applicationCategory: "BusinessApplication",
-  operatingSystem: "Web",
-  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-  url: "https://timeagotchi.thehelpfuldev.com/",
-  description:
-    "A free browser-based time tracking app that gamifies timesheet logging through a Tamagotchi-style virtual pet. Includes weekly reports and CSV export.",
 };
 
 const faqJsonLd = {
@@ -80,9 +69,13 @@ const faqJsonLd = {
 export default function TimeagotchiPage() {
   return (
     <main className="min-h-screen bg-white text-slate-900 font-sans">
+      {/*
+        WARNING: dangerouslySetInnerHTML is used here for JSON-LD script injection.
+        Data is static — do NOT interpolate dynamic/user-supplied values without sanitising first.
+      */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(timeagotchiAppJsonLd) }}
       />
       <script
         type="application/ld+json"

@@ -89,7 +89,6 @@ export default function AppSpotlight({
           ) : (
             <span
               className="inline-flex items-center px-5 py-2.5 rounded-lg bg-slate-100 text-slate-400 text-sm font-semibold cursor-not-allowed"
-              aria-disabled="true"
             >
               Coming Soon
             </span>

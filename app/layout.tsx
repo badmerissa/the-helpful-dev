@@ -43,7 +43,7 @@ export const metadata: Metadata = {
       "Free browser-based tools for intermittent fasting, potty training, and daily games. No login. No data collected. Built by an indie dev.",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.svg",
         width: 1200,
         height: 630,
         alt: "The Helpful Dev — free privacy-first web apps",
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     title: "The Helpful Dev | Free Privacy-First Web Apps",
     description:
       "Free browser-based tools for intermittent fasting, potty training, and daily games. No login. No data collected. Built by an indie dev.",
-    images: ["/og-image.png"],
+    images: ["/og-image.svg"],
   },
 };
 
@@ -70,8 +70,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
-        <link rel="preconnect" href="https://googletagservices.com" />
-        <link rel="preconnect" href="https://tpc.googlesyndication.com" />
+<link rel="preconnect" href="https://tpc.googlesyndication.com" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Navbar />

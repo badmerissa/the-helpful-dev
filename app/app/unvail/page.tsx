@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRobot } from "@fortawesome/free-solid-svg-icons";
+import { unvailAppJsonLd } from "@/lib/app-data";
 
 export const metadata: Metadata = {
   title: "unvAIl — Daily Real vs. AI Image Detection Game",
@@ -16,18 +17,6 @@ export const metadata: Metadata = {
       "A free daily game that challenges you to tell real photos from AI-generated images. New challenge every day. Shareable results. No sign-up required.",
     url: "https://thehelpfuldev.com/app/unvail",
   },
-};
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  name: "unvAIl",
-  applicationCategory: "GameApplication",
-  operatingSystem: "Web",
-  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-  url: "https://unvail.thehelpfuldev.com/",
-  description:
-    "A free daily game challenging players to identify which images are real and which are AI-generated. New challenge every day with shareable Wordle-style results.",
 };
 
 const faqJsonLd = {
@@ -80,9 +69,13 @@ const faqJsonLd = {
 export default function UnvailPage() {
   return (
     <main className="min-h-screen bg-white text-slate-900 font-sans">
+      {/*
+        WARNING: dangerouslySetInnerHTML is used here for JSON-LD script injection.
+        Data is static — do NOT interpolate dynamic/user-supplied values without sanitising first.
+      */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(unvailAppJsonLd) }}
       />
       <script
         type="application/ld+json"
