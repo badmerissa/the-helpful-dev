@@ -72,7 +72,6 @@ export default function NewsletterForm({ variant = "light" }: Props) {
     } catch {
       // Network error, timeout, or abort — do not log in production
       if (process.env.NODE_ENV !== "production") {
-        // eslint-disable-next-line no-console
         console.warn("[NewsletterForm] Submission failed — network or timeout error");
       }
       setStatus("error");

@@ -16,19 +16,20 @@ interface Props {
 }
 
 export default function CookieConsent({ nonce, adsenseSrc }: Props) {
-  const [consent, setConsent] = useState<ConsentState>(null);
+  // Lazy initialiser reads localStorage once on mount — avoids calling
+  // setState synchronously inside a useEffect (react-hooks/set-state-in-effect).
+  const [consent, setConsent] = useState<ConsentState>(() => {
+    if (typeof window === "undefined") return null;
+    return localStorage.getItem(STORAGE_KEY) as ConsentState | null;
+  });
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY) as ConsentState | null;
-    if (stored) {
-      setConsent(stored);
-    } else {
-      // Slight delay so banner doesn't flash on first paint
-      const t = setTimeout(() => setVisible(true), 600);
-      return () => clearTimeout(t);
-    }
-  }, []);
+    if (consent) return; // already decided — don't show the banner
+    // Slight delay so the banner doesn't flash on first paint
+    const t = setTimeout(() => setVisible(true), 600);
+    return () => clearTimeout(t);
+  }, [consent]);
 
   function accept() {
     localStorage.setItem(STORAGE_KEY, "accepted");

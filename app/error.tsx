@@ -16,7 +16,6 @@ export default function Error({
     //   import * as Sentry from "@sentry/nextjs";
     //   Sentry.captureException(error);
     if (process.env.NODE_ENV !== "production") {
-      // eslint-disable-next-line no-console
       console.error("[Error boundary]", error);
     }
   }, [error]);
