@@ -1,20 +1,15 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 import "./globals.css";
-import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Navbar from "./components/Navbar";
+import CookieConsent from "./components/CookieConsent";
+import { headers } from "next/headers";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// GeistSans and GeistMono are loaded from the local `geist` npm package,
+// eliminating the Google Fonts network dependency at build time.
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://thehelpfuldev.com"),
@@ -59,30 +54,44 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+const ADSENSE_SRC =
+  "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7388329784955167";
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Read the nonce injected by middleware.ts so we can pass it to client
+  // components that load third-party scripts (AdSense via CookieConsent).
+  // Reading headers() here makes this layout dynamically rendered per request.
+  const nonce = (await headers()).get("x-nonce") ?? undefined;
+
   return (
     <html lang="en">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Fonts are now served locally via the `geist` npm package — no Google Fonts CDN needed */}
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
-<link rel="preconnect" href="https://tpc.googlesyndication.com" />
+        <link rel="preconnect" href="https://tpc.googlesyndication.com" />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${GeistSans.variable} ${GeistMono.variable} antialiased`}>
+        {/* Skip-to-content link for keyboard/screen-reader users */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-4 focus:left-4 focus:px-4 focus:py-2 focus:bg-white focus:text-cyan-700 focus:font-semibold focus:rounded-lg focus:border focus:border-cyan-300 focus:shadow"
+        >
+          Skip to main content
+        </a>
+
         <Navbar />
-        {children}
+        <div id="main-content">{children}</div>
+
         <Analytics />
         <SpeedInsights />
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7388329784955167"
-          strategy="lazyOnload"
-          crossOrigin="anonymous"
-        />
+
+        {/* AdSense loads only after cookie consent (GDPR compliance).
+            Nonce forwarded from middleware for CSP compliance. */}
+        <CookieConsent nonce={nonce} adsenseSrc={ADSENSE_SRC} />
       </body>
     </html>
   );

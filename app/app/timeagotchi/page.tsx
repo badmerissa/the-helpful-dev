@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRobot } from "@fortawesome/free-solid-svg-icons";
 import { timeagotchiAppJsonLd } from "@/lib/app-data";
+import JsonLd from "@/app/components/JsonLd";
 
 export const metadata: Metadata = {
   title: "Timeagotchi — Make Time Tracking Fun with a Virtual Pet",
@@ -69,18 +68,8 @@ const faqJsonLd = {
 export default function TimeagotchiPage() {
   return (
     <main className="min-h-screen bg-white text-slate-900 font-sans">
-      {/*
-        WARNING: dangerouslySetInnerHTML is used here for JSON-LD script injection.
-        Data is static — do NOT interpolate dynamic/user-supplied values without sanitising first.
-      */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(timeagotchiAppJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
+      <JsonLd data={timeagotchiAppJsonLd} />
+      <JsonLd data={faqJsonLd} />
 
       {/* HERO */}
       <section className="bg-white border-b border-slate-100">
@@ -95,7 +84,9 @@ export default function TimeagotchiPage() {
 
           <div className="flex items-center gap-4 mb-6">
             <div className="w-14 h-14 rounded-2xl bg-slate-100 flex items-center justify-center">
-              <FontAwesomeIcon icon={faRobot} className="w-7 h-7 text-slate-400" />
+              <svg className="w-7 h-7 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <rect x="3" y="11" width="18" height="10" rx="2" /><rect x="8" y="15" width="2" height="2" rx="0.5" /><rect x="14" y="15" width="2" height="2" rx="0.5" /><path d="M12 11V7" /><circle cx="12" cy="5" r="2" /><path d="M8 11V9a4 4 0 018 0v2" />
+              </svg>
             </div>
             <span className="text-xs font-bold px-2 py-1 rounded-full bg-green-100 text-green-700">
               LIVE

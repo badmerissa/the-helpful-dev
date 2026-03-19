@@ -1,25 +1,11 @@
 import Image from "next/image";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRobot } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 import AppSpotlight from "./components/AppSpotlight";
+import AppPreview from "./components/AppPreview";
 import NewsletterForm from "./components/NewsletterForm";
+import JsonLd from "./components/JsonLd";
 import { categories } from "@/lib/nav";
 import { appsJsonLd } from "@/lib/app-data";
-
-// h-[600px]: explicit height for app preview iframes (approx. 37.5rem / 600px viewport)
-function AppPreview({ src }: { src: string }) {
-  return (
-    <div className="relative w-full h-[600px] rounded-lg overflow-hidden border border-slate-200">
-      {/* pointer-events-none prevents interaction with the embedded app preview */}
-      <iframe
-        src={src}
-        className="w-full h-full border-0 overflow-hidden pointer-events-none"
-        loading="lazy"
-        sandbox="allow-scripts allow-same-origin allow-forms"
-      ></iframe>
-    </div>
-  );
-}
 
 const footerApps = [
   { label: "Fasting Tracker", href: "https://fasting.thehelpfuldev.com/", disabled: false },
@@ -29,8 +15,8 @@ const footerApps = [
 ];
 
 const connectLinks = [
-  { label: "Newsletter", href: "#newsletter" },
-  { label: "Ko-fi", href: "https://ko-fi.com/robogirl96" },
+  { label: "Newsletter", href: "#newsletter", external: false },
+  { label: "Ko-fi", href: "https://ko-fi.com/robogirl96", external: true },
 ];
 
 const websiteJsonLd = {
@@ -51,31 +37,37 @@ const organizationJsonLd = {
   sameAs: ["https://ko-fi.com/robogirl96"],
 };
 
+// Inline robot SVG replaces the FontAwesome faRobot dependency
+function RobotIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <rect x="3" y="11" width="18" height="10" rx="2" />
+      <rect x="8" y="15" width="2" height="2" rx="0.5" />
+      <rect x="14" y="15" width="2" height="2" rx="0.5" />
+      <path d="M12 11V7" />
+      <circle cx="12" cy="5" r="2" />
+      <path d="M8 11V9a4 4 0 018 0v2" />
+    </svg>
+  );
+}
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-white text-slate-900 font-sans">
 
-      {/*
-        WARNING: dangerouslySetInnerHTML is used here for JSON-LD script injection.
-        The data below is static/hardcoded — there is no immediate XSS risk.
-        Do NOT interpolate dynamic data (user input, URL params, CMS content) into
-        these objects without sanitising for HTML first. JSON.stringify does not
-        escape angle brackets, so unescaped dynamic values would create an XSS vector.
-      */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
-      />
+      <JsonLd data={websiteJsonLd} />
+      <JsonLd data={organizationJsonLd} />
       {appsJsonLd.map((app) => (
-        <script
-          key={app.name}
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(app) }}
-        />
+        <JsonLd key={(app as { name: string }).name} data={app} />
       ))}
 
       {/* HERO */}
@@ -84,7 +76,7 @@ export default function Home() {
 
           <div className="flex-1 text-center lg:text-left">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-50 border border-cyan-100 text-cyan-700 text-sm font-medium mb-6">
-              <span className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse" aria-hidden="true" />
               4 apps · all free · open source
             </div>
 
@@ -127,14 +119,12 @@ export default function Home() {
                   sizes="(max-width: 768px) 300px, 500px"
                   className="mx-auto mb-4 object-contain"
                 />
-
               </div>
             </div>
           </div>
 
         </div>
       </section>
-
 
       {/* STATS STRIP */}
       <section className="bg-slate-50 border-b border-slate-200">
@@ -172,7 +162,14 @@ export default function Home() {
           ]}
           href="https://fasting.thehelpfuldev.com/"
           ctaLabel="Open Fasting Tracker"
-          previewContent={<AppPreview src="https://fasting.thehelpfuldev.com/" />}
+          previewContent={
+            <AppPreview
+              src="https://fasting.thehelpfuldev.com/"
+              title="Fasting Tracker app preview"
+              appName="Fasting Tracker"
+              appHref="https://fasting.thehelpfuldev.com/"
+            />
+          }
         />
 
         <AppSpotlight
@@ -191,11 +188,18 @@ export default function Home() {
           ]}
           href="https://pottypanda.thehelpfuldev.com/"
           ctaLabel="Open Potty Panda"
-          previewContent={<AppPreview src="https://pottypanda.thehelpfuldev.com/" />}
+          previewContent={
+            <AppPreview
+              src="https://pottypanda.thehelpfuldev.com/"
+              title="Potty Panda app preview"
+              appName="Potty Panda"
+              appHref="https://pottypanda.thehelpfuldev.com/"
+            />
+          }
         />
 
         <AppSpotlight
-          icon={<FontAwesomeIcon icon={faRobot} className="w-5 h-5 text-cyan-600" />}
+          icon={<RobotIcon className="w-5 h-5 text-cyan-600" />}
           status="LIVE"
           title="unvAIl"
           tagline="Daily Game"
@@ -207,12 +211,19 @@ export default function Home() {
           ]}
           href="https://unvail.thehelpfuldev.com/"
           ctaLabel="Play Today's Round"
-          previewContent={<AppPreview src="https://unvail.thehelpfuldev.com/" />}
+          previewContent={
+            <AppPreview
+              src="https://unvail.thehelpfuldev.com/"
+              title="unvAIl game preview"
+              appName="unvAIl"
+              appHref="https://unvail.thehelpfuldev.com/"
+            />
+          }
         />
 
         <AppSpotlight
           reverse
-          icon={<FontAwesomeIcon icon={faRobot} className="w-5 h-5 text-slate-400" />}
+          icon={<RobotIcon className="w-5 h-5 text-slate-400" />}
           status="LIVE"
           title="Timeagotchi"
           tagline="Productivity"
@@ -224,7 +235,14 @@ export default function Home() {
           ]}
           href="https://timeagotchi.thehelpfuldev.com/"
           ctaLabel="Open Timeagotchi"
-          previewContent={<AppPreview src="https://timeagotchi.thehelpfuldev.com/" />}
+          previewContent={
+            <AppPreview
+              src="https://timeagotchi.thehelpfuldev.com/"
+              title="Timeagotchi app preview"
+              appName="Timeagotchi"
+              appHref="https://timeagotchi.thehelpfuldev.com/"
+            />
+          }
         />
       </div>
 
@@ -245,6 +263,7 @@ export default function Home() {
               href="https://ko-fi.com/robogirl96"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Buy me a coffee on Ko-fi (opens in new tab)"
               className="underline underline-offset-2 hover:text-white transition-colors"
             >
               buy me a coffee ☕
@@ -271,6 +290,7 @@ export default function Home() {
               href="https://ko-fi.com/robogirl96"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Support us on Ko-fi (opens in new tab)"
               className="inline-flex items-center gap-1.5 mt-4 text-sm text-slate-500 hover:text-cyan-600 transition-colors"
             >
               ☕ Support on Ko-fi
@@ -288,6 +308,7 @@ export default function Home() {
                     href={href}
                     target={disabled ? undefined : "_blank"}
                     rel={disabled ? undefined : "noopener noreferrer"}
+                    aria-label={disabled ? undefined : `${label} (opens in new tab)`}
                     aria-disabled={disabled}
                     className={`text-sm transition-colors ${
                       disabled
@@ -325,10 +346,13 @@ export default function Home() {
               Connect
             </h3>
             <ul className="space-y-2">
-              {connectLinks.map(({ label, href }) => (
+              {connectLinks.map(({ label, href, external }) => (
                 <li key={label}>
                   <a
                     href={href}
+                    target={external ? "_blank" : undefined}
+                    rel={external ? "noopener noreferrer" : undefined}
+                    aria-label={external ? `${label} (opens in new tab)` : undefined}
                     className="text-sm text-slate-500 hover:text-cyan-600 transition-colors"
                   >
                     {label}
@@ -345,9 +369,17 @@ export default function Home() {
             <p className="text-xs text-slate-400">
               © {new Date().getFullYear()} The Helpful Dev. Built with care.
             </p>
-            <p className="text-xs text-slate-400">
-              Privacy-first · No sign-up required · Your data stays local
-            </p>
+            <div className="flex items-center gap-4">
+              <Link
+                href="/privacy"
+                className="text-xs text-slate-400 hover:text-cyan-600 transition-colors underline underline-offset-2"
+              >
+                Privacy Policy
+              </Link>
+              <p className="text-xs text-slate-400">
+                Privacy-first · No sign-up required · Your data stays local
+              </p>
+            </div>
           </div>
         </div>
       </footer>

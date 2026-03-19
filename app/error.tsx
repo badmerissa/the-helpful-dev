@@ -11,7 +11,14 @@ export default function Error({
   reset: () => void;
 }) {
   useEffect(() => {
-    console.error(error);
+    // In production, send errors to a logging service rather than leaking
+    // stack traces to the browser console. Replace with Sentry or similar:
+    //   import * as Sentry from "@sentry/nextjs";
+    //   Sentry.captureException(error);
+    if (process.env.NODE_ENV !== "production") {
+      // eslint-disable-next-line no-console
+      console.error("[Error boundary]", error);
+    }
   }, [error]);
 
   return (

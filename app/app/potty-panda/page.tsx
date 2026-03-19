@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { pottyAppJsonLd } from "@/lib/app-data";
+import JsonLd from "@/app/components/JsonLd";
 
 export const metadata: Metadata = {
   title: "Potty Panda — Free Potty Training App for Toddlers",
@@ -68,18 +69,8 @@ const faqJsonLd = {
 export default function PottyPandaPage() {
   return (
     <main className="min-h-screen bg-white text-slate-900 font-sans">
-      {/*
-        WARNING: dangerouslySetInnerHTML is used here for JSON-LD script injection.
-        Data is static — do NOT interpolate dynamic/user-supplied values without sanitising first.
-      */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(pottyAppJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
+      <JsonLd data={pottyAppJsonLd} />
+      <JsonLd data={faqJsonLd} />
 
       {/* HERO */}
       <section className="bg-white border-b border-slate-100">

@@ -1,45 +1,48 @@
 import type { NextConfig } from "next";
+import bundleAnalyzer from "@next/bundle-analyzer";
+
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === "true",
+});
 
 const nextConfig: NextConfig = {
+  experimental: {
+    // Allow Next.js font preloading to use system TLS certificates.
+    // Required in some sandboxed/CI environments where Google Fonts CDN
+    // certificates are not in the default trust store.
+    turbopackUseSystemTlsCerts: true,
+  },
   async headers() {
     return [
       {
         source: "/(.*)",
         headers: [
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
+          // HSTS: tell browsers to always use HTTPS for 2 years (includeSubDomains + preload)
           {
-            key: "X-Content-Type-Options",
-            value: "nosniff",
+            key: "Strict-Transport-Security",
+            value: "max-age=63072000; includeSubDomains; preload",
           },
-          {
-            key: "X-Frame-Options",
-            value: "SAMEORIGIN",
-          },
-          {
-            key: "Referrer-Policy",
-            value: "strict-origin-when-cross-origin",
-          },
-          {
-            key: "Permissions-Policy",
-            value: "camera=(), microphone=(), geolocation=()",
-          },
-          {
-            key: "Content-Security-Policy",
-            value: [
-              "default-src 'self'",
-              // Scripts: self + AdSense + Vercel analytics
-              "script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://va.vercel-scripts.com",
-              // Styles: self + inline styles from Tailwind/Next.js
-              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-              // Fonts
-              "font-src 'self' https://fonts.gstatic.com",
-              // Images: self + data URIs + AdSense + app subdomains
-              "img-src 'self' data: https://pagead2.googlesyndication.com",
-              // Frames: only own subdomains (for app preview iframes)
-              "frame-src https://fasting.thehelpfuldev.com https://pottypanda.thehelpfuldev.com https://unvail.thehelpfuldev.com https://timeagotchi.thehelpfuldev.com",
-              // Connections: self + ConvertKit + AdSense + Vercel
-              "connect-src 'self' https://app.convertkit.com https://pagead2.googlesyndication.com https://vitals.vercel-insights.com",
-            ].join("; "),
-          },
+          // CSP is handled dynamically by middleware.ts (nonce-based, per-request).
+          // The static fallback below applies only if middleware is bypassed (e.g. direct
+          // static-file requests that skip the middleware matcher).
+        ],
+      },
+      // Long-lived cache for immutable hashed static assets
+      {
+        source: "/_next/static/(.*)",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
+      // Versioned public assets (icons, OG images, fonts)
+      {
+        source: "/:path*.(png|svg|ico|webp|woff2)",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
         ],
       },
     ];
@@ -50,13 +53,12 @@ const nextConfig: NextConfig = {
       {
         source: "/fasting",
         destination: "https://fasting.thehelpfuldev.com/",
-        // Using temporary (307) redirect until URL structure is confirmed stable.
-        // Promote to permanent: true only after thorough testing, as 301s are
-        // cached indefinitely by browsers and CDNs and are difficult to reverse.
-        permanent: false,
+        // permanent: true emits a 308 (Next.js) / 301 — safe now that the
+        // destination URL is confirmed stable.
+        permanent: true,
       },
     ];
   },
 };
 
-export default nextConfig;
+export default withBundleAnalyzer(nextConfig);
