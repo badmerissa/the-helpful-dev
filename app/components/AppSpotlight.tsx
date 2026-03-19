@@ -64,6 +64,7 @@ export default function AppSpotlight({
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
                   <path
                     strokeLinecap="round"
@@ -82,13 +83,15 @@ export default function AppSpotlight({
               href={href}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={`${ctaLabel} (opens in new tab)`}
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-cyan-600 text-white text-sm font-semibold hover:bg-cyan-700 transition-colors"
             >
               {ctaLabel} →
             </a>
           ) : (
             <span
-              className="inline-flex items-center px-5 py-2.5 rounded-lg bg-slate-100 text-slate-400 text-sm font-semibold cursor-not-allowed"
+              aria-disabled="true"
+              className="inline-flex items-center px-5 py-2.5 rounded-lg bg-slate-100 text-slate-400 text-sm font-semibold cursor-not-allowed select-none"
             >
               Coming Soon
             </span>

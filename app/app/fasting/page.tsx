@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { fastingAppJsonLd } from "@/lib/app-data";
+import JsonLd from "@/app/components/JsonLd";
 
 export const metadata: Metadata = {
   title: "Intermittent Fasting Tracker — Free, No Login Required",
@@ -68,18 +69,8 @@ const faqJsonLd = {
 export default function FastingPage() {
   return (
     <main className="min-h-screen bg-white text-slate-900 font-sans">
-      {/*
-        WARNING: dangerouslySetInnerHTML is used here for JSON-LD script injection.
-        Data is static — do NOT interpolate dynamic/user-supplied values without sanitising first.
-      */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(fastingAppJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
+      <JsonLd data={fastingAppJsonLd} />
+      <JsonLd data={faqJsonLd} />
 
       {/* HERO */}
       <section className="bg-white border-b border-slate-100">
@@ -117,6 +108,7 @@ export default function FastingPage() {
             href="https://fasting.thehelpfuldev.com/"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Open Fasting Tracker (opens in new tab)"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-cyan-600 text-white font-semibold hover:bg-cyan-700 transition-colors"
           >
             Open Fasting Tracker →
@@ -249,6 +241,7 @@ export default function FastingPage() {
             href="https://fasting.thehelpfuldev.com/"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Open Fasting Tracker (opens in new tab)"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-cyan-600 text-white font-semibold hover:bg-cyan-700 transition-colors"
           >
             Open Fasting Tracker →

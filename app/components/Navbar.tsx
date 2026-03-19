@@ -2,14 +2,42 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { categories } from "@/lib/nav";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
+
+  // Close mobile menu when clicking outside the nav
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+        setMenuOpen(false);
+      }
+    }
+    if (menuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [menuOpen]);
+
+  // Close mobile menu on Escape key
+  useEffect(() => {
+    function handleEscape(e: KeyboardEvent) {
+      if (e.key === "Escape") setMenuOpen(false);
+    }
+    if (menuOpen) {
+      document.addEventListener("keydown", handleEscape);
+    }
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, [menuOpen]);
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
+    <nav
+      ref={navRef}
+      className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200"
+    >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between gap-8">
 
         <Link href="/" className="flex items-center gap-2.5 shrink-0">
@@ -42,9 +70,11 @@ export default function Navbar() {
           <button
             className="md:hidden p-2 rounded-md text-slate-600 hover:bg-slate-100"
             onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -57,7 +87,10 @@ export default function Navbar() {
       </div>
 
       {menuOpen && (
-        <div className="md:hidden border-t border-slate-200 bg-white px-6 py-4 flex flex-col gap-3">
+        <div
+          id="mobile-menu"
+          className="md:hidden border-t border-slate-200 bg-white px-6 py-4 flex flex-col gap-3"
+        >
           {categories.map((cat) => (
             <Link
               key={cat.href}
