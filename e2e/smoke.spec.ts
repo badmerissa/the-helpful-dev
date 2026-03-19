@@ -15,7 +15,8 @@ test.describe("Smoke tests", () => {
   test("skip-to-content link exists and is accessible", async ({ page }) => {
     await page.goto("/");
     const skipLink = page.getByRole("link", { name: /skip to main content/i });
-    await expect(skipLink).toBeInViewport({ ratio: 0 }); // hidden by default
+    await expect(skipLink).toBeAttached(); // exists in DOM
+    await expect(skipLink).not.toBeInViewport(); // visually hidden (sr-only) until focused
   });
 
   test("newsletter form has accessible email input", async ({ page }) => {
