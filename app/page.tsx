@@ -164,7 +164,7 @@ export default function Home() {
           ctaLabel="Open Fasting Tracker"
           previewContent={
             <AppPreview
-              src="https://fasting.thehelpfuldev.com/"
+              src="/fasting-embed"
               title="Fasting Tracker app preview"
               appName="Fasting Tracker"
               appHref="https://fasting.thehelpfuldev.com/"

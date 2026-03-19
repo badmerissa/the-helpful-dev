@@ -37,9 +37,10 @@ export function proxy(request: NextRequest) {
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
     "font-src 'self' https://fonts.gstatic.com",
     "img-src 'self' data: https://pagead2.googlesyndication.com https://www.google.com",
-    // App subdomain iframes
+    // App subdomain iframes (and same-origin embeds)
     [
       "frame-src",
+      "'self'",
       "https://fasting.thehelpfuldev.com",
       "https://pottypanda.thehelpfuldev.com",
       "https://unvail.thehelpfuldev.com",
