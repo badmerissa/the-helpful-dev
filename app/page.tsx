@@ -71,7 +71,7 @@ export default function Home() {
       ))}
 
       {/* HERO */}
-      <section className="bg-white border-b border-slate-100">
+      <section className="hero-grid bg-white border-b border-slate-100">
         <div className="max-w-6xl mx-auto px-6 py-20 lg:py-28 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
 
           <div className="flex-1 text-center lg:text-left">
@@ -127,8 +127,8 @@ export default function Home() {
       </section>
 
       {/* STATS STRIP */}
-      <section className="bg-slate-50 border-b border-slate-200">
-        <div className="max-w-6xl mx-auto px-6 py-8">
+      <section className="border-t border-b border-slate-100 bg-gradient-to-b from-slate-50 to-white">
+        <div className="max-w-6xl mx-auto px-6 py-10">
           <dl className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {[
               { value: "4", label: "Free Apps" },
@@ -249,7 +249,7 @@ export default function Home() {
       {/* CTA BAND */}
       <section
         id="newsletter"
-        className="bg-gradient-to-br from-cyan-400 to-cyan-800 scroll-mt-20"
+        className="gradient-cta scroll-mt-20"
       >
         <div className="max-w-4xl mx-auto px-6 py-20 text-center text-white">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4">More apps are on the way.</h2>

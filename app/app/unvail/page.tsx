@@ -88,7 +88,8 @@ export default function UnvailPage() {
                 <rect x="3" y="11" width="18" height="10" rx="2" /><rect x="8" y="15" width="2" height="2" rx="0.5" /><rect x="14" y="15" width="2" height="2" rx="0.5" /><path d="M12 11V7" /><circle cx="12" cy="5" r="2" /><path d="M8 11V9a4 4 0 018 0v2" />
               </svg>
             </div>
-            <span className="text-xs font-bold px-2 py-1 rounded-full bg-green-100 text-green-700">
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-50 border border-violet-100 text-violet-700 text-sm font-medium">
+              <span className="w-2 h-2 rounded-full bg-violet-500 animate-pulse" aria-hidden="true" />
               LIVE
             </span>
           </div>
@@ -98,7 +99,7 @@ export default function UnvailPage() {
           </p>
           <h1 className="text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 leading-tight mb-6">
             unvAIl —{" "}
-            <span className="text-cyan-600">Can You Tell Real from AI?</span>
+            <span className="gradient-text">Can You Tell Real from AI?</span>
           </h1>
           <p className="text-xl text-slate-500 leading-relaxed mb-8 max-w-2xl">
             A daily reality check game: is the image Real or AI? Train your eye to spot

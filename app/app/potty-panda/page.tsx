@@ -87,7 +87,8 @@ export default function PottyPandaPage() {
             <div className="w-14 h-14 rounded-2xl bg-cyan-50 flex items-center justify-center">
               <Image src="/pp-icon.png" alt="" width={32} height={32} sizes="32px" className="object-contain" />
             </div>
-            <span className="text-xs font-bold px-2 py-1 rounded-full bg-green-100 text-green-700">
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 border border-amber-100 text-amber-700 text-sm font-medium">
+              <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" aria-hidden="true" />
               LIVE
             </span>
           </div>
@@ -97,7 +98,7 @@ export default function PottyPandaPage() {
           </p>
           <h1 className="text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 leading-tight mb-6">
             Potty Panda —{" "}
-            <span className="text-cyan-600">Free Potty Training App for Toddlers</span>
+            <span className="gradient-text">Free Potty Training App for Toddlers</span>
           </h1>
           <p className="text-xl text-slate-500 leading-relaxed mb-8 max-w-2xl">
             Logging and timer tools to guide parents through the potty training journey — with a

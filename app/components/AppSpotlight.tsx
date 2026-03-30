@@ -40,10 +40,11 @@ export default function AppSpotlight({
               {icon}
             </div>
             <span
-              className={`text-xs font-bold px-2 py-1 rounded-full ${
-                isLive ? "bg-green-100 text-green-700" : "bg-slate-100 text-slate-500"
+              className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium ${
+                isLive ? "bg-cyan-50 border border-cyan-100 text-cyan-700" : "bg-slate-100 text-slate-500"
               }`}
             >
+              {isLive && <span className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse" aria-hidden="true" />}
               {status}
             </span>
           </div>
@@ -99,7 +100,7 @@ export default function AppSpotlight({
         </div>
 
         <div className="flex-1 w-full max-w-md lg:max-w-none">
-          <div className="rounded-2xl border border-slate-200 bg-slate-50 shadow-lg overflow-hidden p-6">
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 shadow-xl overflow-hidden p-6 card-hover">
             {previewContent}
           </div>
         </div>

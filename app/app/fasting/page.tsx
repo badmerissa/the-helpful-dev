@@ -87,7 +87,8 @@ export default function FastingPage() {
             <div className="w-14 h-14 rounded-2xl bg-cyan-50 flex items-center justify-center">
               <Image src="/f-icon.png" alt="" width={32} height={32} sizes="32px" className="object-contain" />
             </div>
-            <span className="text-xs font-bold px-2 py-1 rounded-full bg-green-100 text-green-700">
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-50 border border-green-100 text-green-700 text-sm font-medium">
+              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" aria-hidden="true" />
               LIVE
             </span>
           </div>
@@ -97,7 +98,7 @@ export default function FastingPage() {
           </p>
           <h1 className="text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 leading-tight mb-6">
             Intermittent Fasting Tracker —{" "}
-            <span className="text-cyan-600">Free, No Login Required</span>
+            <span className="gradient-text">Free, No Login Required</span>
           </h1>
           <p className="text-xl text-slate-500 leading-relaxed mb-8 max-w-2xl">
             A distraction-free timer that tracks your fasting windows, keeps your streak going,

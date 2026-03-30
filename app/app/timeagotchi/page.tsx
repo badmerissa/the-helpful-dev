@@ -83,12 +83,13 @@ export default function TimeagotchiPage() {
           </div>
 
           <div className="flex items-center gap-4 mb-6">
-            <div className="w-14 h-14 rounded-2xl bg-slate-100 flex items-center justify-center">
-              <svg className="w-7 h-7 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <div className="w-14 h-14 rounded-2xl bg-cyan-50 flex items-center justify-center">
+              <svg className="w-7 h-7 text-orange-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <rect x="3" y="11" width="18" height="10" rx="2" /><rect x="8" y="15" width="2" height="2" rx="0.5" /><rect x="14" y="15" width="2" height="2" rx="0.5" /><path d="M12 11V7" /><circle cx="12" cy="5" r="2" /><path d="M8 11V9a4 4 0 018 0v2" />
               </svg>
             </div>
-            <span className="text-xs font-bold px-2 py-1 rounded-full bg-green-100 text-green-700">
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-100 text-orange-700 text-sm font-medium">
+              <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" aria-hidden="true" />
               LIVE
             </span>
           </div>
@@ -98,7 +99,7 @@ export default function TimeagotchiPage() {
           </p>
           <h1 className="text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 leading-tight mb-6">
             Timeagotchi —{" "}
-            <span className="text-cyan-600">Turn Your Timesheet Into a Virtual Pet</span>
+            <span className="gradient-text">Turn Your Timesheet Into a Virtual Pet</span>
           </h1>
           <p className="text-xl text-slate-500 leading-relaxed mb-8 max-w-2xl">
             Hate filling in timesheets? Timeagotchi turns your time tracking into an interactive
