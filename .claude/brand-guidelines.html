@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Helpful Dev — Brand Guidelines</title>
+<style>
+  /* ── Reset & base ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --brand-from: #0092ae;
+    --brand-to: #00637d;
+    --ice: #BBE1FA;
+    --bg: #ffffff;
+    --text: #0f172a;
+    --slate-50: #f8fafc;
+    --slate-100: #f1f5f9;
+    --slate-200: #e2e8f0;
+    --slate-400: #94a3b8;
+    --slate-500: #64748b;
+    --slate-700: #334155;
+    --green-600: #16a34a;
+    --red-500: #ef4444;
+    --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font); color: var(--text); background: var(--bg); line-height: 1.6; }
+
+  /* ── Layout ── */
+  .wrapper { max-width: 960px; margin: 0 auto; padding: 0 2rem; }
+  section { padding: 4rem 0; border-bottom: 1px solid var(--slate-200); }
+  section:last-of-type { border-bottom: none; }
+
+  /* ── Typography ── */
+  h1 { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.02em; }
+  h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.5rem; }
+  h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.75rem; }
+  p  { color: var(--slate-500); margin-bottom: 1rem; }
+  p:last-child { margin-bottom: 0; }
+  code { font-family: 'Courier New', monospace; font-size: 0.85em; background: var(--slate-100); padding: 0.15em 0.4em; border-radius: 4px; color: var(--brand-from); }
+  .label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate-400); margin-bottom: 0.35rem; }
+  .gradient-text { background: linear-gradient(135deg, var(--brand-from), var(--brand-to)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+  /* ── Nav ── */
+  nav { position: sticky; top: 0; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--slate-200); z-index: 10; padding: 0.75rem 0; }
+  nav .wrapper { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
+  nav a { font-size: 0.8rem; font-weight: 600; color: var(--slate-500); text-decoration: none; transition: color .15s; }
+  nav a:hover { color: var(--brand-from); }
+  .nav-brand { font-weight: 800; color: var(--text); font-size: 0.9rem; margin-right: auto; }
+
+  /* ── Hero ── */
+  .hero { background: linear-gradient(135deg, var(--brand-from), var(--brand-to)); padding: 5rem 0 4rem; border-bottom: none; }
+  .hero h1 { color: #fff; }
+  .hero p { color: rgba(255,255,255,0.8); max-width: 560px; font-size: 1.1rem; }
+  .hero-meta { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.35rem 1rem; border-radius: 99px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25); color: #fff; font-size: 0.75rem; font-weight: 600; margin-bottom: 1.5rem; }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: #fff; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+  /* ── Grid helpers ── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+  @media (max-width: 700px) {
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 480px) {
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  }
+
+  /* ── Cards ── */
+  .card { background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: 12px; padding: 1.5rem; }
+  .card-sm { padding: 1rem; }
+  .card h3 { margin-bottom: 0.25rem; }
+
+  /* ── Colour swatches ── */
+  .swatch { border-radius: 10px; padding: 1.25rem 1rem 1rem; border: 1px solid rgba(0,0,0,0.07); }
+  .swatch-main { height: 80px; border-radius: 8px; margin-bottom: 0.75rem; }
+  .swatch-name { font-weight: 700; font-size: 0.9rem; color: var(--text); }
+  .swatch-hex  { font-size: 0.75rem; color: var(--slate-500); font-family: monospace; }
+  .swatch-use  { font-size: 0.72rem; color: var(--slate-400); margin-top: 0.2rem; }
+
+  /* ── Type specimens ── */
+  .type-row { padding: 1.25rem; border-bottom: 1px solid var(--slate-100); }
+  .type-row:last-child { border-bottom: none; }
+  .type-meta { font-size: 0.7rem; color: var(--slate-400); margin-top: 0.25rem; font-family: monospace; }
+  .t-hero  { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
+  .t-h2    { font-size: 1.75rem; font-weight: 700; }
+  .t-h3    { font-size: 1.25rem; font-weight: 600; }
+  .t-body  { font-size: 1rem; color: var(--slate-500); }
+  .t-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate-400); }
+  .t-micro { font-size: 0.75rem; color: var(--slate-400); }
+
+  /* ── Component demos ── */
+  .btn-primary  { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.25rem; border-radius: 8px; background: var(--brand-from); color: #fff; font-weight: 600; font-size: 0.875rem; border: none; cursor: pointer; transition: background .15s; text-decoration: none; }
+  .btn-primary:hover { background: var(--brand-to); }
+  .btn-ghost   { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.25rem; border-radius: 8px; background: transparent; color: var(--slate-700); font-weight: 600; font-size: 0.875rem; border: 1.5px solid var(--slate-200); cursor: pointer; transition: border-color .15s, color .15s; text-decoration: none; }
+  .btn-ghost:hover { border-color: var(--brand-from); color: var(--brand-from); }
+  .badge { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.25rem 0.75rem; border-radius: 99px; background: #e0f5f9; border: 1px solid #b3e8f0; color: var(--brand-from); font-size: 0.75rem; font-weight: 600; }
+  .badge .dot-cyan { width: 6px; height: 6px; border-radius: 50%; background: var(--brand-from); animation: pulse 2s infinite; }
+  .btn-row { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+
+  /* ── Improvement section ── */
+  .improve-card { background: #fff; border: 1px solid var(--slate-200); border-radius: 14px; overflow: hidden; }
+  .improve-header { padding: 1.25rem 1.5rem; background: linear-gradient(135deg, var(--brand-from), var(--brand-to)); color: #fff; }
+  .improve-header .improve-tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.75; margin-bottom: 0.25rem; }
+  .improve-header h3 { color: #fff; font-size: 1rem; font-weight: 700; margin: 0; }
+  .improve-body { padding: 1.25rem 1.5rem; }
+  .improve-body p { font-size: 0.875rem; }
+  .priority { display: inline-block; padding: 0.1rem 0.5rem; border-radius: 4px; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-left: 0.5rem; vertical-align: middle; }
+  .priority.high   { background: #fef2f2; color: #dc2626; }
+  .priority.medium { background: #fff7ed; color: #d97706; }
+  .priority.low    { background: #f0fdf4; color: #16a34a; }
+
+  /* ── Demo: before/after ── */
+  .ba-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .ba-panel { border-radius: 10px; overflow: hidden; border: 1px solid var(--slate-200); }
+  .ba-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.4rem 0.75rem; background: var(--slate-100); color: var(--slate-500); }
+  .ba-content { padding: 1.5rem; }
+  .after-content { background: linear-gradient(160deg, #f0fbff 0%, #fff 60%); }
+
+  /* Hero before */
+  .before-hero { background: #fff; padding: 1.5rem; }
+  .before-hero h4 { font-size: 1.1rem; font-weight: 800; color: var(--text); margin-bottom: 0.25rem; }
+  .before-hero p { font-size: 0.8rem; color: var(--slate-500); margin-bottom: 0.75rem; }
+  .before-hero .btn-sm { font-size: 0.75rem; padding: 0.4rem 0.9rem; border-radius: 6px; background: var(--brand-from); color: #fff; font-weight: 600; display: inline-block; }
+
+  /* Hero after */
+  .after-hero { padding: 1.5rem; position: relative; overflow: hidden; }
+  .after-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 30%, rgba(0,146,174,0.08) 0%, transparent 70%); }
+  .after-hero::after { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(0,146,174,0.06) 1px, transparent 1px); background-size: 20px 20px; }
+  .after-hero-inner { position: relative; z-index: 1; }
+  .after-hero h4 { font-size: 1.1rem; font-weight: 800; color: var(--text); margin-bottom: 0.25rem; }
+  .after-hero p { font-size: 0.8rem; color: var(--slate-500); margin-bottom: 0.75rem; }
+  .after-hero .btn-sm { font-size: 0.75rem; padding: 0.4rem 0.9rem; border-radius: 6px; background: linear-gradient(135deg, var(--brand-from), var(--brand-to)); color: #fff; font-weight: 600; display: inline-block; box-shadow: 0 2px 8px rgba(0,146,174,0.3); }
+
+  /* App card before/after */
+  .app-card-before { background: #fff; border: 1px solid var(--slate-200); border-radius: 8px; padding: 1rem; }
+  .app-card-before .app-tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--slate-400); margin-bottom: 0.25rem; }
+  .app-card-before h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .app-card-before p  { font-size: 0.78rem; color: var(--slate-500); }
+
+  .app-card-after { background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.07), 0 4px 16px rgba(0,146,174,0.08); transition: transform .2s, box-shadow .2s; }
+  .app-card-after:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.08), 0 8px 24px rgba(0,146,174,0.12); }
+  .app-card-after-stripe { height: 5px; background: linear-gradient(90deg, var(--brand-from), var(--brand-to)); }
+  .app-card-after-body { padding: 1rem; }
+  .app-card-after .app-tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--brand-from); margin-bottom: 0.25rem; }
+  .app-card-after h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .app-card-after p  { font-size: 0.78rem; color: var(--slate-500); }
+
+  /* ── Per-app colours ── */
+  .app-palette { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  .app-swatch { border-radius: 10px; overflow: hidden; border: 1px solid var(--slate-200); }
+  .app-swatch-top { height: 56px; }
+  .app-swatch-info { padding: 0.75rem; }
+  .app-swatch-info .app-name { font-weight: 700; font-size: 0.8rem; }
+  .app-swatch-info .app-color { font-size: 0.72rem; font-family: monospace; color: var(--slate-500); }
+  @media (max-width: 600px) { .app-palette { grid-template-columns: 1fr 1fr; } }
+
+  /* ── Spacing tokens ── */
+  .spacing-row { display: flex; align-items: center; gap: 1rem; padding: 0.6rem 0; border-bottom: 1px solid var(--slate-100); }
+  .spacing-row:last-child { border-bottom: none; }
+  .spacing-bar { background: linear-gradient(135deg, var(--brand-from), var(--brand-to)); border-radius: 3px; height: 14px; }
+  .spacing-label { font-size: 0.8rem; font-weight: 600; min-width: 60px; }
+  .spacing-desc  { font-size: 0.75rem; color: var(--slate-400); }
+
+  /* ── Do / Don't ── */
+  .do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .do-card, .dont-card { border-radius: 10px; padding: 1.25rem; }
+  .do-card   { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .dont-card { background: #fef2f2; border: 1px solid #fecaca; }
+  .do-card h4   { color: #15803d; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.75rem; }
+  .dont-card h4 { color: #dc2626; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.75rem; }
+  .do-card li, .dont-card li { font-size: 0.82rem; color: var(--slate-700); margin-left: 1.1rem; margin-bottom: 0.35rem; }
+  @media (max-width: 560px) { .do-dont, .ba-wrap { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="wrapper">
+    <span class="nav-brand">The Helpful Dev — Brand Guidelines</span>
+    <a href="#identity">Identity</a>
+    <a href="#colours">Colours</a>
+    <a href="#typography">Typography</a>
+    <a href="#components">Components</a>
+    <a href="#voice">Voice</a>
+    <a href="#improvements">Improvements</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrapper">
+    <div class="hero-meta"><span class="dot"></span> Brand Guidelines v1.0</div>
+    <h1>The Helpful Dev<br/><span style="font-weight:400;font-size:0.55em;opacity:0.9">Visual & Brand Identity</span></h1>
+    <p style="margin-top:1rem">A reference for maintaining a consistent, trustworthy, and approachable identity across every surface — website, apps, and social.</p>
+  </div>
+</header>
+
+<!-- IDENTITY -->
+<section id="identity">
+  <div class="wrapper">
+    <div class="label">Foundation</div>
+    <h2>Brand Identity</h2>
+    <p>The Helpful Dev is a solo indie developer building free, privacy-first browser tools for everyday life. The brand occupies a specific, honest niche: developer-made tools with a human touch.</p>
+
+    <div class="grid-3" style="margin-top:2rem">
+      <div class="card">
+        <h3>Mission</h3>
+        <p>Build simple tools that solve real everyday problems — no logins, no data collection, no friction.</p>
+      </div>
+      <div class="card">
+        <h3>Personality</h3>
+        <p>Warm and practical, with a nerdy edge. Like a developer friend who built something useful and is quietly proud of it.</p>
+      </div>
+      <div class="card">
+        <h3>Promise</h3>
+        <p>Every app is free, runs entirely in your browser, and keeps your data local. Always.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:2.5rem">
+      <div class="label">Logo</div>
+      <h3>The Mark</h3>
+      <p>The logo is an animated cyberpunk coffee mug with "THD" etched on its body. It combines the developer aesthetic (coffee, terminal glow) with motion (steam, glitch) to create a memorable, personality-driven mark.</p>
+      <div class="grid-2" style="margin-top:1.25rem">
+        <div class="card">
+          <h3>Usage rules</h3>
+          <ul style="font-size:0.85rem;color:var(--slate-500);margin-left:1.2rem;line-height:1.8">
+            <li>Full mug: hero, social/OG images (min 80px wide)</li>
+            <li>Icon mode: favicon, small navbar (min 28px)</li>
+            <li>Never recolour the logo</li>
+            <li>Never crop or overlay text on the mug</li>
+            <li>Always provide adequate clear space (at least the mug width on each side)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Colour components</h3>
+          <div style="display:flex;flex-direction:column;gap:0.6rem;margin-top:0.25rem">
+            <div style="display:flex;align-items:center;gap:0.75rem">
+              <div style="width:32px;height:32px;border-radius:6px;background:#0092ae;flex-shrink:0"></div>
+              <span style="font-size:0.82rem;color:var(--slate-500)"><code>#0092ae</code> — handle &amp; rim</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.75rem">
+              <div style="width:32px;height:32px;border-radius:6px;background:#00637d;flex-shrink:0"></div>
+              <span style="font-size:0.82rem;color:var(--slate-500)"><code>#00637d</code> — body</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:0.75rem">
+              <div style="width:32px;height:32px;border-radius:6px;background:#BBE1FA;flex-shrink:0;border:1px solid var(--slate-200)"></div>
+              <span style="font-size:0.82rem;color:var(--slate-500)"><code>#BBE1FA</code> — steam &amp; glow</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COLOURS -->
+<section id="colours">
+  <div class="wrapper">
+    <div class="label">Visual System</div>
+    <h2>Colour Palette</h2>
+    <p>The palette is built on a cyan-to-teal gradient anchored by a clean white canvas and slate text. It reads as trustworthy and modern without feeling corporate.</p>
+
+    <h3 style="margin-top:2rem;margin-bottom:1rem">Core Colours</h3>
+    <div class="grid-4">
+      <div class="swatch">
+        <div class="swatch-main" style="background:#0092ae"></div>
+        <div class="swatch-name">Brand Cyan</div>
+        <div class="swatch-hex">#0092ae</div>
+        <div class="swatch-use">Buttons, links, accents</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-main" style="background:#00637d"></div>
+        <div class="swatch-name">Brand Teal</div>
+        <div class="swatch-hex">#00637d</div>
+        <div class="swatch-use">Gradient end, dark accents</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-main" style="background:#BBE1FA;border:1px solid var(--slate-200)"></div>
+        <div class="swatch-name">Ice Blue</div>
+        <div class="swatch-hex">#BBE1FA</div>
+        <div class="swatch-use">Logo highlights, subtle fills</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-main" style="background:linear-gradient(135deg,#0092ae,#00637d)"></div>
+        <div class="swatch-name">Brand Gradient</div>
+        <div class="swatch-hex">135° → #00637d</div>
+        <div class="swatch-use">Hero text, CTAs, OG images</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:2.5rem;margin-bottom:1rem">Supporting Palette</h3>
+    <div class="grid-4">
+      <div class="swatch">
+        <div class="swatch-main" style="background:#ffffff;border:1px solid var(--slate-200)"></div>
+        <div class="swatch-name">White</div>
+        <div class="swatch-hex">#ffffff</div>
+        <div class="swatch-use">Page background</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-main" style="background:#f8fafc"></div>
+        <div class="swatch-name">Slate 50</div>
+        <div class="swatch-hex">#f8fafc</div>
+        <div class="swatch-use">Alt section backgrounds</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-main" style="background:#0f172a"></div>
+        <div class="swatch-name">Slate 900</div>
+        <div class="swatch-hex">#0f172a</div>
+        <div class="swatch-use">Headings, primary text</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-main" style="background:#64748b"></div>
+        <div class="swatch-name">Slate 500</div>
+        <div class="swatch-hex">#64748b</div>
+        <div class="swatch-use">Body text, labels</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:2.5rem;margin-bottom:1rem">Status Colours</h3>
+    <div class="grid-4">
+      <div class="swatch">
+        <div class="swatch-main" style="background:#16a34a"></div>
+        <div class="swatch-name">Green 600</div>
+        <div class="swatch-hex">#16a34a</div>
+        <div class="swatch-use">Success states only</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-main" style="background:#ef4444"></div>
+        <div class="swatch-name">Red 500</div>
+        <div class="swatch-hex">#ef4444</div>
+        <div class="swatch-use">Error/destructive only</div>
+      </div>
+    </div>
+
+    <!-- Proposed per-app colours -->
+    <h3 style="margin-top:2.5rem;margin-bottom:0.5rem">Proposed: Per-App Accent Colours <span class="priority medium">Improvement</span></h3>
+    <p>Currently all four apps share the same cyan accent. Introducing a secondary accent per app adds visual personality and helps users quickly identify which app they're looking at without breaking the brand palette.</p>
+    <div class="app-palette" style="margin-top:1.25rem">
+      <div class="app-swatch">
+        <div class="app-swatch-top" style="background:linear-gradient(135deg,#0092ae,#00627c)"></div>
+        <div class="app-swatch-info">
+          <div class="app-name">Fasting Tracker</div>
+          <div class="app-color">#0092ae (existing)</div>
+          <div style="font-size:0.7rem;color:var(--slate-400);margin-top:0.2rem">Health &amp; Wellness</div>
+        </div>
+      </div>
+      <div class="app-swatch">
+        <div class="app-swatch-top" style="background:linear-gradient(135deg,#7c3aed,#5b21b6)"></div>
+        <div class="app-swatch-info">
+          <div class="app-name">Potty Panda</div>
+          <div class="app-color">#7c3aed — violet</div>
+          <div style="font-size:0.7rem;color:var(--slate-400);margin-top:0.2rem">Parenting Tools</div>
+        </div>
+      </div>
+      <div class="app-swatch">
+        <div class="app-swatch-top" style="background:linear-gradient(135deg,#d97706,#b45309)"></div>
+        <div class="app-swatch-info">
+          <div class="app-name">unvAIl</div>
+          <div class="app-color">#d97706 — amber</div>
+          <div style="font-size:0.7rem;color:var(--slate-400);margin-top:0.2rem">Daily Game</div>
+        </div>
+      </div>
+      <div class="app-swatch">
+        <div class="app-swatch-top" style="background:linear-gradient(135deg,#059669,#047857)"></div>
+        <div class="app-swatch-info">
+          <div class="app-name">Timeagotchi</div>
+          <div class="app-color">#059669 — emerald</div>
+          <div style="font-size:0.7rem;color:var(--slate-400);margin-top:0.2rem">Productivity</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TYPOGRAPHY -->
+<section id="typography">
+  <div class="wrapper">
+    <div class="label">Type System</div>
+    <h2>Typography</h2>
+    <p>All text uses <strong>Geist Sans</strong> (variable font), served locally from the npm package. Geist Mono is reserved for code snippets. Never load fonts from Google Fonts or any external CDN.</p>
+
+    <div class="card" style="margin-top:1.5rem;padding:0">
+      <div class="type-row ba-content">
+        <div class="t-hero">Apps built to <span class="gradient-text">actually help</span></div>
+        <div class="type-meta">Hero H1 · text-4xl–6xl · font-weight 800 · tracking-tight</div>
+      </div>
+      <div class="type-row">
+        <div class="t-h2">More apps are on the way.</div>
+        <div class="type-meta">Section H2 · text-3xl–4xl · font-weight 700</div>
+      </div>
+      <div class="type-row">
+        <div class="t-h3">Intermittent Fasting Tracker</div>
+        <div class="type-meta">Card H3 · text-xl · font-weight 600</div>
+      </div>
+      <div class="type-row">
+        <div class="t-body">Simple, focused tools for life. No logins. No data collected. Just stuff that works.</div>
+        <div class="type-meta">Body large · text-lg–xl · color slate-500 · leading-relaxed</div>
+      </div>
+      <div class="type-row">
+        <div class="t-label">Health &amp; Wellness</div>
+        <div class="type-meta">Category label · text-xs–sm · font-weight 700 · uppercase · tracking-widest</div>
+      </div>
+      <div class="type-row">
+        <div class="t-micro">© 2026 The Helpful Dev. Built with care.</div>
+        <div class="type-meta">Micro · text-xs · color slate-400</div>
+      </div>
+    </div>
+
+    <div class="do-dont" style="margin-top:1.5rem">
+      <div class="do-card">
+        <h4>✓ Do</h4>
+        <ul>
+          <li>Use sentence case for all marketing copy</li>
+          <li>Apply <code>.gradient-text</code> to a key phrase only (not whole heading)</li>
+          <li>Use <code>leading-relaxed</code> on body copy</li>
+          <li>One gradient text element per section max</li>
+          <li>Use <code>tracking-tight</code> on display headings</li>
+        </ul>
+      </div>
+      <div class="dont-card">
+        <h4>✗ Don't</h4>
+        <ul>
+          <li>Title Case marketing copy ("Browse The Apps")</li>
+          <li>Apply gradient to full paragraphs or entire headings</li>
+          <li>Use <code>font-black</code> (900) — too heavy for brand</li>
+          <li>Import external font packages</li>
+          <li>Use italic text for UI elements</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPONENTS -->
+<section id="components">
+  <div class="wrapper">
+    <div class="label">UI System</div>
+    <h2>Components</h2>
+
+    <h3 style="margin-bottom:1rem">Buttons</h3>
+    <div class="card">
+      <div class="btn-row">
+        <a class="btn-primary" href="#">Browse the apps →</a>
+        <a class="btn-ghost" href="#">Get notified of new apps</a>
+        <span style="font-size:0.875rem;color:var(--brand-from);text-decoration:underline;text-underline-offset:3px;cursor:pointer">Privacy Policy</span>
+      </div>
+      <div style="margin-top:1rem;font-size:0.8rem;color:var(--slate-500)">
+        <strong>Primary:</strong> <code>bg-cyan-600</code> → hover <code>bg-cyan-700</code> · <strong>Ghost:</strong> <code>border-slate-300</code> → hover <code>border-cyan-400</code> · <strong>Link:</strong> <code>text-cyan-600 underline</code>
+      </div>
+    </div>
+
+    <h3 style="margin-top:2rem;margin-bottom:1rem">Badges &amp; Status</h3>
+    <div class="card">
+      <div style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center">
+        <span class="badge"><span class="dot-cyan"></span>4 apps · all free · open source</span>
+        <span class="badge" style="background:#fff7ed;border-color:#fde68a;color:#d97706"><span style="width:6px;height:6px;border-radius:50%;background:#d97706;animation:pulse 2s infinite"></span>COMING SOON</span>
+        <span class="badge" style="background:#f0fdf4;border-color:#bbf7d0;color:#16a34a"><span style="width:6px;height:6px;border-radius:50%;background:#16a34a;animation:pulse 2s infinite"></span>LIVE</span>
+      </div>
+    </div>
+
+    <h3 style="margin-top:2rem;margin-bottom:0.75rem">App Cards — Before &amp; After <span class="priority medium">Improvement</span></h3>
+    <div class="ba-wrap">
+      <div class="ba-panel">
+        <div class="ba-label">Current</div>
+        <div class="ba-content">
+          <div class="app-card-before">
+            <div class="app-tag">Health &amp; Wellness</div>
+            <h4>Fasting Tracker</h4>
+            <p>A distraction-free timer to track your fasting windows.</p>
+          </div>
+        </div>
+      </div>
+      <div class="ba-panel">
+        <div class="ba-label">Proposed</div>
+        <div class="ba-content" style="background:var(--slate-50)">
+          <div class="app-card-after">
+            <div class="app-card-after-stripe"></div>
+            <div class="app-card-after-body">
+              <div class="app-tag">Health &amp; Wellness</div>
+              <h4>Fasting Tracker</h4>
+              <p>A distraction-free timer to track your fasting windows.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p style="font-size:0.8rem;margin-top:0.5rem;color:var(--slate-400)">Adding a top colour stripe, subtle shadow, and a hover lift effect gives cards more presence without changing the content.</p>
+
+    <h3 style="margin-top:2rem;margin-bottom:0.75rem">Hero Section — Before &amp; After <span class="priority high">Improvement</span></h3>
+    <div class="ba-wrap">
+      <div class="ba-panel">
+        <div class="ba-label">Current (flat white)</div>
+        <div class="before-hero">
+          <h4>Apps built to <span class="gradient-text">actually help</span></h4>
+          <p>Simple, focused tools for life. No logins. No data collected.</p>
+          <span class="btn-sm">Browse the apps →</span>
+        </div>
+      </div>
+      <div class="ba-panel">
+        <div class="ba-label">Proposed (dot grid + radial glow)</div>
+        <div class="after-hero">
+          <div class="after-hero-inner">
+            <h4>Apps built to <span class="gradient-text">actually help</span></h4>
+            <p>Simple, focused tools for life. No logins. No data collected.</p>
+            <span class="btn-sm">Browse the apps →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p style="font-size:0.8rem;margin-top:0.5rem;color:var(--slate-400)">A subtle radial glow and dot-grid background adds depth and visual interest to the hero without compromising readability.</p>
+
+    <h3 style="margin-top:2rem;margin-bottom:1rem">Spacing Tokens</h3>
+    <div class="card" style="padding:1.25rem">
+      <div class="spacing-row"><div class="spacing-bar" style="width:4px"></div><span class="spacing-label">1px</span><span class="spacing-desc">Border width</span></div>
+      <div class="spacing-row"><div class="spacing-bar" style="width:16px"></div><span class="spacing-label">4px</span><span class="spacing-desc">Border radius (sm)</span></div>
+      <div class="spacing-row"><div class="spacing-bar" style="width:32px"></div><span class="spacing-label">8px</span><span class="spacing-desc">Border radius (btn)</span></div>
+      <div class="spacing-row"><div class="spacing-bar" style="width:48px"></div><span class="spacing-label">12px</span><span class="spacing-desc">Border radius (card)</span></div>
+      <div class="spacing-row"><div class="spacing-bar" style="width:96px"></div><span class="spacing-label">24px</span><span class="spacing-desc">Section padding (mobile)</span></div>
+      <div class="spacing-row"><div class="spacing-bar" style="width:160px"></div><span class="spacing-label">80px/112px</span><span class="spacing-desc">Section vertical padding (py-20/py-28)</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- VOICE -->
+<section id="voice">
+  <div class="wrapper">
+    <div class="label">Communication</div>
+    <h2>Voice &amp; Tone</h2>
+    <p>The brand voice is direct, warm, and quietly confident. It doesn't sell — it informs. The privacy-first stance is stated plainly as fact, not as a marketing pitch.</p>
+
+    <div class="grid-2" style="margin-top:1.5rem">
+      <div class="card">
+        <h3>Core messaging</h3>
+        <p style="margin-bottom:0.75rem">These lines appear on every app page and should not be altered:</p>
+        <div style="background:var(--slate-100);border-radius:8px;padding:1rem;font-size:0.85rem;color:var(--text);line-height:1.7">
+          "No login. No data collected. Just stuff that works."<br/>
+          "Works entirely in your browser."<br/>
+          "Your data stays local."<br/>
+          "Free."
+        </div>
+      </div>
+      <div class="card">
+        <h3>Writing formula for app descriptions</h3>
+        <ol style="font-size:0.85rem;color:var(--slate-500);margin-left:1.2rem;line-height:1.9">
+          <li>Start with what the user can <em>do</em>, not what the app <em>is</em></li>
+          <li>2–3 sentences max</li>
+          <li>End with a privacy/simplicity reassurance</li>
+          <li>3 bullet features: action-oriented, specific</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="do-dont" style="margin-top:1.5rem">
+      <div class="do-card">
+        <h4>✓ Write this</h4>
+        <ul>
+          <li>"Track your fast, not your data."</li>
+          <li>"New challenge every day."</li>
+          <li>"Log time by feeding your virtual pet."</li>
+          <li>"No account needed."</li>
+          <li>"Open source. Always."</li>
+        </ul>
+      </div>
+      <div class="dont-card">
+        <h4>✗ Not this</h4>
+        <ul>
+          <li>"Revolutionary fasting experience."</li>
+          <li>"Powerful AI-driven productivity suite."</li>
+          <li>"Seamlessly integrated workflow."</li>
+          <li>"We believe in your privacy." (too vague)</li>
+          <li>"Sign up free today!!!"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPROVEMENTS -->
+<section id="improvements">
+  <div class="wrapper">
+    <div class="label">Roadmap</div>
+    <h2>Brand Improvement Suggestions</h2>
+    <p>The current site is clean and functional but visually flat. These improvements add personality and visual depth while staying true to the brand. They're ordered by impact vs. effort.</p>
+
+    <div class="grid-2" style="margin-top:2rem">
+
+      <div class="improve-card">
+        <div class="improve-header">
+          <div class="improve-tag">Visual Texture</div>
+          <h3>Hero Background Pattern <span class="priority high">High impact · Easy</span></h3>
+        </div>
+        <div class="improve-body">
+          <p>The hero section is currently flat white, which makes the logo feel isolated. Adding a very low-opacity dot-grid or noise texture with a subtle radial glow behind the logo dramatically increases depth without changing the layout.</p>
+          <p style="margin-top:0.75rem"><strong>Implementation:</strong> A CSS <code>radial-gradient</code> overlay + <code>background-image: radial-gradient(circle, rgba(0,146,174,0.06) 1px, transparent 1px)</code> on the hero section.</p>
+        </div>
+      </div>
+
+      <div class="improve-card">
+        <div class="improve-header">
+          <div class="improve-tag">Cards</div>
+          <h3>App Card Hover + Stripe <span class="priority high">High impact · Easy</span></h3>
+        </div>
+        <div class="improve-body">
+          <p>App spotlight cards and any future card grid elements feel like flat panels. Adding a 4px top border stripe in the app's accent colour, a subtle shadow, and a <code>translateY(-2px)</code> hover lift transforms them into interactive surfaces.</p>
+          <p style="margin-top:0.75rem"><strong>Implementation:</strong> Add <code>border-t-4 border-cyan-500 hover:-translate-y-0.5 hover:shadow-lg transition-all</code> to card elements.</p>
+        </div>
+      </div>
+
+      <div class="improve-card">
+        <div class="improve-header">
+          <div class="improve-tag">Identity</div>
+          <h3>Per-App Accent Colours <span class="priority medium">Medium impact · Medium effort</span></h3>
+        </div>
+        <div class="improve-body">
+          <p>All four apps currently use the same cyan. Giving each a distinct accent colour (violet for Potty Panda, amber for unvAIl, emerald for Timeagotchi) helps users mentally separate the apps and creates more visual variety in the app grid.</p>
+          <p style="margin-top:0.75rem"><strong>Implementation:</strong> Pass an <code>accentColor</code> prop to <code>AppSpotlight</code> and derive Tailwind classes from it. See the Colours section above for the proposed palette.</p>
+        </div>
+      </div>
+
+      <div class="improve-card">
+        <div class="improve-header">
+          <div class="improve-tag">CTA Band</div>
+          <h3>Richer Newsletter Section <span class="priority medium">Medium impact · Easy</span></h3>
+        </div>
+        <div class="improve-body">
+          <p>The newsletter CTA band is a flat gradient. Adding a radial highlight (a lighter ellipse centred on the content) and a subtle noise texture gives it more energy. Consider adding a decorative element — a faint app icon collage or geometric mark.</p>
+          <p style="margin-top:0.75rem"><strong>Implementation:</strong> Layer a <code>radial-gradient(ellipse, rgba(255,255,255,0.12), transparent)</code> over the existing gradient background.</p>
+        </div>
+      </div>
+
+      <div class="improve-card">
+        <div class="improve-header">
+          <div class="improve-tag">Icon System</div>
+          <h3>Consistent App Icon Style <span class="priority medium">Medium impact · High effort</span></h3>
+        </div>
+        <div class="improve-body">
+          <p>The current app icons (<code>f-icon.png</code>, <code>pp-icon.png</code>) appear to be different styles/sources. Unifying them into a consistent icon system (rounded square, consistent padding, similar illustration style, matching colour weight) significantly improves the app grid's visual coherence.</p>
+          <p style="margin-top:0.75rem"><strong>Recommendation:</strong> Commission or create SVG icons with a shared design language: same corner radius, same stroke weight, same colour saturation level. Consider a shared background shape.</p>
+        </div>
+      </div>
+
+      <div class="improve-card">
+        <div class="improve-header">
+          <div class="improve-tag">Micro-interactions</div>
+          <h3>Scroll Entrance Animations <span class="priority low">Lower priority · Medium effort</span></h3>
+        </div>
+        <div class="improve-body">
+          <p>App spotlight sections appear instantly on scroll. Adding a subtle fade-in-up animation as sections enter the viewport adds polish and guides attention. Keep animations under 400ms and always respect <code>prefers-reduced-motion</code>.</p>
+          <p style="margin-top:0.75rem"><strong>Implementation:</strong> Use the Intersection Observer API or a lightweight library. Already has a <code>@media (prefers-reduced-motion: no-preference)</code> block in <code>globals.css</code> — extend it there.</p>
+        </div>
+      </div>
+
+      <div class="improve-card">
+        <div class="improve-header">
+          <div class="improve-tag">Stats Strip</div>
+          <h3>Animated Stat Counters <span class="priority low">Nice-to-have · Medium effort</span></h3>
+        </div>
+        <div class="improve-body">
+          <p>The "4 Free Apps · 100% Browser · Open Source · Utility Apps" stats strip is static text. Animating the numbers counting up on first scroll creates a satisfying moment and draws attention to the strip, which currently reads as visual filler.</p>
+          <p style="margin-top:0.75rem"><strong>Note:</strong> Only numeric values benefit from this — "Open Source" and "Utility Apps" would need a different treatment (e.g. a reveal/slide-in).</p>
+        </div>
+      </div>
+
+      <div class="improve-card">
+        <div class="improve-header">
+          <div class="improve-tag">Social / OG</div>
+          <h3>Per-App OG Images <span class="priority medium">SEO + share value · Easy</span></h3>
+        </div>
+        <div class="improve-body">
+          <p>Most app pages already have <code>opengraph-image.tsx</code> routes. Ensure each uses the app's accent colour and a screenshot or stylised UI preview rather than a generic gradient. Compelling OG images dramatically improve click-through from social shares.</p>
+          <p style="margin-top:0.75rem"><strong>Implementation:</strong> Update each <code>opengraph-image.tsx</code> to use the per-app accent colour and include a representative visual of the app UI.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="card" style="margin-top:2rem;background:linear-gradient(135deg,rgba(0,146,174,0.05),rgba(0,99,125,0.05));border-color:rgba(0,146,174,0.2)">
+      <h3>Implementation priority order</h3>
+      <p style="margin-top:0.5rem;font-size:0.9rem">Start with the two highest-impact, lowest-effort items: <strong>hero background texture</strong> and <strong>app card hover/stripe</strong>. Both are CSS-only changes that take under an hour each and have the most visible improvement to the flatness issue. Then tackle per-app accent colours, which requires a small AppSpotlight component change but creates lasting visual variety as more apps are added.</p>
+    </div>
+  </div>
+</section>
+
+<footer style="background:var(--slate-50);border-top:1px solid var(--slate-200);padding:2rem 0;text-align:center">
+  <div class="wrapper">
+    <p style="font-size:0.8rem;color:var(--slate-400)">The Helpful Dev — Brand Guidelines · Generated 2026-03-30</p>
+  </div>
+</footer>
+
+</body>
+</html>
