@@ -4,8 +4,8 @@ import sitemap from "../app/sitemap";
 describe("sitemap", () => {
   const entries = sitemap();
 
-  it("contains 6 routes", () => {
-    expect(entries).toHaveLength(6);
+  it("contains 8 routes", () => {
+    expect(entries).toHaveLength(8);
   });
 
   it("includes the homepage at priority 1.0", () => {
@@ -33,6 +33,18 @@ describe("sitemap", () => {
     expect(privacy).toBeDefined();
     expect(privacy?.priority).toBe(0.3);
     expect(privacy?.changeFrequency).toBe("yearly");
+  });
+
+  it("includes the blog index and first post", () => {
+    const blog = entries.find((e) => e.url === "https://thehelpfuldev.com/blog");
+    expect(blog).toBeDefined();
+    expect(blog?.priority).toBe(0.7);
+    expect(blog?.changeFrequency).toBe("weekly");
+
+    const post = entries.find((e) => e.url === "https://thehelpfuldev.com/blog/claude-workflow");
+    expect(post).toBeDefined();
+    expect(post?.priority).toBe(0.7);
+    expect(post?.changeFrequency).toBe("monthly");
   });
 
   it("all entries have a lastModified date", () => {
