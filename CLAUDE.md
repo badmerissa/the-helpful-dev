@@ -36,6 +36,7 @@ Read the appropriate skill file **before** starting any task in these areas:
 | Any visual or copy change | `.claude/skills/brand/SKILL.md` |
 | Adding a new shared component | `.claude/skills/new-component/SKILL.md` |
 | Shipping a new page | `.claude/skills/seo-checklist/SKILL.md` |
+| Writing a blog post | `.claude/skills/blog-post/SKILL.md` |
 
 If you skip reading the relevant skill, you will likely miss required steps (SEO metadata, privacy copy, test coverage, brand rules).
 
@@ -47,10 +48,11 @@ For any non-trivial change, run through this checklist mentally before writing c
 
 1. **Does a skill cover this task?** Check the table above.
 2. **Is `lib/app-data.ts` the right place to start?** For any new app or page referencing app metadata — yes.
-3. **Does this need a new route?** If so, check `lib/nav.ts` and `app/sitemap.ts` too.
-4. **Will this render inline scripts?** If yes, get the CSP nonce from `headers().get('x-nonce')` in the Server Component.
-5. **Is this a visual change?** Read `.claude/skills/brand/SKILL.md` first.
-6. **Does this need a unit test?** Almost always yes — see Testing section.
+3. **Is this a blog post?** Read `.claude/skills/blog-post/SKILL.md` first, then register in `lib/blog-data.ts` before writing any page code.
+4. **Does this need a new route?** If so, check `lib/nav.ts` and `app/sitemap.ts` too.
+5. **Will this render inline scripts?** If yes, get the CSP nonce from `headers().get('x-nonce')` in the Server Component.
+6. **Is this a visual change?** Read `.claude/skills/brand/SKILL.md` first.
+7. **Does this need a unit test?** Almost always yes — see Testing section.
 
 ---
 
@@ -64,6 +66,20 @@ For any non-trivial change, run through this checklist mentally before writing c
 - `lib/nav.ts` — navigation categories and links shared between `Navbar` and footer. Add new categories here.
 - `app/layout.tsx` — root layout: Geist fonts, Vercel Analytics/Speed Insights, CSP nonce (from middleware), cookie consent, skip-to-content.
 - `proxy.ts` (middleware) — generates a per-request nonce and injects CSP headers. The nonce is forwarded via `x-nonce` header.
+
+### Blog
+
+Blog posts live under `app/blog/<slug>/page.tsx`. Post metadata (title, date, tags, read time) is registered in `lib/blog-data.ts` — always update there first, newest post at the top.
+
+**Post structure:** Each post is a self-contained Server Component with an inline set of sub-components (`Callout`, `CodeBlock`, `BeforeAfter`, `TakeawayCard`). Do not extract these to `app/components/` unless two or more posts need them. The `claude-workflow` post is the canonical reference implementation.
+
+**Voice:** First-person, past tense, honest about failures. Every post must include a section on how AI/LLM tooling shaped the development process — this is both genuine and good for search visibility.
+
+**SEO:** Blog posts need a `metadata` export (title, description, canonical, OpenGraph) and a `BlogPosting` JSON-LD schema. They are **not** auto-included in the sitemap — add each post manually to `app/sitemap.ts`.
+
+Before writing any blog post, read `.claude/skills/blog-post/SKILL.md` in full.
+
+---
 
 ### Adding a New App
 
