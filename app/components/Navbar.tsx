@@ -61,12 +61,12 @@ export default function Navbar() {
         </ul>
 
         <div className="flex items-center gap-3">
-          <a
-            href="#newsletter"
+          <Link
+            href="/#newsletter"
             className="hidden sm:inline-flex items-center px-4 py-2 rounded-lg bg-cyan-600 text-white text-sm font-semibold hover:bg-cyan-700 transition-colors"
           >
-            Stay in the loop
-          </a>
+            Follow the journey
+          </Link>
           <button
             className="md:hidden p-2 rounded-md text-slate-600 hover:bg-slate-100"
             onClick={() => setMenuOpen(!menuOpen)}
@@ -101,13 +101,13 @@ export default function Navbar() {
               {cat.label}
             </Link>
           ))}
-          <a
-            href="#newsletter"
+          <Link
+            href="/#newsletter"
             className="mt-2 text-center px-4 py-2 rounded-lg bg-cyan-600 text-white text-sm font-semibold"
             onClick={() => setMenuOpen(false)}
           >
-            Stay in the loop
-          </a>
+            Follow the journey
+          </Link>
         </div>
       )}
     </nav>

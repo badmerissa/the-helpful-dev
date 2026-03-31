@@ -1,22 +1,62 @@
 import Image from "next/image";
 import Link from "next/link";
-import AppSpotlight from "./components/AppSpotlight";
-import AppPreview from "./components/AppPreview";
 import NewsletterForm from "./components/NewsletterForm";
 import JsonLd from "./components/JsonLd";
-import { categories } from "@/lib/nav";
 import { appsJsonLd } from "@/lib/app-data";
+import { posts } from "@/lib/blog-data";
+
+// Challenge config — update these each month
+const CHALLENGE = {
+  currentMonth: 3,
+  totalMonths: 12,
+  appsShipped: 4,
+  year: 2026,
+};
 
 const footerApps = [
-  { label: "Fasting Tracker", href: "https://fasting.thehelpfuldev.com/", disabled: false },
-  { label: "Potty Panda", href: "https://pottypanda.thehelpfuldev.com/", disabled: false },
-  { label: "unvAIl", href: "https://unvail.thehelpfuldev.com/", disabled: false },
-  { label: "Timeagotchi", href: "https://timeagotchi.thehelpfuldev.com/", disabled: false },
+  { label: "Fasting Tracker", href: "https://fasting.thehelpfuldev.com/" },
+  { label: "Potty Panda", href: "https://pottypanda.thehelpfuldev.com/" },
+  { label: "unvAIl", href: "https://unvail.thehelpfuldev.com/" },
+  { label: "Timeagotchi", href: "https://timeagotchi.thehelpfuldev.com/" },
 ];
 
-const connectLinks = [
-  { label: "Newsletter", href: "#newsletter", external: false },
-  { label: "Ko-fi", href: "https://ko-fi.com/robogirl96", external: true },
+const apps = [
+  {
+    icon: "/f-icon.png",
+    name: "Fasting Tracker",
+    tagline: "Health & Wellness",
+    description: "Distraction-free intermittent fasting timer. 16:8, 20:4, OMAD — all in your browser.",
+    href: "https://fasting.thehelpfuldev.com/",
+    month: 1,
+    accentClass: "text-green-600 bg-green-50 border-green-100",
+  },
+  {
+    icon: "/pp-icon.png",
+    name: "Potty Panda",
+    tagline: "Parenting",
+    description: "Log, time, and celebrate potty training milestones with a friendly panda.",
+    href: "https://pottypanda.thehelpfuldev.com/",
+    month: 2,
+    accentClass: "text-amber-600 bg-amber-50 border-amber-100",
+  },
+  {
+    icon: null,
+    name: "unvAIl",
+    tagline: "Daily Game",
+    description: "Real or AI? A daily challenge to train your eye before it's too late.",
+    href: "https://unvail.thehelpfuldev.com/",
+    month: 3,
+    accentClass: "text-violet-600 bg-violet-50 border-violet-100",
+  },
+  {
+    icon: null,
+    name: "Timeagotchi",
+    tagline: "Productivity",
+    description: "Time tracking disguised as a tamagotchi. Your pet lives by your productivity.",
+    href: "https://timeagotchi.thehelpfuldev.com/",
+    month: 3,
+    accentClass: "text-orange-600 bg-orange-50 border-orange-100",
+  },
 ];
 
 const websiteJsonLd = {
@@ -25,7 +65,7 @@ const websiteJsonLd = {
   name: "The Helpful Dev",
   url: "https://thehelpfuldev.com",
   description:
-    "Free browser-based tools for intermittent fasting, potty training, and daily games. No login. No data collected. Built by an indie dev.",
+    "One developer. 12 months. 12 AI-built apps. Shipping in public and writing about every lesson learned.",
 };
 
 const organizationJsonLd = {
@@ -37,28 +77,7 @@ const organizationJsonLd = {
   sameAs: ["https://ko-fi.com/robogirl96"],
 };
 
-// Inline robot SVG replaces the FontAwesome faRobot dependency
-function RobotIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={1.5}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <rect x="3" y="11" width="18" height="10" rx="2" />
-      <rect x="8" y="15" width="2" height="2" rx="0.5" />
-      <rect x="14" y="15" width="2" height="2" rx="0.5" />
-      <path d="M12 11V7" />
-      <circle cx="12" cy="5" r="2" />
-      <path d="M8 11V9a4 4 0 018 0v2" />
-    </svg>
-  );
-}
+const progressPct = Math.round((CHALLENGE.currentMonth / CHALLENGE.totalMonths) * 100);
 
 export default function Home() {
   return (
@@ -72,189 +91,247 @@ export default function Home() {
 
       {/* HERO */}
       <section className="hero-grid bg-white border-b border-slate-100">
-        <div className="max-w-6xl mx-auto px-6 py-20 lg:py-28 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+        <div className="max-w-6xl mx-auto px-6 py-20 lg:py-28 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
 
           <div className="flex-1 text-center lg:text-left">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-50 border border-cyan-100 text-cyan-700 text-sm font-medium mb-6">
               <span className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse" aria-hidden="true" />
-              4 apps · all free · open source
+              Month {CHALLENGE.currentMonth} of {CHALLENGE.totalMonths} · Building in public
             </div>
 
             <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-slate-900 leading-tight mb-6">
-              Apps built to{" "}
-              <span className="gradient-text">actually help</span>
+              One dev.{" "}
+              <span className="gradient-text">12 months.</span>
               <br />
-              everyday life.
+              12 AI&#8209;built apps.
             </h1>
 
             <p className="text-lg lg:text-xl text-slate-500 leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
-              Simple, focused tools for life.
-              No logins. No data collected. Just stuff that works.
+              I&apos;m shipping one app a month using AI tools — and writing honestly about what worked,
+              what broke, and what I actually learned. No hype. Just the journey.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
-              <a
-                href="#apps"
+              <Link
+                href="/blog"
                 className="px-6 py-3 rounded-lg bg-cyan-600 text-white font-semibold hover:bg-cyan-700 transition-colors text-sm"
               >
-                Browse the apps →
-              </a>
+                Read the blog →
+              </Link>
               <a
-                href="#newsletter"
+                href="#apps"
                 className="px-6 py-3 rounded-lg border border-slate-300 text-slate-700 font-semibold hover:border-cyan-400 hover:text-cyan-600 transition-colors text-sm"
               >
-                Get notified of new apps
+                See the apps
               </a>
             </div>
           </div>
 
-          <div className="flex-1 w-full max-w-md lg:max-w-none">
-            <div className="bg-slate-50 rounded-2xl border border-slate-200 shadow-xl p-6 space-y-4">
-              <div className="text-center py-6">
+          {/* Challenge progress card */}
+          <div className="flex-shrink-0 w-full max-w-sm lg:max-w-xs">
+            <div className="bg-slate-50 rounded-2xl border border-slate-200 shadow-xl p-6 space-y-5">
+              <div className="flex items-center justify-between">
                 <Image
                   src="/logo.svg"
                   alt="The Helpful Dev"
-                  width={500}
-                  height={150}
-                  sizes="(max-width: 768px) 300px, 500px"
-                  className="mx-auto mb-4 object-contain"
+                  width={120}
+                  height={36}
+                  className="object-contain"
                 />
+                <span className="text-xs font-semibold text-cyan-700 bg-cyan-50 border border-cyan-100 px-2.5 py-1 rounded-full">
+                  {CHALLENGE.year} Challenge
+                </span>
               </div>
+
+              <div>
+                <div className="flex items-center justify-between text-sm mb-2">
+                  <span className="font-medium text-slate-700">Progress</span>
+                  <span className="text-slate-500">Month {CHALLENGE.currentMonth} / {CHALLENGE.totalMonths}</span>
+                </div>
+                <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
+                  <div
+                    className="h-full rounded-full bg-gradient-to-r from-cyan-500 to-teal-600 transition-all"
+                    style={{ width: `${progressPct}%` }}
+                    role="progressbar"
+                    aria-valuenow={progressPct}
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                    aria-label={`${progressPct}% through the challenge`}
+                  />
+                </div>
+              </div>
+
+              <dl className="grid grid-cols-3 gap-3 text-center">
+                {[
+                  { value: String(CHALLENGE.appsShipped), label: "Apps shipped" },
+                  { value: String(posts.length), label: "Blog posts" },
+                  { value: `${CHALLENGE.totalMonths - CHALLENGE.currentMonth}`, label: "Months left" },
+                ].map(({ value, label }) => (
+                  <div key={label} className="bg-white rounded-xl border border-slate-100 py-3">
+                    <dd className="text-xl font-bold text-slate-900">{value}</dd>
+                    <dt className="text-xs text-slate-500 mt-0.5 leading-tight">{label}</dt>
+                  </div>
+                ))}
+              </dl>
+
+              <p className="text-xs text-slate-400 text-center leading-relaxed">
+                All apps are free, open source, and run entirely in your browser.
+              </p>
             </div>
           </div>
 
         </div>
       </section>
 
-      {/* STATS STRIP */}
-      <section className="border-t border-b border-slate-100 bg-gradient-to-b from-slate-50 to-white">
-        <div className="max-w-6xl mx-auto px-6 py-10">
-          <dl className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            {[
-              { value: "4", label: "Free Apps" },
-              { value: "100%", label: "Runs in Browser" },
-              { value: "Open Source", label: "Always" },
-              { value: "Utility Apps", label: "That Work" }
-            ].map(({ value, label }) => (
-              <div key={label}>
-                <dd className="text-2xl lg:text-3xl font-bold text-slate-900">{value}</dd>
-                <dt className="text-sm text-slate-500 mt-1">{label}</dt>
-              </div>
+      {/* LATEST FROM THE BLOG */}
+      <section className="border-b border-slate-100">
+        <div className="max-w-6xl mx-auto px-6 py-16">
+          <div className="flex items-end justify-between mb-8">
+            <div>
+              <h2 className="text-2xl lg:text-3xl font-bold text-slate-900">
+                Latest from the <span className="gradient-text">blog</span>
+              </h2>
+              <p className="text-slate-500 mt-1 text-sm">
+                Honest write-ups on building with AI — tools, failures, and lessons.
+              </p>
+            </div>
+            <Link
+              href="/blog"
+              className="hidden sm:inline-flex text-sm font-medium text-cyan-600 hover:text-cyan-700 transition-colors shrink-0"
+            >
+              All posts →
+            </Link>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {posts.map((post) => (
+              <Link
+                key={post.slug}
+                href={`/blog/${post.slug}`}
+                className="group bg-white border border-slate-200 rounded-2xl p-5 card-hover block"
+              >
+                <div className="flex flex-wrap gap-1.5 mb-3">
+                  {post.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-cyan-50 border border-cyan-100 text-cyan-700 text-xs font-medium"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <h3 className="text-base font-semibold text-slate-900 mb-2 group-hover:text-cyan-700 transition-colors leading-snug line-clamp-3">
+                  {post.title}
+                </h3>
+                <p className="text-slate-500 text-sm leading-relaxed mb-4 line-clamp-2">
+                  {post.description}
+                </p>
+                <div className="flex items-center gap-2 text-xs text-slate-400">
+                  <span>
+                    {new Date(post.date).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </span>
+                  <span>·</span>
+                  <span>{post.readTime}</span>
+                </div>
+              </Link>
             ))}
-          </dl>
+
+            {/* Teaser card for future posts */}
+            <div className="bg-slate-50 border border-dashed border-slate-200 rounded-2xl p-5 flex flex-col items-center justify-center text-center gap-3 min-h-[180px]">
+              <span className="text-2xl">✍️</span>
+              <p className="text-sm text-slate-400 leading-relaxed">
+                More posts coming each month as new apps ship.
+              </p>
+              <a
+                href="#newsletter"
+                className="text-xs font-semibold text-cyan-600 hover:text-cyan-700 transition-colors"
+              >
+                Get notified →
+              </a>
+            </div>
+          </div>
+
+          <Link
+            href="/blog"
+            className="sm:hidden mt-6 inline-flex text-sm font-medium text-cyan-600 hover:text-cyan-700 transition-colors"
+          >
+            All posts →
+          </Link>
         </div>
       </section>
 
-      {/* APP SPOTLIGHTS */}
-      <div id="apps" className="scroll-mt-20">
-        <AppSpotlight
-          icon={
-            <Image src="/f-icon.png" alt="" width={24} height={24} sizes="24px" className="object-contain" />
-          }
-          status="LIVE"
-          title="Intermittent Fasting Tracker"
-          tagline="Health & Wellness"
-          description="A distraction-free timer to track your fasting windows. Start a fast, see your progress, and hit your goals — no account needed."
-          bullets={[
-            "Works entirely in your browser",
-            "Tracks multiple fasting protocols (16:8, 20:4, OMAD)",
-            "No data ever leaves your device",
-          ]}
-          href="https://fasting.thehelpfuldev.com/"
-          ctaLabel="Open Fasting Tracker"
-          previewContent={
-            <AppPreview
-              src="https://fasting.thehelpfuldev.com/"
-              title="Fasting Tracker app preview"
-              appName="Fasting Tracker"
-              appHref="https://fasting.thehelpfuldev.com/"
-            />
-          }
-        />
+      {/* APPS SHIPPED */}
+      <section id="apps" className="scroll-mt-20 border-b border-slate-100">
+        <div className="max-w-6xl mx-auto px-6 py-16">
+          <div className="mb-8">
+            <h2 className="text-2xl lg:text-3xl font-bold text-slate-900">
+              Apps shipped so far
+            </h2>
+            <p className="text-slate-500 mt-1 text-sm">
+              {CHALLENGE.appsShipped} of 12 · No login. No data collected. Everything runs in your browser.
+            </p>
+          </div>
 
-        <AppSpotlight
-          reverse
-          icon={
-            <Image src="/pp-icon.png" alt="" width={24} height={24} sizes="24px" className="object-contain" />
-          }
-          status="LIVE"
-          title="Potty Panda"
-          tagline="Parenting Tools"
-          description="Logging and timer tools to guide parents through the potty training journey — with a friendly panda cheering you on."
-          bullets={[
-            "Log successes and accidents with one tap",
-            "Built-in sit-on-potty timer",
-            "Track streaks to celebrate progress",
-          ]}
-          href="https://pottypanda.thehelpfuldev.com/"
-          ctaLabel="Open Potty Panda"
-          previewContent={
-            <AppPreview
-              src="https://pottypanda.thehelpfuldev.com/"
-              title="Potty Panda app preview"
-              appName="Potty Panda"
-              appHref="https://pottypanda.thehelpfuldev.com/"
-            />
-          }
-        />
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {apps.map((app) => (
+              <a
+                key={app.name}
+                href={app.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${app.name} (opens in new tab)`}
+                className="group bg-white border border-slate-200 rounded-2xl p-5 card-hover flex flex-col gap-3"
+              >
+                <div className="flex items-start justify-between">
+                  <div className={`inline-flex items-center px-2.5 py-0.5 rounded-full border text-xs font-medium ${app.accentClass}`}>
+                    {app.tagline}
+                  </div>
+                  <span className="text-xs text-slate-400 font-mono">M{app.month}</span>
+                </div>
 
-        <AppSpotlight
-          icon={<RobotIcon className="w-5 h-5 text-cyan-600" />}
-          status="LIVE"
-          title="unvAIl"
-          tagline="Daily Game"
-          description="A daily reality check game: is the image Real or AI? Train your eye to spot AI-generated content before it fools you."
-          bullets={[
-            "New challenge every day",
-            "Shareable results (Wordle-style)",
-            "Instant reveal with explanation",
-          ]}
-          href="https://unvail.thehelpfuldev.com/"
-          ctaLabel="Play Today's Round"
-          previewContent={
-            <AppPreview
-              src="https://unvail.thehelpfuldev.com/"
-              title="unvAIl game preview"
-              appName="unvAIl"
-              appHref="https://unvail.thehelpfuldev.com/"
-            />
-          }
-        />
+                <div className="flex items-center gap-3">
+                  {app.icon ? (
+                    <Image
+                      src={app.icon}
+                      alt=""
+                      width={36}
+                      height={36}
+                      className="object-contain rounded-lg"
+                    />
+                  ) : (
+                    <div className="w-9 h-9 rounded-lg bg-slate-100 flex items-center justify-center text-slate-400 text-lg">
+                      🤖
+                    </div>
+                  )}
+                  <h3 className="font-semibold text-slate-900 group-hover:text-cyan-700 transition-colors leading-tight">
+                    {app.name}
+                  </h3>
+                </div>
 
-        <AppSpotlight
-          reverse
-          icon={<RobotIcon className="w-5 h-5 text-slate-400" />}
-          status="LIVE"
-          title="Timeagotchi"
-          tagline="Productivity"
-          description="Hate filling in timesheets? Timeagotchi turns your time tracking into an interactive tamagotchi-style experience. Your virtual pet lives or dies by your productivity."
-          bullets={[
-            "Log time by feeding your virtual pet",
-            "Weekly review report included",
-            "Export to CSV for any time tracking system",
-          ]}
-          href="https://timeagotchi.thehelpfuldev.com/"
-          ctaLabel="Open Timeagotchi"
-          previewContent={
-            <AppPreview
-              src="https://timeagotchi.thehelpfuldev.com/"
-              title="Timeagotchi app preview"
-              appName="Timeagotchi"
-              appHref="https://timeagotchi.thehelpfuldev.com/"
-            />
-          }
-        />
-      </div>
+                <p className="text-sm text-slate-500 leading-relaxed flex-1">
+                  {app.description}
+                </p>
 
-      {/* CTA BAND */}
-      <section
-        id="newsletter"
-        className="gradient-cta scroll-mt-20"
-      >
+                <span className="text-xs font-semibold text-cyan-600 group-hover:text-cyan-700 transition-colors">
+                  Open app →
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* NEWSLETTER */}
+      <section id="newsletter" className="gradient-cta scroll-mt-20">
         <div className="max-w-4xl mx-auto px-6 py-20 text-center text-white">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4">More apps are on the way.</h2>
+          <h2 className="text-3xl lg:text-4xl font-bold mb-4">Follow the journey.</h2>
           <p className="text-cyan-100 text-lg mb-8 max-w-xl mx-auto leading-relaxed">
-            Subscribe to hear about new tools first. No spam — just a note when something ships.
+            Get a note when a new app ships or a new post goes up. No spam — just an indie dev
+            building in public, one month at a time.
           </p>
           <NewsletterForm variant="dark" />
           <p className="mt-8 text-cyan-200 text-sm">
@@ -283,14 +360,13 @@ export default function Home() {
               <span className="font-bold text-slate-900">The Helpful Dev</span>
             </div>
             <p className="text-sm text-slate-500 leading-relaxed">
-              Free, privacy-focused tools for everyday problems. Open source and community
-              supported.
+              Shipping 12 AI-built apps in {CHALLENGE.year} and writing about every lesson. Open source and privacy-first.
             </p>
             <a
               href="https://ko-fi.com/robogirl96"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Support us on Ko-fi (opens in new tab)"
+              aria-label="Support on Ko-fi (opens in new tab)"
               className="inline-flex items-center gap-1.5 mt-4 text-sm text-slate-500 hover:text-cyan-600 transition-colors"
             >
               ☕ Support on Ko-fi
@@ -302,24 +378,16 @@ export default function Home() {
               Apps
             </h3>
             <ul className="space-y-2">
-              {footerApps.map(({ label, href, disabled }) => (
+              {footerApps.map(({ label, href }) => (
                 <li key={label}>
                   <a
                     href={href}
-                    target={disabled ? undefined : "_blank"}
-                    rel={disabled ? undefined : "noopener noreferrer"}
-                    aria-label={disabled ? undefined : `${label} (opens in new tab)`}
-                    aria-disabled={disabled}
-                    className={`text-sm transition-colors ${
-                      disabled
-                        ? "text-slate-300 cursor-not-allowed pointer-events-none"
-                        : "text-slate-500 hover:text-cyan-600"
-                    }`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${label} (opens in new tab)`}
+                    className="text-sm text-slate-500 hover:text-cyan-600 transition-colors"
                   >
                     {label}
-                    {disabled && (
-                      <span className="ml-1.5 text-xs text-slate-300">(soon)</span>
-                    )}
                   </a>
                 </li>
               ))}
@@ -328,14 +396,22 @@ export default function Home() {
 
           <div>
             <h3 className="text-sm font-semibold text-slate-900 mb-3 uppercase tracking-wider">
-              Categories
+              Read
             </h3>
-            <ul className="space-y-2 text-sm text-slate-500">
-              {categories.map(({ label, href }) => (
-                <li key={label}>
-                  <a href={href} className="hover:text-cyan-600 transition-colors">
-                    {label}
-                  </a>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link href="/blog" className="text-slate-500 hover:text-cyan-600 transition-colors">
+                  Blog
+                </Link>
+              </li>
+              {posts.map((post) => (
+                <li key={post.slug}>
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="text-slate-500 hover:text-cyan-600 transition-colors line-clamp-1"
+                  >
+                    {post.title.split(":")[0]}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -346,19 +422,25 @@ export default function Home() {
               Connect
             </h3>
             <ul className="space-y-2">
-              {connectLinks.map(({ label, href, external }) => (
-                <li key={label}>
-                  <a
-                    href={href}
-                    target={external ? "_blank" : undefined}
-                    rel={external ? "noopener noreferrer" : undefined}
-                    aria-label={external ? `${label} (opens in new tab)` : undefined}
-                    className="text-sm text-slate-500 hover:text-cyan-600 transition-colors"
-                  >
-                    {label}
-                  </a>
-                </li>
-              ))}
+              <li>
+                <a
+                  href="#newsletter"
+                  className="text-sm text-slate-500 hover:text-cyan-600 transition-colors"
+                >
+                  Newsletter
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://ko-fi.com/robogirl96"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Ko-fi (opens in new tab)"
+                  className="text-sm text-slate-500 hover:text-cyan-600 transition-colors"
+                >
+                  Ko-fi
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -367,7 +449,7 @@ export default function Home() {
         <div className="border-t border-slate-100">
           <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-2">
             <p className="text-xs text-slate-400">
-              © {new Date().getFullYear()} The Helpful Dev. Built with care.
+              © {new Date().getFullYear()} The Helpful Dev. Built with care (and a lot of AI).
             </p>
             <div className="flex items-center gap-4">
               <Link
