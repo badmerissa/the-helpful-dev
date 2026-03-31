@@ -5,7 +5,7 @@ describe("sitemap", () => {
   const entries = sitemap();
 
   it("contains 8 routes", () => {
-    expect(entries).toHaveLength(8);
+    expect(entries).toHaveLength(9);
   });
 
   it("includes the homepage at priority 1.0", () => {

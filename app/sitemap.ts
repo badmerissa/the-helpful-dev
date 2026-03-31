@@ -50,5 +50,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
+    {
+      url: "https://thehelpfuldev.com/blog/building-the-helpful-dev",
+      lastModified: new Date("2026-03-31"),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
   ];
 }
