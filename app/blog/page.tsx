@@ -1,33 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { posts } from "@/lib/blog-data";
 
 export const metadata: Metadata = {
   title: "Blog — The Helpful Dev",
   description:
-    "Practical guides and workflow tips for developers building with AI. No jargon, no hype — just stuff that works.",
+    "Honest write-ups on building with AI — one app a month, twelve months, all the lessons in between.",
   alternates: {
     canonical: "https://thehelpfuldev.com/blog",
   },
   openGraph: {
     title: "Blog — The Helpful Dev",
     description:
-      "Practical guides and workflow tips for developers building with AI. No jargon, no hype — just stuff that works.",
+      "Honest write-ups on building with AI — one app a month, twelve months, all the lessons in between.",
     url: "https://thehelpfuldev.com/blog",
   },
 };
-
-const posts = [
-  {
-    slug: "claude-workflow",
-    title:
-      "Think Before You Build: A Visual Guide to Working Smarter with Claude",
-    description:
-      "Stop fighting your AI assistant. A battle-tested, visual workflow that turns Claude from a clever autocomplete into a true engineering partner — from first idea to production-ready code.",
-    date: "2026-03-30",
-    readTime: "14 min read",
-    tags: ["Workflow", "AI Development"],
-  },
-];
 
 export default function BlogPage() {
   return (
@@ -47,8 +35,8 @@ export default function BlogPage() {
             The <span className="gradient-text">Blog</span>
           </h1>
           <p className="text-lg text-slate-500 leading-relaxed max-w-xl">
-            Practical guides and workflow tips for developers building with AI.
-            No jargon, no hype.
+            Honest write-ups on building one app a month with AI tools — what worked,
+            what broke, and what I&apos;d do differently.
           </p>
         </div>
       </section>
