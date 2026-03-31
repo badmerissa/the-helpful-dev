@@ -30,10 +30,10 @@ describe("NewsletterForm", () => {
     expect(screen.getByRole("button", { name: /joining/i })).toBeDisabled();
   });
 
-  it("shows success message on confirmed subscription", async () => {
+  it("shows success message on confirmed subscription (Kit new format)", async () => {
     mockFetch.mockResolvedValueOnce({
       ok: true,
-      json: async () => ({ subscription: { state: "active" } }),
+      json: async () => ({ status: "success", redirect_url: "https://app.kit.com/forms/success?form_id=1" }),
     });
     render(<NewsletterForm />);
 
@@ -58,6 +58,20 @@ describe("NewsletterForm", () => {
 
     await waitFor(() => expect(screen.getByRole("alert")).toBeInTheDocument());
     expect(screen.getByText(/something went wrong/i)).toBeInTheDocument();
+  });
+
+  it("shows success message on confirmed subscription (legacy format)", async () => {
+    mockFetch.mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({ subscription: { state: "active" } }),
+    });
+    render(<NewsletterForm />);
+
+    await userEvent.type(screen.getByLabelText(/email address/i), "test@example.com");
+    await userEvent.click(screen.getByRole("button", { name: /get updates/i }));
+
+    await waitFor(() => expect(screen.getByRole("status")).toBeInTheDocument());
+    expect(screen.getByText(/check your email/i)).toBeInTheDocument();
   });
 
   it("shows error message on network failure", async () => {
