@@ -44,9 +44,9 @@ describe("Navbar", () => {
     expect(screen.getByRole("button", { name: /open menu/i })).toBeInTheDocument();
   });
 
-  it("renders Stay in the loop CTA", () => {
+  it("renders Follow the journey CTA", () => {
     render(<Navbar />);
-    const ctaLinks = screen.getAllByText(/stay in the loop/i);
+    const ctaLinks = screen.getAllByText(/follow the journey/i);
     expect(ctaLinks.length).toBeGreaterThan(0);
   });
 });
