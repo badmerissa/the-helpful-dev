@@ -57,9 +57,12 @@ export default function NewsletterForm({ variant = "light" }: Props) {
         signal: controller.signal,
       });
 
-      // Validate response shape — ConvertKit returns { subscription: { state: "active" } }
+      // Kit (formerly ConvertKit) returns { status: "success" } as of 2025.
+      // Older accounts may still return { subscription: { ... } } — accept both.
       const json = await response.json().catch(() => null);
-      const confirmed = response.ok && json?.subscription != null;
+      const confirmed =
+        response.ok &&
+        (json?.status === "success" || json?.subscription != null);
 
       if (confirmed) {
         setStatus("success");
