@@ -1,0 +1,773 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import JsonLd from "@/app/components/JsonLd";
+
+export const metadata: Metadata = {
+  title: "Three Homepages in Three Weeks: How The Helpful Dev Found Its Identity — The Helpful Dev",
+  description:
+    "From a static card grid to a build-in-public brand — the story of every homepage rewrite, a same-day color pivot, and when a portfolio became a journey.",
+  alternates: {
+    canonical: "https://thehelpfuldev.com/blog/building-the-helpful-dev",
+  },
+  openGraph: {
+    title: "Three Homepages in Three Weeks: How The Helpful Dev Found Its Identity",
+    description:
+      "From a static card grid to a build-in-public brand — every rewrite, a same-day color pivot, and when a portfolio became a journey.",
+    url: "https://thehelpfuldev.com/blog/building-the-helpful-dev",
+  },
+};
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline:
+    "Three Homepages in Three Weeks: How The Helpful Dev Found Its Identity",
+  description:
+    "From a static card grid to a build-in-public brand — the story of every homepage rewrite, a same-day color pivot, and when a portfolio became a journey.",
+  datePublished: "2026-03-31",
+  author: {
+    "@type": "Person",
+    name: "The Helpful Dev",
+    url: "https://thehelpfuldev.com",
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "The Helpful Dev",
+    url: "https://thehelpfuldev.com",
+  },
+  url: "https://thehelpfuldev.com/blog/building-the-helpful-dev",
+  mainEntityOfPage: "https://thehelpfuldev.com/blog/building-the-helpful-dev",
+};
+
+/* ─── Sub-components ─────────────────────────────────────────────── */
+
+function Callout({
+  variant,
+  icon,
+  label,
+  children,
+}: {
+  variant: "key" | "insight" | "tip" | "warn";
+  icon: string;
+  label: string;
+  children: React.ReactNode;
+}) {
+  const styles = {
+    key: "bg-cyan-50 border border-cyan-200",
+    insight: "bg-slate-50 border border-slate-200",
+    tip: "bg-green-50 border border-green-200",
+    warn: "bg-amber-50 border border-amber-200",
+  };
+  const labelStyles = {
+    key: "text-cyan-700",
+    insight: "text-cyan-600",
+    tip: "text-green-700",
+    warn: "text-amber-700",
+  };
+  return (
+    <div
+      className={`${styles[variant]} rounded-xl p-5 my-5 flex gap-4 items-start text-sm leading-relaxed`}
+    >
+      <span className="text-xl shrink-0 mt-0.5">{icon}</span>
+      <div className="flex-1 text-slate-700">
+        <strong
+          className={`block mb-1 text-xs uppercase tracking-wider font-semibold ${labelStyles[variant]}`}
+        >
+          {label}
+        </strong>
+        {children}
+      </div>
+    </div>
+  );
+}
+
+function CodeBlock({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="bg-slate-900 rounded-xl overflow-hidden my-5 border border-slate-700 border-l-4 border-l-cyan-500">
+      <div className="bg-slate-800 px-4 py-2 text-xs font-bold tracking-widest uppercase text-cyan-400 border-b border-slate-700">
+        {label}
+      </div>
+      <pre className="px-5 py-4 text-sm leading-relaxed text-slate-200 font-mono whitespace-pre-wrap overflow-x-auto">
+        {children}
+      </pre>
+    </div>
+  );
+}
+
+function BeforeAfter({
+  before,
+  after,
+  beforeLabel = "Before",
+  afterLabel = "After (the fix)",
+}: {
+  before: string;
+  after: string;
+  beforeLabel?: string;
+  afterLabel?: string;
+}) {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 my-5">
+      <div className="bg-red-950 rounded-xl overflow-hidden border border-red-800 border-l-4 border-l-red-500">
+        <div className="bg-red-900 px-4 py-2 text-xs font-bold tracking-widest uppercase text-red-300 border-b border-red-800">
+          {beforeLabel}
+        </div>
+        <pre className="px-5 py-4 text-sm leading-relaxed text-red-200 font-mono whitespace-pre-wrap overflow-x-auto">
+          {before}
+        </pre>
+      </div>
+      <div className="bg-slate-900 rounded-xl overflow-hidden border border-slate-700 border-l-4 border-l-green-500">
+        <div className="bg-slate-800 px-4 py-2 text-xs font-bold tracking-widest uppercase text-green-400 border-b border-slate-700">
+          {afterLabel}
+        </div>
+        <pre className="px-5 py-4 text-sm leading-relaxed text-slate-200 font-mono whitespace-pre-wrap overflow-x-auto">
+          {after}
+        </pre>
+      </div>
+    </div>
+  );
+}
+
+function TakeawayCard({
+  number,
+  title,
+  children,
+}: {
+  number: number | string;
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden mb-4">
+      <div className="bg-slate-50 border-b border-slate-200 px-6 py-4 flex items-center gap-4">
+        <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-cyan-100 text-cyan-700 text-sm font-bold shrink-0">
+          {number}
+        </span>
+        <h3 className="text-base font-semibold text-slate-900">{title}</h3>
+      </div>
+      <div className="px-6 py-5 text-slate-600 text-sm leading-relaxed [&>p]:mb-3 [&>p:last-child]:mb-0">
+        {children}
+      </div>
+    </div>
+  );
+}
+
+/* ─── Page ───────────────────────────────────────────────────────── */
+
+export default function BuildingTheHelpfulDevPage() {
+  return (
+    <main className="min-h-screen bg-white text-slate-900">
+      <JsonLd data={articleJsonLd} />
+
+      {/* ── Hero ── */}
+      <section className="border-b border-slate-100 bg-white">
+        <div className="max-w-3xl mx-auto px-6 py-14 lg:py-20">
+          <div className="flex items-center gap-3 mb-6 text-sm text-slate-400">
+            <Link href="/" className="hover:text-cyan-600 transition-colors">
+              The Helpful Dev
+            </Link>
+            <span>/</span>
+            <Link
+              href="/blog"
+              className="hover:text-cyan-600 transition-colors"
+            >
+              Blog
+            </Link>
+          </div>
+
+          <div className="mb-5">
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-50 border border-cyan-100 text-cyan-700 text-sm font-medium">
+              App Development · AI Development · Next.js
+            </span>
+          </div>
+
+          <h1 className="text-3xl lg:text-5xl font-bold tracking-tight text-slate-900 leading-tight mb-5">
+            Three Homepages in{" "}
+            <span className="gradient-text">Three Weeks</span>: How The Helpful
+            Dev Found Its Identity
+          </h1>
+
+          <p className="text-lg text-slate-500 leading-relaxed mb-6 max-w-2xl">
+            A static card grid. A commercial redesign that shipped in indigo
+            and was immediately repainted cyan. A logo that arrived at 7 AM.
+            Then, months later, the realization that the site needed to stop
+            being a portfolio and start being a journey.
+          </p>
+
+          <div className="flex flex-wrap items-center gap-4 text-sm text-slate-400">
+            <span>March 31, 2026</span>
+            <span>·</span>
+            <span>11 min read</span>
+            <span>·</span>
+            <span>Intermediate</span>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Article body ── */}
+      <div className="max-w-3xl mx-auto px-6 pb-20">
+
+        {/* Table of Contents */}
+        <nav className="bg-slate-50 border border-slate-200 rounded-2xl px-7 py-6 my-10">
+          <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-4">
+            In this post
+          </h3>
+          <ol className="space-y-2 pl-5 list-decimal">
+            {[
+              ["#context", "What The Helpful Dev actually is"],
+              ["#v1", "v1: The humble card grid (January 2026)"],
+              ["#v2", "v2: The commercial redesign — and the same-day color crisis"],
+              ["#logo", "The logo that arrived at 7 AM"],
+              ["#seo-audit", "The SEO and quality grind"],
+              ["#v3", "v3: Stop being a portfolio, start being a journey"],
+              ["#ai-angle", "How AI-assisted development shaped every iteration"],
+              ["#takeaways", "Key takeaways"],
+            ].map(([href, label]) => (
+              <li key={href}>
+                <a
+                  href={href}
+                  className="text-sm text-slate-700 hover:text-cyan-600 transition-colors"
+                >
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+
+        {/* ── Context ── */}
+        <section id="context" className="mb-12">
+          <h2 className="text-2xl font-bold text-slate-900 mb-4">
+            What The Helpful Dev actually is
+          </h2>
+          <p className="text-slate-700 leading-relaxed mb-4">
+            The premise is simple: ship one free, privacy-first web app per
+            month throughout 2026. No ads, no login, no data collection. Just
+            stuff that works in your browser. The site you&apos;re reading this
+            on is the hub — a place to find the apps, follow the build-in-public
+            journey, and subscribe for updates.
+          </p>
+          <p className="text-slate-700 leading-relaxed mb-4">
+            What it took a while to figure out was that the site itself needed
+            the same care as the apps. The first version was essentially a
+            glorified list of links. Getting from there to something with an
+            actual identity took three full rewrites, a rebrand, an SEO sprint,
+            a quality audit, and a pivot that redefined what the homepage was
+            even trying to say.
+          </p>
+          <p className="text-slate-700 leading-relaxed">
+            Here&apos;s how each iteration happened and what I learned from it.
+          </p>
+        </section>
+
+        {/* ── V1 ── */}
+        <section id="v1" className="mb-12">
+          <h2 className="text-2xl font-bold text-slate-900 mb-4">
+            v1: The humble card grid (January 2026)
+          </h2>
+          <p className="text-slate-700 leading-relaxed mb-4">
+            The first commit landed on January 9th. It was honest in the best
+            and worst sense — completely bare-bones, no pretense, and held
+            together by a 2-column card grid and a disabled email input with a
+            comment that read{" "}
+            <code className="bg-slate-100 px-1.5 py-0.5 rounded text-sm font-mono text-slate-800">
+              Mailing list coming soon — bookmark this page!
+            </code>
+            .
+          </p>
+
+          <CodeBlock label="app/page.tsx — January 9, 2026">
+{`<header className="max-w-3xl mx-auto px-6 py-20 text-center">
+  <div className="mb-4 inline-block px-3 py-1 bg-blue-100
+      text-blue-800 rounded-full text-sm font-semibold">
+    TheHelpfulDev
+  </div>
+  <h1 className="text-4xl md:text-5xl font-bold mb-6">
+    Free, privacy-focused tools for everyday problems.
+  </h1>
+  <p className="text-xl text-slate-600 mb-8 leading-relaxed">
+    I build simple apps to help the community. No ads, no
+    tracking, just useful code.
+  </p>
+
+  {/* Email Capture Placeholder - Connect to form service later */}
+  <input
+    type="email"
+    placeholder="Enter your email for updates..."
+    disabled
+  />
+  <p className="text-xs text-slate-400 mt-2">
+    (Mailing list coming soon — bookmark this page!)
+  </p>
+</header>`}
+          </CodeBlock>
+
+          <p className="text-slate-700 leading-relaxed mb-4">
+            The app cards were white boxes with a coloured status badge (
+            <code className="bg-slate-100 px-1.5 py-0.5 rounded text-sm font-mono text-slate-800">
+              LIVE
+            </code>{" "}
+            or{" "}
+            <code className="bg-slate-100 px-1.5 py-0.5 rounded text-sm font-mono text-slate-800">
+              COMING SOON
+            </code>
+            ), a one-line description, and a blue button. Everything was
+            blue — the badge, the button, the pill in the header. Not a cohesive
+            design system, just the default instinct when you want something to
+            feel &quot;techy.&quot;
+          </p>
+
+          <Callout variant="insight" icon="💡" label="What I noticed">
+            The disabled email input was actually a great instinct — it set the
+            expectation early that a newsletter was coming. But the design
+            screamed &quot;side project&quot; rather than &quot;something worth
+            returning to.&quot; There was no reason for a visitor to bookmark
+            it beyond the reminder to.
+          </Callout>
+
+          <p className="text-slate-700 leading-relaxed">
+            Over the following weeks, apps got added as they shipped — unvAIl,
+            then Timeagotchi. The email subscription went live. Icons got
+            updated. The{" "}
+            <code className="bg-slate-100 px-1.5 py-0.5 rounded text-sm font-mono text-slate-800">
+              COMING SOON
+            </code>{" "}
+            badge on Timeagotchi briefly became{" "}
+            <code className="bg-slate-100 px-1.5 py-0.5 rounded text-sm font-mono text-slate-800">
+              BETA
+            </code>
+            , then back again. The commits from this phase are all prefixed{" "}
+            <code className="bg-slate-100 px-1.5 py-0.5 rounded text-sm font-mono text-slate-800">
+              SOLID-111-NOTSOLIDLOL
+            </code>{" "}
+            — which, in hindsight, is a perfect summary of the energy.
+          </p>
+        </section>
+
+        {/* ── V2 ── */}
+        <section id="v2" className="mb-12">
+          <h2 className="text-2xl font-bold text-slate-900 mb-4">
+            v2: The commercial redesign — and the same-day color crisis
+          </h2>
+          <p className="text-slate-700 leading-relaxed mb-4">
+            By mid-March I knew the card grid had to go. Four apps were live or
+            nearly live, and the site still looked like a first-year student
+            project. I wanted something that felt closer to a real product
+            company — a sticky navbar, alternating app showcase sections with
+            live previews, a newsletter form that didn&apos;t apologize for
+            existing.
+          </p>
+          <p className="text-slate-700 leading-relaxed mb-4">
+            I kicked off an agentic workflow with Claude: gave it the existing
+            codebase as context, described the commercial-grade layout I wanted,
+            and let it run. The result — shipped as a PR on March 14th — was a
+            complete architectural overhaul.
+          </p>
+
+          <CodeBlock label="app/components/AppSpotlight.tsx — March 14, 2026">
+{`interface AppSpotlightProps {
+  icon: React.ReactNode;
+  status: "live" | "beta" | "coming-soon";
+  title: string;
+  tagline: string;
+  description: string;
+  bullets: string[];
+  href: string;
+  ctaLabel: string;
+  previewContent: React.ReactNode;
+  reverse?: boolean;
+}
+
+export default function AppSpotlight({
+  reverse = false,
+  ...props
+}: AppSpotlightProps) {
+  return (
+    <section className={clsx(
+      "py-24 border-b border-slate-100",
+      reverse && "bg-slate-50"
+    )}>
+      <div className={clsx(
+        "max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center",
+        reverse && "lg:grid-flow-dense"
+      )}>
+        {/* copy column, preview column */}
+      </div>
+    </section>
+  );
+}`}
+          </CodeBlock>
+
+          <p className="text-slate-700 leading-relaxed mb-4">
+            The{" "}
+            <code className="bg-slate-100 px-1.5 py-0.5 rounded text-sm font-mono text-slate-800">
+              AppSpotlight
+            </code>{" "}
+            component was the right abstraction — alternating left/right layout,
+            live app previews in an iframe (with a timeout fallback for browsers
+            that block them), status badges, bullet points. It still lives in
+            the codebase today.
+          </p>
+          <p className="text-slate-700 leading-relaxed mb-4">
+            But there was a problem. Claude chose indigo as the brand color.
+          </p>
+
+          <Callout variant="warn" icon="⚠️" label="Watch out">
+            When you let an AI coding assistant make design decisions in an
+            agentic run, it will pick something reasonable but generic. Indigo
+            is the &quot;safe default&quot; for developer tools in 2026 — it
+            looks fine, it means nothing. I didn&apos;t catch it until the PR
+            was merged.
+          </Callout>
+
+          <p className="text-slate-700 leading-relaxed mb-4">
+            Thirty minutes after merging the redesign, I opened another session
+            and replaced every indigo reference with cyan. Then I caught one
+            more batch of indigo in a separate commit. Both happened on March
+            14th, within hours of the original redesign landing. The git log
+            tells the story in three lines:
+          </p>
+
+          <CodeBlock label="git log — March 14, 2026 (abridged)">
+{`a937036 Merge pull request #3 — Redesign app hub UI
+047b1d25 Indigo to cyan rebrand
+046134f  Indigo to cyan rebrand`}
+          </CodeBlock>
+
+          <p className="text-slate-700 leading-relaxed">
+            Two commits. Same day. To fix the same thing. This is what happens
+            when you&apos;re vibe coding at pace — you ship, you see the real
+            result, you fix it. The lesson wasn&apos;t to slow down, it was to
+            have a brand reference before starting a design session rather than
+            after.
+          </p>
+        </section>
+
+        {/* ── Logo ── */}
+        <section id="logo" className="mb-12">
+          <h2 className="text-2xl font-bold text-slate-900 mb-4">
+            The logo that arrived at 7 AM
+          </h2>
+          <p className="text-slate-700 leading-relaxed mb-4">
+            Also on March 14th — later that morning — the logo landed. A
+            cyberpunk animated coffee mug, rendered as an SVG, dropped into{" "}
+            <code className="bg-slate-100 px-1.5 py-0.5 rounded text-sm font-mono text-slate-800">
+              public/logo1.svg
+            </code>
+            . The commit message is just: &quot;Logo rebrand.&quot;
+          </p>
+          <p className="text-slate-700 leading-relaxed mb-4">
+            It replaced the plain text{" "}
+            <code className="bg-slate-100 px-1.5 py-0.5 rounded text-sm font-mono text-slate-800">
+              TheHelpfulDev
+            </code>{" "}
+            pill in the navbar. And it immediately made the site feel like it
+            belonged to something specific rather than something generic. A good
+            logo does this — it&apos;s not about the art, it&apos;s about the
+            signal that someone made a deliberate choice.
+          </p>
+
+          <Callout variant="key" icon="🔑" label="Key insight">
+            The logo change had more impact per line of code than any other
+            single commit. The redesign was 400+ lines of component work; the
+            logo was one SVG file and a two-line navbar change. Visual identity
+            is disproportionately load-bearing.
+          </Callout>
+
+          <p className="text-slate-700 leading-relaxed">
+            The same day also brought a round of &quot;page updates for
+            rebrand&quot; — copy tweaks, color adjustments across the individual
+            app pages to make sure the cyan gradient was consistent. By the end
+            of March 14th, the site had gone from a blue card grid to something
+            that had a genuine visual identity.
+          </p>
+        </section>
+
+        {/* ── SEO & Audit ── */}
+        <section id="seo-audit" className="mb-12">
+          <h2 className="text-2xl font-bold text-slate-900 mb-4">
+            The SEO and quality grind
+          </h2>
+          <p className="text-slate-700 leading-relaxed mb-4">
+            March 16th through 19th was heads-down infrastructure. Not glamorous, but necessary. Three separate Claude sessions covered different concerns:
+          </p>
+          <ul className="list-disc pl-6 space-y-2 text-slate-700 mb-4">
+            <li>
+              <strong>SEO:</strong> JSON-LD structured data for every page,{" "}
+              <code className="bg-slate-100 px-1.5 py-0.5 rounded text-sm font-mono text-slate-800">
+                metadata
+              </code>{" "}
+              exports, canonical URLs, sitemap generation tied to{" "}
+              <code className="bg-slate-100 px-1.5 py-0.5 rounded text-sm font-mono text-slate-800">
+                lib/app-data.ts
+              </code>
+              , Open Graph images.
+            </li>
+            <li>
+              <strong>Security audit:</strong> The CSP nonce pattern (middleware
+              generates a per-request nonce, Server Components read it via{" "}
+              <code className="bg-slate-100 px-1.5 py-0.5 rounded text-sm font-mono text-slate-800">
+                headers().get(&apos;x-nonce&apos;)
+              </code>
+              ), safe JSON-LD injection, no{" "}
+              <code className="bg-slate-100 px-1.5 py-0.5 rounded text-sm font-mono text-slate-800">
+                unsafe-inline
+              </code>{" "}
+              in{" "}
+              <code className="bg-slate-100 px-1.5 py-0.5 rounded text-sm font-mono text-slate-800">
+                script-src
+              </code>
+              .
+            </li>
+            <li>
+              <strong>Quality:</strong> Accessibility audit, skip-to-content
+              link, newsletter retry logic with exponential backoff, a privacy
+              page.
+            </li>
+          </ul>
+          <p className="text-slate-700 leading-relaxed mb-4">
+            The SEO session produced a plan document first (
+            <code className="bg-slate-100 px-1.5 py-0.5 rounded text-sm font-mono text-slate-800">
+              site_analysis.md
+            </code>
+            ), got reviewed and corrected, then the implementation followed in a
+            separate session. This two-phase approach — plan, review, implement
+            — was deliberate after I&apos;d seen agentic runs go sideways when
+            given too much latitude at once.
+          </p>
+
+          <Callout variant="tip" icon="✅" label="Pro tip">
+            For SEO and audit work, have the AI produce a written plan first.
+            Review it yourself before letting it touch files. This catches
+            direction problems before they become code problems. The extra step
+            costs 10 minutes and saves hours.
+          </Callout>
+
+          <p className="text-slate-700 leading-relaxed">
+            The navbar also got restructured during this phase — individual app
+            name links replaced by category links (Health & Wellness, Parenting,
+            Games, Productivity). This was a small change that made the nav feel
+            more purposeful and less like a link dump.
+          </p>
+        </section>
+
+        {/* ── V3 ── */}
+        <section id="v3" className="mb-12">
+          <h2 className="text-2xl font-bold text-slate-900 mb-4">
+            v3: Stop being a portfolio, start being a journey
+          </h2>
+          <p className="text-slate-700 leading-relaxed mb-4">
+            The v2 homepage had a problem I couldn&apos;t shake: it led with
+            the apps. Four{" "}
+            <code className="bg-slate-100 px-1.5 py-0.5 rounded text-sm font-mono text-slate-800">
+              AppSpotlight
+            </code>{" "}
+            sections, each with a full two-column layout, preview panel, bullet
+            points. It looked polished, but it answered the wrong question. A
+            new visitor would see four apps and think &quot;neat, a portfolio.&quot;
+            They had no reason to come back.
+          </p>
+          <p className="text-slate-700 leading-relaxed mb-4">
+            The actual story was more interesting: 12 apps in 12 months, built
+            in public, one per month, all privacy-first. That&apos;s a journey
+            worth following. The homepage just wasn&apos;t telling it.
+          </p>
+
+          <BeforeAfter
+            beforeLabel="v2 homepage — led with apps"
+            afterLabel="v3 homepage — leads with the challenge"
+            before={`// v2: four full AppSpotlight sections
+<AppSpotlight title="Fasting Tracker" reverse={false} ... />
+<AppSpotlight title="Potty Panda" reverse={true} ... />
+<AppSpotlight title="unvAIl" reverse={false} ... />
+<AppSpotlight title="Timeagotchi" reverse={true} ... />`}
+            after={`// v3: challenge config drives the hero narrative
+const CHALLENGE = {
+  currentMonth: 3,
+  totalMonths: 12,
+  appsShipped: 4,
+  year: 2026,
+};
+
+// Hero leads with the challenge progress card.
+// Apps appear below as a compact 4-card grid.
+// Latest blog post surfaces above the grid.`}
+          />
+
+          <p className="text-slate-700 leading-relaxed mb-4">
+            The pivot landed on March 31st. The hero now leads with the
+            challenge — a progress bar, apps shipped, months remaining. The
+            latest blog post surfaces above the app grid. The newsletter CTA
+            copy changed from &quot;Stay in the loop&quot; to &quot;Follow the
+            journey.&quot;
+          </p>
+          <p className="text-slate-700 leading-relaxed mb-4">
+            The{" "}
+            <code className="bg-slate-100 px-1.5 py-0.5 rounded text-sm font-mono text-slate-800">
+              CHALLENGE
+            </code>{" "}
+            config object is a deliberate design choice — it makes updating the
+            homepage each month a two-field change rather than a structural
+            edit. Clear separation between data and layout.
+          </p>
+
+          <CodeBlock label="app/page.tsx — Challenge config">
+{`// Challenge config — update these each month
+const CHALLENGE = {
+  currentMonth: 3,
+  totalMonths: 12,
+  appsShipped: 4,
+  year: 2026,
+};
+
+// Used in the hero to drive: progress bar width, badge copy,
+// "X apps shipped · Y months remaining" stats strip.`}
+          </CodeBlock>
+
+          <p className="text-slate-700 leading-relaxed">
+            The blog launched as part of this same push — a tab in the navbar,
+            a list page, and the first post (a guide to working with Claude).
+            The blog existed to document the journey, which fed back into the
+            homepage narrative. Blog posts appear on the homepage. The homepage
+            links to the blog. It became a loop rather than a dead end.
+          </p>
+        </section>
+
+        {/* ── AI angle ── */}
+        <section id="ai-angle" className="mb-12">
+          <h2 className="text-2xl font-bold text-slate-900 mb-4">
+            How AI-assisted development shaped every iteration
+          </h2>
+          <p className="text-slate-700 leading-relaxed mb-4">
+            Every significant rewrite in this project used Claude as an AI
+            coding assistant. Not as a search engine replacement, and not as an
+            autocomplete — as a genuine engineering partner that could hold the
+            full codebase context and execute multi-step changes autonomously.
+          </p>
+          <p className="text-slate-700 leading-relaxed mb-4">
+            The v2 redesign was the most agentic workflow. I provided a plan
+            document, the existing code as context, and a clear output spec, and
+            let it run. The result was a PR with 400+ lines of new component
+            code — correct, consistent, and wired up properly to the rest of the
+            app. What it missed was brand judgment: the indigo choice was
+            technically fine and thematically wrong. That&apos;s a distinction
+            that requires taste, not knowledge.
+          </p>
+          <p className="text-slate-700 leading-relaxed mb-4">
+            The SEO and audit work showed a different pattern. A single
+            free-running session would have made too many decisions I hadn&apos;t
+            validated. Instead I used a plan-then-implement split across two
+            sessions. The first session produced a written audit with
+            prioritized recommendations. I reviewed it, struck out two
+            suggestions I disagreed with, and approved the rest. The second
+            session implemented exactly what was approved. This pattern — AI
+            proposes, human approves, AI executes — scaled better than
+            unconstrained agentic runs for complex infrastructure work.
+          </p>
+          <p className="text-slate-700 leading-relaxed mb-4">
+            The v3 pivot was the closest to genuine co-authorship. The idea
+            (journey-first homepage) came from me; Claude helped translate it
+            into a structural change: what to remove, what to add, how to
+            extract the blog data into a shared module, how to simplify the
+            navbar. The context window was large enough to hold the full
+            conversation and make it coherent across the session.
+          </p>
+
+          <Callout variant="insight" icon="💡" label="What I noticed">
+            The moments where AI-assisted development failed were consistently
+            about taste and brand identity — things that require accumulated
+            context about what this site is trying to say. The moments where it
+            succeeded were about execution: consistent implementation of an
+            agreed pattern across many files. Know which job you&apos;re hiring
+            it for.
+          </Callout>
+        </section>
+
+        {/* ── Takeaways ── */}
+        <section id="takeaways" className="mb-6">
+          <h2 className="text-2xl font-bold text-slate-900 mb-6">
+            Key takeaways
+          </h2>
+
+          <TakeawayCard number={1} title="Ship the card grid — then replace it">
+            <p>
+              The v1 card grid was the right first step even though it was the
+              wrong final product. It got the apps live and visible. Trying to
+              build a commercial-grade site before having apps to put in it
+              would have been premature. Ship something embarrassing first,
+              then earn the redesign.
+            </p>
+          </TakeawayCard>
+
+          <TakeawayCard number={2} title="Define the brand before the first agentic design session">
+            <p>
+              The indigo-to-cyan same-day pivot was avoidable. If I&apos;d had a
+              written brand reference — even a one-page doc with the color values
+              and the &quot;why&quot; behind them — I could have included it in
+              the context window from the start. The AI would have used cyan the
+              first time. After this, I wrote{" "}
+              <code className="bg-slate-100 px-1.5 py-0.5 rounded text-sm font-mono text-slate-800">
+                .claude/skills/brand/SKILL.md
+              </code>
+              .
+            </p>
+          </TakeawayCard>
+
+          <TakeawayCard number={3} title="A config object beats a structural edit every time">
+            <p>
+              The{" "}
+              <code className="bg-slate-100 px-1.5 py-0.5 rounded text-sm font-mono text-slate-800">
+                CHALLENGE
+              </code>{" "}
+              object on the homepage is a small thing that will save real time.
+              Anything that changes on a regular cadence should be isolated into
+              a config shape rather than buried in JSX. Months from now,
+              updating the progress bar will be a two-second edit.
+            </p>
+          </TakeawayCard>
+
+          <TakeawayCard number={4} title="Plan-then-implement beats unconstrained agentic runs for infrastructure">
+            <p>
+              For feature work and component builds, letting the AI run with a
+              clear spec works well. For SEO, security, or anything touching
+              shared infrastructure, produce a written plan first. Review it.
+              Then execute. The checkpoint is cheap; fixing a bad direction
+              mid-implementation is not.
+            </p>
+          </TakeawayCard>
+
+          <TakeawayCard number={5} title="The homepage should answer 'why come back?' not just 'what is this?'">
+            <p>
+              The v2 homepage answered &quot;what is this?&quot; clearly. The
+              v3 homepage answers &quot;why come back?&quot; — because more apps
+              are shipping, the blog is documenting how, and you can follow
+              along. A portfolio has no reason to return. A journey does. That
+              distinction is the whole game for a build-in-public site.
+            </p>
+          </TakeawayCard>
+        </section>
+
+        {/* ── Footer nav ── */}
+        <div className="border-t border-slate-100 pt-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <Link
+            href="/blog"
+            className="text-sm text-slate-500 hover:text-cyan-600 transition-colors"
+          >
+            &larr; Back to Blog
+          </Link>
+          <Link
+            href="/"
+            className="text-sm text-slate-500 hover:text-cyan-600 transition-colors"
+          >
+            See the apps &rarr;
+          </Link>
+        </div>
+      </div>
+    </main>
+  );
+}
