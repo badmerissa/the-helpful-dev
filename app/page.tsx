@@ -2,12 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import NewsletterForm from "./components/NewsletterForm";
 import JsonLd from "./components/JsonLd";
+import AppsCarousel from "./components/AppsCarousel";
 import { appsJsonLd } from "@/lib/app-data";
 import { posts } from "@/lib/blog-data";
 
 // Challenge config — update these each month
 const CHALLENGE = {
-  currentMonth: 3,
+  currentMonth: 4,
   totalMonths: 12,
   appsShipped: 4,
   year: 2026,
@@ -56,6 +57,16 @@ const apps = [
     href: "https://timeagotchi.thehelpfuldev.com/",
     month: 3,
     accentClass: "text-orange-600 bg-orange-50 border-orange-100",
+  },
+  {
+    icon: null,
+    name: "Loamy",
+    tagline: "Gardening",
+    description: "A gardening companion for tracking your plants, watering schedules, and hydroponics setups — all offline.",
+    href: null,
+    month: 4,
+    accentClass: "text-emerald-600 bg-emerald-50 border-emerald-100",
+    comingSoon: true,
   },
 ];
 
@@ -276,52 +287,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {apps.map((app) => (
-              <a
-                key={app.name}
-                href={app.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${app.name} (opens in new tab)`}
-                className="group bg-white border border-slate-200 rounded-2xl p-5 card-hover flex flex-col gap-3"
-              >
-                <div className="flex items-start justify-between">
-                  <div className={`inline-flex items-center px-2.5 py-0.5 rounded-full border text-xs font-medium ${app.accentClass}`}>
-                    {app.tagline}
-                  </div>
-                  <span className="text-xs text-slate-400 font-mono">M{app.month}</span>
-                </div>
-
-                <div className="flex items-center gap-3">
-                  {app.icon ? (
-                    <Image
-                      src={app.icon}
-                      alt=""
-                      width={36}
-                      height={36}
-                      className="object-contain rounded-lg"
-                    />
-                  ) : (
-                    <div className="w-9 h-9 rounded-lg bg-slate-100 flex items-center justify-center text-slate-400 text-lg">
-                      🤖
-                    </div>
-                  )}
-                  <h3 className="font-semibold text-slate-900 group-hover:text-cyan-700 transition-colors leading-tight">
-                    {app.name}
-                  </h3>
-                </div>
-
-                <p className="text-sm text-slate-500 leading-relaxed flex-1">
-                  {app.description}
-                </p>
-
-                <span className="text-xs font-semibold text-cyan-600 group-hover:text-cyan-700 transition-colors">
-                  Open app →
-                </span>
-              </a>
-            ))}
-          </div>
+          <AppsCarousel apps={apps} />
         </div>
       </section>
 
