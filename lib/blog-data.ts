@@ -9,6 +9,16 @@ export interface BlogPost {
 
 export const posts: BlogPost[] = [
   {
+    slug: "building-potty-panda",
+    title:
+      "Vibe Coding Potty Panda: The App That Worked Perfectly Until I Left the Sandbox",
+    description:
+      "I built a complete potty training tracker with Gemini in one sitting. The preview looked flawless. Then I tried to ship it.",
+    date: "2026-04-06",
+    readTime: "10 min read",
+    tags: ["App Development", "AI Development", "Debugging"],
+  },
+  {
     slug: "building-the-helpful-dev",
     title: "The App Idea Closet Cleanout: How I Finally Shipped — and Built a Brand I'm Proud Of",
     description:
