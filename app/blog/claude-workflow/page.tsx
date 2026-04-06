@@ -223,7 +223,7 @@ export default function ClaudeWorkflowPost() {
           </h3>
           <ol className="space-y-2 pl-5 list-decimal">
             {[
-              ["#why", "Why most people use AI wrong"],
+              ["#why", "How this workflow came together"],
               ["#big-picture", "The workflow at a glance"],
               ["#phase1", "Phase 1 — Plan: Lay the foundations"],
               ["#phase2", "Phase 2 — Build & Verify: One phase at a time"],
@@ -247,18 +247,20 @@ export default function ClaudeWorkflowPost() {
           id="why"
           className="text-2xl font-bold text-slate-900 mt-12 mb-4 pt-2"
         >
-          Why most people use AI wrong
+          How this workflow came together
         </h2>
 
         <p className="text-slate-600 leading-relaxed mb-4">
-          Most people open Claude, type something like{" "}
-          <em>&ldquo;build me a user authentication system,&rdquo;</em> and then
-          spend the next two hours arguing with it about what they actually
-          meant. Sound familiar?
+          I built the first version of The Helpful Dev the way most people start with AI — describe
+          what you want, accept what comes back, iterate fast. It worked well enough to ship.
+          Then I tried the same approach on bigger work: a full site rebrand, a complete
+          architectural overhaul, an SEO audit across every page. The output was inconsistent,
+          the colour choices weren&apos;t mine, and I ended up with two commits fixing the same
+          brand colour on the same day.
         </p>
 
         <p className="text-slate-600 leading-relaxed mb-4">
-          The problem isn&apos;t Claude — it&apos;s the absence of structure. An AI
+          The problem wasn&apos;t Claude — it was the absence of structure. An AI
           assistant is like a brilliant contractor who can build anything you
           describe. Give them a vague napkin sketch and they&apos;ll build you
           something. Give them a proper set of architectural drawings, a spec,
@@ -450,6 +452,52 @@ export default function ClaudeWorkflowPost() {
           over-refining. Let&apos;s walk through each step.
         </p>
 
+        {/* ── Real-world examples ── */}
+        <h2 className="text-2xl font-bold text-slate-900 mt-12 mb-4 pt-2">
+          This workflow in practice
+        </h2>
+
+        <p className="text-slate-600 leading-relaxed mb-4">
+          I developed this by doing it wrong first, then working out what would have prevented
+          each mistake. These are the three places it&apos;s made the biggest difference on this site.
+        </p>
+
+        <div className="space-y-4 mb-8">
+          <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6">
+            <div className="text-xs text-slate-400 uppercase tracking-wider mb-2">The Helpful Dev rebrand — March 2026</div>
+            <p className="text-sm text-slate-700 leading-relaxed">
+              Full site architectural overhaul: new component library, design system, AppSpotlight
+              sections, real SEO structure. I gave Claude the full codebase plus a written spec and
+              let it run as an autonomous agent. The output was clean and correctly wired. What it
+              couldn&apos;t do was make brand judgements — because I hadn&apos;t given it the brand as context.
+              It chose indigo as the primary colour. Technically reasonable. Not mine.
+              The result: two &ldquo;indigo to cyan&rdquo; commits on the same day, which is how{" "}
+              <code className="font-mono text-xs bg-slate-200 px-1 py-0.5 rounded">.claude/skills/brand/SKILL.md</code> got
+              created. Step 1.5 now exists partly because of that afternoon.
+            </p>
+          </div>
+
+          <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6">
+            <div className="text-xs text-slate-400 uppercase tracking-wider mb-2">SEO overhaul across all app pages</div>
+            <p className="text-sm text-slate-700 leading-relaxed">
+              I used the plan-then-implement pattern from Step 1.6 for this: a separate session to
+              produce a written plan, a human review pass where I struck out two suggestions I
+              disagreed with, then a separate session to execute only what was approved. Neither of
+              the bad ideas touched the codebase. The checkpoint cost ten minutes and protected me from
+              implementing the wrong direction across a dozen files.
+            </p>
+          </div>
+
+          <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6">
+            <div className="text-xs text-slate-400 uppercase tracking-wider mb-2">Loamy — coming May 2026</div>
+            <p className="text-sm text-slate-700 leading-relaxed">
+              The first app I&apos;ll build entirely with this workflow from day one — requirements
+              interview, architecture doc, implementation plan, all of it — rather than retrofitting
+              it onto vibe-coded work. There&apos;ll be a full post on how it goes.
+            </p>
+          </div>
+        </div>
+
         {/* ═══ PHASE 1 ═══ */}
         <PhaseStrip
           phase="1"
@@ -619,6 +667,14 @@ Keep CLAUDE.md lean. A bloated config file gets ignored.
             can paste a section into a new Claude session as clean context any
             time.
           </Callout>
+          <Callout variant="warn" icon="⚠️" label="The brand Skill lesson">
+            After the indigo incident on The Helpful Dev rebrand, I created{" "}
+            <code className="font-mono text-xs">.claude/skills/brand/SKILL.md</code> — a one-page
+            document covering brand colours, typography, voice, and per-app accent colours. It goes
+            into every design session as upfront context. The model has used the right colours on
+            the first attempt ever since. If your project has a visual identity, it belongs in a
+            Skill before the first design session starts — not as a correction after the fact.
+          </Callout>
         </StepSection>
 
         <ResetBanner>
@@ -663,6 +719,13 @@ Generate a phased implementation plan that:
             becomes extra testing surface, which becomes delays. Every addition
             should require a conscious decision to update the requirements doc
             first.
+          </Callout>
+          <Callout variant="insight" icon="💡" label="The SEO overhaul — plan-then-implement in action">
+            When I ran the SEO overhaul across The Helpful Dev&apos;s app pages, I used exactly this
+            pattern. Phase 1 produced a written plan. I reviewed it before anything was executed
+            and struck out two suggestions I actively disagreed with — both of which Claude had
+            framed as obvious improvements. Neither touched the codebase. The review checkpoint cost
+            ten minutes; catching a bad implementation across a dozen files would have cost hours.
           </Callout>
         </StepSection>
 
@@ -1010,12 +1073,12 @@ For each test, include a brief comment explaining what scenario it covers and wh
         {/* Post footer */}
         <div className="mt-14 pt-8 border-t border-slate-100 text-center text-sm text-slate-400">
           <p>
-            Found this useful? Share it with your team — the workflow works best
-            when everyone on a project follows it consistently.
-          </p>
-          <p className="mt-2">
             Built with Claude, several context resets, and exactly two rounds of
             critique.
+          </p>
+          <p className="mt-2">
+            The first app built with this workflow end-to-end — Loamy — ships in May. There&apos;ll be
+            a full post on how the workflow holds up when used from day one rather than retrofitted.
           </p>
           <div className="mt-6">
             <Link
