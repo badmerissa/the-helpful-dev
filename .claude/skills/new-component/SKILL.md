@@ -169,4 +169,4 @@ If the component is used in many places, document it in `CLAUDE.md` under "Compo
 | `any` type for event handlers | Use `React.ChangeEvent<HTMLInputElement>` etc. |
 | Skipping the unit test | Write the test — CI will catch you if you don't |
 | Using `font-black` or very thin weights | Off-brand; stick to `font-semibold` or `font-bold` max |
-| Adding dark mode styles | The site is intentionally light-only |
+| Adding dark mode styles without using CSS variables | Always use the dark-mode CSS variables defined in globals.css, never hardcode dark hex values |

@@ -319,7 +319,7 @@ Already in `.gradient-cta`. The key is the `::before` pseudo-element adding a ra
 
 ## Do Not
 
-- Do not add dark mode — the site is intentionally light-only
+- Dark mode is supported via `prefers-color-scheme: dark` using CSS variables. The dark palette is astigmatism-friendly (off-black, not pure black). Do not change the dark palette without designer sign-off.
 - Do not add new fonts
 - Do not use `unsafe-inline` in CSP (see CLAUDE.md Security section)
 - Do not use red except for error/destructive states

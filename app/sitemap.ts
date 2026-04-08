@@ -39,6 +39,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.3,
     },
     {
+      url: "https://thehelpfuldev.com/apps",
+      lastModified: new Date("2026-04-07"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: "https://thehelpfuldev.com/blog",
       lastModified: new Date("2026-03-30"),
       changeFrequency: "weekly",

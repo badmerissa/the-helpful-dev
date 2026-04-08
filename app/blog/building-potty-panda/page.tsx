@@ -145,14 +145,14 @@ function TakeawayCard({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden mb-4">
-      <div className="bg-slate-50 border-b border-slate-200 px-6 py-4 flex items-center gap-4">
+    <div className="border rounded-2xl overflow-hidden mb-4" style={{ background: "var(--bg-base)", borderColor: "var(--border-color)" }}>
+      <div className="border-b px-6 py-4 flex items-center gap-4" style={{ background: "var(--bg-surface)", borderColor: "var(--border-color)" }}>
         <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-cyan-100 text-cyan-700 text-sm font-bold shrink-0">
           {number}
         </span>
-        <h3 className="text-base font-semibold text-slate-900">{title}</h3>
+        <h3 className="text-base font-semibold" style={{ color: "var(--text-primary)" }}>{title}</h3>
       </div>
-      <div className="px-6 py-5 text-slate-600 text-sm leading-relaxed [&>p]:mb-3 [&>p:last-child]:mb-0">
+      <div className="px-6 py-5 text-sm leading-relaxed [&>p]:mb-3 [&>p:last-child]:mb-0" style={{ color: "var(--text-secondary)" }}>
         {children}
       </div>
     </div>
@@ -163,13 +163,13 @@ function TakeawayCard({
 
 export default function BuildingPottyPandaPage() {
   return (
-    <main className="min-h-screen bg-white text-slate-900">
+    <main className="min-h-screen" style={{ background: "var(--bg-base)", color: "var(--text-primary)" }}>
       <JsonLd data={articleJsonLd} />
 
       {/* ── Hero ── */}
-      <section className="border-b border-slate-100 bg-white">
+      <section className="border-b" style={{ borderColor: "var(--border-color)", background: "var(--bg-base)" }}>
         <div className="max-w-3xl mx-auto px-6 py-14 lg:py-20">
-          <div className="flex items-center gap-3 mb-6 text-sm text-slate-400">
+          <div className="flex items-center gap-3 mb-6 text-sm" style={{ color: "var(--text-muted)" }}>
             <Link href="/" className="hover:text-cyan-600 transition-colors">
               The Helpful Dev
             </Link>
@@ -188,20 +188,20 @@ export default function BuildingPottyPandaPage() {
             </span>
           </div>
 
-          <h1 className="text-3xl lg:text-5xl font-bold tracking-tight text-slate-900 leading-tight mb-5">
+          <h1 className="text-3xl lg:text-5xl font-bold tracking-tight leading-tight mb-5" style={{ color: "var(--text-primary)" }}>
             Vibe Coding{" "}
             <span className="gradient-text">Potty Panda</span>: The App That
             Worked Perfectly Until I Left the Sandbox
           </h1>
 
-          <p className="text-lg text-slate-500 leading-relaxed mb-6 max-w-2xl">
+          <p className="text-lg leading-relaxed mb-6 max-w-2xl" style={{ color: "var(--text-secondary)" }}>
             I built a complete potty training tracker with Gemini in one sitting.
             The preview looked flawless — multiple profiles, clipboard export,
             timestamped logs. Then I tried to deploy it, and learned exactly how
             much a browser-based AI preview hides from you.
           </p>
 
-          <div className="flex flex-wrap items-center gap-4 text-sm text-slate-400">
+          <div className="flex flex-wrap items-center gap-4 text-sm" style={{ color: "var(--text-muted)" }}>
             <span>April 6, 2026</span>
             <span>·</span>
             <span>10 min read</span>
@@ -215,8 +215,8 @@ export default function BuildingPottyPandaPage() {
       <div className="max-w-3xl mx-auto px-6 pb-20">
 
         {/* Table of Contents */}
-        <nav className="bg-slate-50 border border-slate-200 rounded-2xl px-7 py-6 my-10">
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-4">
+        <nav className="border rounded-2xl px-7 py-6 my-10" style={{ background: "var(--bg-surface)", borderColor: "var(--border-color)" }}>
+          <h3 className="text-xs font-semibold uppercase tracking-wider mb-4" style={{ color: "var(--text-muted)" }}>
             In this post
           </h3>
           <ol className="space-y-2 pl-5 list-decimal">
@@ -232,7 +232,8 @@ export default function BuildingPottyPandaPage() {
               <li key={href}>
                 <a
                   href={href}
-                  className="text-sm text-slate-700 hover:text-cyan-600 transition-colors"
+                  className="text-sm hover:text-cyan-600 transition-colors"
+                  style={{ color: "var(--text-primary)" }}
                 >
                   {label}
                 </a>
@@ -243,10 +244,10 @@ export default function BuildingPottyPandaPage() {
 
         {/* ── Context ── */}
         <section id="context" className="mb-12">
-          <h2 className="text-2xl font-bold text-slate-900 mb-4">
+          <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--text-primary)" }}>
             What Potty Panda is
           </h2>
-          <p className="text-slate-700 leading-relaxed mb-4">
+          <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
             Potty Panda is a potty training tracker — a free, privacy-first web
             app for parents and childcare workers managing toddler toilet training.
             You log incidents (pee, poop, success, miss), add notes, switch
@@ -258,7 +259,7 @@ export default function BuildingPottyPandaPage() {
             </code>
             , entirely in your browser.
           </p>
-          <p className="text-slate-700 leading-relaxed">
+          <p className="leading-relaxed" style={{ color: "var(--text-secondary)" }}>
             This was the very first app I built for The Helpful Dev — before the
             brand existed, before I had a design system, before I&apos;d learned
             the difference between vibe coding and agentic engineering. I built it
@@ -270,10 +271,10 @@ export default function BuildingPottyPandaPage() {
 
         {/* ── Vibe session ── */}
         <section id="vibe-session" className="mb-12">
-          <h2 className="text-2xl font-bold text-slate-900 mb-4">
+          <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--text-primary)" }}>
             One sitting, one file, one very good preview
           </h2>
-          <p className="text-slate-700 leading-relaxed mb-4">
+          <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
             By this point I&apos;d been actively studying prompt engineering —
             reading docs, testing patterns, learning what actually changes model
             output. I didn&apos;t open Gemini and wing it. I wrote a structured
@@ -319,7 +320,7 @@ The App: "Potty Panda" — a potty training tracker.
 - Color theme: white, soft blues, oranges`}
           </CodeBlock>
 
-          <p className="text-slate-700 leading-relaxed mb-4">
+          <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
             That level of specificity matters. The role framing, the explicit
             CDN injection requirement, the constraint to a single file —
             these weren&apos;t random choices. They came from learning what
@@ -331,7 +332,7 @@ The App: "Potty Panda" — a potty training tracker.
             — a single file, self-contained, with Tailwind injected via CDN
             script exactly as specified, rendering instantly in the Canvas preview.
           </p>
-          <p className="text-slate-700 leading-relaxed mb-4">
+          <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
             The Canvas preview looked great. It was interactive. I could tap the
             buttons, see state update, watch the log fill in. I iterated through
             five or six rounds of changes without once leaving the browser tab.
@@ -371,7 +372,7 @@ export default function PottyPanda() {
 }`}
           </CodeBlock>
 
-          <p className="text-slate-700 leading-relaxed">
+          <p className="leading-relaxed" style={{ color: "var(--text-secondary)" }}>
             Clean, readable, exactly what I asked for. The CDN Tailwind script
             meant it rendered perfectly in Gemini&apos;s preview environment.
             That detail would matter later.
@@ -380,10 +381,10 @@ export default function PottyPanda() {
 
         {/* ── UX decisions ── */}
         <section id="ux-decisions" className="mb-12">
-          <h2 className="text-2xl font-bold text-slate-900 mb-4">
+          <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--text-primary)" }}>
             The UX decisions: designing for exhausted parents
           </h2>
-          <p className="text-slate-700 leading-relaxed mb-4">
+          <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
             The first version had some friction points that I caught quickly by
             just using it. Gemini&apos;s initial output had a big red
             &ldquo;Accident&rdquo; button — high contrast, alarming. For a tired
@@ -391,7 +392,7 @@ export default function PottyPanda() {
             wrong. I asked Gemini to change it to &ldquo;Potty Missed&rdquo; and
             replace the red with slate grey. It did, immediately.
           </p>
-          <p className="text-slate-700 leading-relaxed mb-4">
+          <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
             The initial design also had a &ldquo;Dry Streak&rdquo; counter — a
             number showing how many consecutive successes the child had achieved.
             It sounds encouraging. In practice it means there&apos;s a visible
@@ -410,7 +411,7 @@ export default function PottyPanda() {
             rather than planning.
           </Callout>
 
-          <p className="text-slate-700 leading-relaxed mb-4">
+          <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
             Later rounds added child profiles (for nursery teachers managing
             multiple kids), a notes field per log entry, and a clipboard export
             that formatted the day&apos;s activity into a readable text summary.
@@ -418,7 +419,7 @@ export default function PottyPanda() {
             not just parents at home, but childcare workers who needed to hand
             off a log at the end of a session.
           </p>
-          <p className="text-slate-700 leading-relaxed">
+          <p className="leading-relaxed" style={{ color: "var(--text-secondary)" }}>
             By the end of the session I had a genuinely useful app. The Canvas
             preview was smooth. The data model was solid. Profiles worked, logs
             were timestamped, export copied to clipboard with a toast
@@ -428,14 +429,14 @@ export default function PottyPanda() {
 
         {/* ── The deployment cliff ── */}
         <section id="the-cliff" className="mb-12">
-          <h2 className="text-2xl font-bold text-slate-900 mb-4">
+          <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--text-primary)" }}>
             The deployment cliff
           </h2>
-          <p className="text-slate-700 leading-relaxed mb-4">
+          <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
             I left Gemini&apos;s Canvas. I opened a terminal. Things immediately
             stopped working.
           </p>
-          <p className="text-slate-700 leading-relaxed mb-4">
+          <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
             The plan was straightforward: scaffold a Vite project, drop in the
             component, wire up Tailwind, push to GitHub, deploy to Vercel. In
             practice, nothing went cleanly. Tailwind wasn&apos;t configured the
@@ -444,7 +445,7 @@ export default function PottyPanda() {
             required knowing something the model had no way to tell me — because
             it had no visibility into my local environment.
           </p>
-          <p className="text-slate-700 leading-relaxed mb-4">
+          <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
             This is the bit the Canvas preview hid completely. Inside Gemini,
             Tailwind was injected via CDN script — no config, no build step, just
             instant rendering. The moment I took the same code local, I was
@@ -462,7 +463,7 @@ export default function PottyPanda() {
             a mismatch between two environments that were never compared.
           </Callout>
 
-          <p className="text-slate-700 leading-relaxed">
+          <p className="leading-relaxed" style={{ color: "var(--text-secondary)" }}>
             Once I worked through the setup issues and got to Vercel, the app was
             live. I clicked through it and everything looked right — until I tried
             to delete a profile.
@@ -471,17 +472,17 @@ export default function PottyPanda() {
 
         {/* ── The silent delete bug ── */}
         <section id="bugs" className="mb-12">
-          <h2 className="text-2xl font-bold text-slate-900 mb-4">
+          <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--text-primary)" }}>
             The silent delete bug
           </h2>
-          <p className="text-slate-700 leading-relaxed mb-4">
+          <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
             The delete buttons did nothing. Not an error, not a flash — just
             nothing. I clicked &ldquo;Delete Profile.&rdquo; Nothing. I clicked
             &ldquo;Clear History.&rdquo; Nothing. The buttons were wired up. The
             state logic was correct. But something upstream of the actual deletion
             was silently failing.
           </p>
-          <p className="text-slate-700 leading-relaxed mb-4">
+          <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
             The culprit was{" "}
             <code className="bg-slate-100 px-1.5 py-0.5 rounded text-sm font-mono text-slate-800">
               window.confirm()
@@ -538,7 +539,7 @@ function ConfirmationModal({
 }`}
           />
 
-          <p className="text-slate-700 leading-relaxed mb-4">
+          <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
             The fix was to build a custom{" "}
             <code className="bg-slate-100 px-1.5 py-0.5 rounded text-sm font-mono text-slate-800">
               ConfirmationModal
@@ -564,10 +565,10 @@ function ConfirmationModal({
 
         {/* ── AI angle ── */}
         <section id="ai-angle" className="mb-12">
-          <h2 className="text-2xl font-bold text-slate-900 mb-4">
+          <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--text-primary)" }}>
             What Gemini got right — and what it couldn&apos;t see
           </h2>
-          <p className="text-slate-700 leading-relaxed mb-4">
+          <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
             The app itself was genuinely good — and I think the structured
             prompt engineering was a big part of why. Specifying the role, the
             tech stack constraints, and the design philosophy upfront meant
@@ -577,7 +578,7 @@ function ConfirmationModal({
             to plain-language descriptions too. As an AI pair programming
             session for getting an idea into working form fast, it delivered.
           </p>
-          <p className="text-slate-700 leading-relaxed mb-4">
+          <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
             What the LLM couldn&apos;t see was my environment. And this is the
             gap prompt engineering doesn&apos;t fully close — I&apos;d specified
             exactly how the Tailwind CDN injection should work inside Canvas,
@@ -588,7 +589,7 @@ function ConfirmationModal({
             data used. My prompt was thorough about the app; it was silent about
             the deployment environment.
           </p>
-          <p className="text-slate-700 leading-relaxed mb-4">
+          <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
             The{" "}
             <code className="bg-slate-100 px-1.5 py-0.5 rounded text-sm font-mono text-slate-800">
               window.confirm
@@ -598,7 +599,7 @@ function ConfirmationModal({
             work. The model generated code that worked in its context and had no
             signal that it would behave differently at deploy time.
           </p>
-          <p className="text-slate-700 leading-relaxed mb-4">
+          <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
             Both problems have the same root cause: I treated the Gemini preview
             as representative of the production environment. It isn&apos;t. The
             preview is a sandbox with different constraints, a different runtime,
@@ -617,7 +618,7 @@ function ConfirmationModal({
             to Vercel&rdquo; — would have prevented both issues.
           </Callout>
 
-          <p className="text-slate-700 leading-relaxed">
+          <p className="leading-relaxed" style={{ color: "var(--text-secondary)" }}>
             This was the lesson that pushed me toward the more structured approach
             I use now. The app is the easy part — the LLM handles it well.
             Environment, version constraints, and deployment context need to come
@@ -627,7 +628,7 @@ function ConfirmationModal({
 
         {/* ── Takeaways ── */}
         <section id="takeaways" className="mb-6">
-          <h2 className="text-2xl font-bold text-slate-900 mb-6">
+          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text-primary)" }}>
             Key takeaways
           </h2>
 
@@ -690,10 +691,10 @@ function ConfirmationModal({
           </TakeawayCard>
 
           <div className="bg-amber-50 border border-amber-200 rounded-2xl px-7 py-6 mt-8">
-            <h3 className="text-base font-semibold text-slate-900 mb-2">
+            <h3 className="text-base font-semibold mb-2" style={{ color: "var(--text-primary)" }}>
               Try Potty Panda
             </h3>
-            <p className="text-sm text-slate-600 leading-relaxed">
+            <p className="text-sm leading-relaxed" style={{ color: "var(--text-secondary)" }}>
               The app is live at{" "}
               <Link
                 href="/app/potty-panda"
@@ -707,16 +708,18 @@ function ConfirmationModal({
         </section>
 
         {/* ── Footer nav ── */}
-        <div className="border-t border-slate-100 pt-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div className="border-t pt-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4" style={{ borderColor: "var(--border-color)" }}>
           <Link
             href="/blog"
-            className="text-sm text-slate-500 hover:text-cyan-600 transition-colors"
+            className="text-sm hover:text-cyan-600 transition-colors"
+            style={{ color: "var(--text-secondary)" }}
           >
             &larr; Back to Blog
           </Link>
           <Link
             href="/"
-            className="text-sm text-slate-500 hover:text-cyan-600 transition-colors"
+            className="text-sm hover:text-cyan-600 transition-colors"
+            style={{ color: "var(--text-secondary)" }}
           >
             See the apps &rarr;
           </Link>

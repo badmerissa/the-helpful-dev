@@ -36,13 +36,13 @@ export default function Navbar() {
   return (
     <nav
       ref={navRef}
-      className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200"
+      className="sticky top-0 z-50 bg-white/80 dark:bg-[#0d1117]/80 backdrop-blur-md border-b border-slate-200 dark:border-[#30363d]"
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between gap-8">
 
         <Link href="/" className="flex items-center gap-2.5 shrink-0">
           <Image src="/logo.svg" alt="The Helpful Dev" width={32} height={32} />
-          <span className="font-bold text-slate-900 text-lg tracking-tight">
+          <span className="font-bold text-slate-900 dark:text-[#e6edf3] text-lg tracking-tight">
             The Helpful Dev
           </span>
         </Link>
@@ -52,7 +52,7 @@ export default function Navbar() {
             <li key={cat.href}>
               <Link
                 href={cat.href}
-                className="text-sm font-medium text-slate-600 hover:text-cyan-600 transition-colors"
+                className="text-sm font-medium text-slate-600 dark:text-[#8b949e] hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors nav-link-slide"
               >
                 {cat.label}
               </Link>
@@ -68,7 +68,7 @@ export default function Navbar() {
             Follow the journey
           </Link>
           <button
-            className="md:hidden p-2 rounded-md text-slate-600 hover:bg-slate-100"
+            className="md:hidden p-2 rounded-md text-slate-600 dark:text-[#8b949e] hover:bg-slate-100 dark:hover:bg-[#1c2128]"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
@@ -89,13 +89,13 @@ export default function Navbar() {
       {menuOpen && (
         <div
           id="mobile-menu"
-          className="md:hidden border-t border-slate-200 bg-white px-6 py-4 flex flex-col gap-3"
+          className="md:hidden border-t border-slate-200 dark:border-[#30363d] bg-white dark:bg-[#0d1117] px-6 py-4 flex flex-col gap-3"
         >
           {categories.map((cat) => (
             <Link
               key={cat.href}
               href={cat.href}
-              className="text-sm font-medium text-slate-700 hover:text-cyan-600"
+              className="text-sm font-medium text-slate-700 dark:text-[#8b949e] hover:text-cyan-600 dark:hover:text-cyan-400"
               onClick={() => setMenuOpen(false)}
             >
               {cat.label}
