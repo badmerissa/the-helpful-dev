@@ -124,6 +124,8 @@ This project uses **Tailwind CSS v4** (not v3). All customisation is in `app/glo
 
 The `.gradient-text` utility applies the brand gradient to text — use it for hero headings and emphasis.
 
+Dark mode is supported via `prefers-color-scheme: dark`. All dark-mode colour overrides live in the `@media (prefers-color-scheme: dark)` block in `app/globals.css`. Use CSS variables — never hardcode dark colours in components.
+
 **Per-app accent colours** (use on the respective app's page and spotlight section):
 
 | App | CSS variable | Tailwind approx | Notes |

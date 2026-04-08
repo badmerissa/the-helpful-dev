@@ -4,8 +4,8 @@ import sitemap from "../app/sitemap";
 describe("sitemap", () => {
   const entries = sitemap();
 
-  it("contains 10 routes", () => {
-    expect(entries).toHaveLength(10);
+  it("contains 11 routes", () => {
+    expect(entries).toHaveLength(11);
   });
 
   it("includes the homepage at priority 1.0", () => {

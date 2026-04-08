@@ -173,13 +173,13 @@ function ResetBanner({ children }: { children: React.ReactNode }) {
 
 export default function ClaudeWorkflowPost() {
   return (
-    <main className="min-h-screen bg-white text-slate-900">
+    <main className="min-h-screen" style={{ background: "var(--bg-base)", color: "var(--text-primary)" }}>
       <JsonLd data={articleJsonLd} />
 
       {/* ── Hero ── */}
-      <section className="border-b border-slate-100 bg-white">
+      <section className="border-b" style={{ borderColor: "var(--border-color)", background: "var(--bg-base)" }}>
         <div className="max-w-3xl mx-auto px-6 py-14 lg:py-20">
-          <div className="flex items-center gap-3 mb-6 text-sm text-slate-400">
+          <div className="flex items-center gap-3 mb-6 text-sm" style={{ color: "var(--text-muted)" }}>
             <Link href="/" className="hover:text-cyan-600 transition-colors">
               The Helpful Dev
             </Link>
@@ -193,17 +193,17 @@ export default function ClaudeWorkflowPost() {
               Workflow Guide · AI Development
             </span>
           </div>
-          <h1 className="text-3xl lg:text-5xl font-bold tracking-tight text-slate-900 leading-tight mb-5">
+          <h1 className="text-3xl lg:text-5xl font-bold tracking-tight leading-tight mb-5" style={{ color: "var(--text-primary)" }}>
             Think Before You Build: A{" "}
             <span className="gradient-text">Visual Guide</span> to Working
             Smarter with Claude
           </h1>
-          <p className="text-lg text-slate-500 leading-relaxed mb-6 max-w-2xl">
+          <p className="text-lg leading-relaxed mb-6 max-w-2xl" style={{ color: "var(--text-secondary)" }}>
             Stop fighting your AI assistant. Here&apos;s a battle-tested workflow
             that turns Claude from a clever autocomplete into a true engineering
             partner — from the first idea to production-ready, tested code.
           </p>
-          <div className="flex flex-wrap items-center gap-4 text-sm text-slate-400">
+          <div className="flex flex-wrap items-center gap-4 text-sm" style={{ color: "var(--text-muted)" }}>
             <span>March 30, 2026</span>
             <span>·</span>
             <span>14 min read</span>
@@ -217,8 +217,8 @@ export default function ClaudeWorkflowPost() {
       <div className="max-w-3xl mx-auto px-6 pb-20">
 
         {/* TOC */}
-        <nav className="bg-slate-50 border border-slate-200 rounded-2xl px-7 py-6 my-10">
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-4">
+        <nav className="border rounded-2xl px-7 py-6 my-10" style={{ background: "var(--bg-surface)", borderColor: "var(--border-color)" }}>
+          <h3 className="text-xs font-semibold uppercase tracking-wider mb-4" style={{ color: "var(--text-muted)" }}>
             In this post
           </h3>
           <ol className="space-y-2 pl-5 list-decimal">
@@ -233,7 +233,8 @@ export default function ClaudeWorkflowPost() {
               <li key={href}>
                 <a
                   href={href}
-                  className="text-sm text-slate-700 hover:text-cyan-600 transition-colors"
+                  className="text-sm hover:text-cyan-600 transition-colors"
+                  style={{ color: "var(--text-primary)" }}
                 >
                   {label}
                 </a>
@@ -245,12 +246,13 @@ export default function ClaudeWorkflowPost() {
         {/* ── WHY ── */}
         <h2
           id="why"
-          className="text-2xl font-bold text-slate-900 mt-12 mb-4 pt-2"
+          className="text-2xl font-bold mt-12 mb-4 pt-2"
+          style={{ color: "var(--text-primary)" }}
         >
           How this workflow came together
         </h2>
 
-        <p className="text-slate-600 leading-relaxed mb-4">
+        <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
           I built the first version of The Helpful Dev the way most people start with AI — describe
           what you want, accept what comes back, iterate fast. It worked well enough to ship.
           Then I tried the same approach on bigger work: a full site rebrand, a complete
@@ -259,7 +261,7 @@ export default function ClaudeWorkflowPost() {
           brand colour on the same day.
         </p>
 
-        <p className="text-slate-600 leading-relaxed mb-4">
+        <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
           The problem wasn&apos;t Claude — it was the absence of structure. An AI
           assistant is like a brilliant contractor who can build anything you
           describe. Give them a vague napkin sketch and they&apos;ll build you
@@ -274,7 +276,7 @@ export default function ClaudeWorkflowPost() {
           Follow it and you&apos;ll consistently produce better results in less time.
         </Callout>
 
-        <p className="text-slate-600 leading-relaxed mb-4">
+        <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
           This workflow is built on patterns from Anthropic&apos;s own
           documentation, the Spec-to-Code methodology, and the Writer/Reviewer
           pattern for unbiased review. Every practice here exists for a concrete
@@ -284,12 +286,13 @@ export default function ClaudeWorkflowPost() {
         {/* ── BIG PICTURE ── */}
         <h2
           id="big-picture"
-          className="text-2xl font-bold text-slate-900 mt-12 mb-4 pt-2"
+          className="text-2xl font-bold mt-12 mb-4 pt-2"
+          style={{ color: "var(--text-primary)" }}
         >
           The workflow at a glance
         </h2>
 
-        <p className="text-slate-600 leading-relaxed mb-6">
+        <p className="leading-relaxed mb-6" style={{ color: "var(--text-secondary)" }}>
           Two distinct phases. One rule that runs through all of it:{" "}
           <strong className="text-slate-800">
             iterate exactly twice, then stop.
@@ -445,7 +448,7 @@ export default function ClaudeWorkflowPost() {
           </svg>
         </div>
 
-        <p className="text-slate-600 leading-relaxed mb-4">
+        <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
           Two zones. Eight steps. Everything flows downward. The dashed amber
           boxes are deliberate context resets — you close the chat and start
           fresh. The &ldquo;×2 stop&rdquo; loops are the discipline that keeps you from
@@ -453,11 +456,11 @@ export default function ClaudeWorkflowPost() {
         </p>
 
         {/* ── Real-world examples ── */}
-        <h2 className="text-2xl font-bold text-slate-900 mt-12 mb-4 pt-2">
+        <h2 className="text-2xl font-bold mt-12 mb-4 pt-2" style={{ color: "var(--text-primary)" }}>
           This workflow in practice
         </h2>
 
-        <p className="text-slate-600 leading-relaxed mb-4">
+        <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
           I developed this by doing it wrong first, then working out what would have prevented
           each mistake. These are the three places it&apos;s made the biggest difference on this site.
         </p>
@@ -958,7 +961,7 @@ For each test, include a brief comment explaining what scenario it covers and wh
 
         {/* ── Quick Reference ── */}
         <hr className="border-slate-100 my-10" />
-        <h2 id="reference" className="text-2xl font-bold text-slate-900 mb-2 pt-2">
+        <h2 id="reference" className="text-2xl font-bold mb-2 pt-2" style={{ color: "var(--text-primary)" }}>
           Quick reference
         </h2>
         <p className="text-slate-500 mb-6 text-sm">The complete workflow on one screen.</p>
@@ -995,7 +998,7 @@ For each test, include a brief comment explaining what scenario it covers and wh
         </div>
 
         {/* ── Resources ── */}
-        <h2 id="resources" className="text-2xl font-bold text-slate-900 mb-2 pt-2">
+        <h2 id="resources" className="text-2xl font-bold mb-2 pt-2" style={{ color: "var(--text-primary)" }}>
           Further reading
         </h2>
         <p className="text-slate-500 mb-6 text-sm">

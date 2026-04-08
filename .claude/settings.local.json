@@ -5,7 +5,20 @@
       "Bash(find /c/Users/User/the-helpful-dev -type f -name *blog* -o -name *post* -o -name *article*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(npx vitest:*)",
+      "Bash(git -C C:/Users/User/the-helpful-dev status)",
+      "Bash(git -C C:/Users/User/the-helpful-dev diff)",
+      "Bash(git -C C:/Users/User/the-helpful-dev log --oneline -5)",
+      "Bash(find . -type f -name *.ts -o -name *.tsx -o -name *.json -o -name *.js -o -name .env*)",
+      "Bash(grep -v \"^d.*\\\\.$\")",
+      "Bash(grep -r \"NEXT_PUBLIC\\\\|process.env\" /c/Users/User/the-helpful-dev/app /c/Users/User/the-helpful-dev/lib --include=*.ts --include=*.tsx)",
+      "Bash(npm run:*)",
+      "Bash(cmd /c \"dir /a /s /b C:\\\\Users\\\\User\\\\the-helpful-dev | findstr turbopack 2>&1 | head -20\")",
+      "Bash(curl -s \"http://localhost:3000/\")",
+      "Bash(ls C:/Users/User/the-helpful-dev/middleware*)",
+      "Bash(ls C:/Users/User/the-helpful-dev/src/middleware*)"
     ]
   }
 }

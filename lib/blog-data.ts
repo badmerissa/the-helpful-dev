@@ -7,6 +7,27 @@ export interface BlogPost {
   tags: string[];
 }
 
+/** Tailwind classes for each tag — inactive (pill) state */
+export const TAG_COLORS: Record<string, string> = {
+  "App Development": "text-cyan-700 bg-cyan-50 border-cyan-100",
+  "AI Development": "text-violet-700 bg-violet-50 border-violet-100",
+  "Debugging":       "text-amber-700 bg-amber-50 border-amber-100",
+  "Workflow":        "text-green-700 bg-green-50 border-green-100",
+  "LLM":             "text-orange-700 bg-orange-50 border-orange-100",
+};
+
+/** Tailwind classes for each tag — active (selected) state */
+export const TAG_ACTIVE: Record<string, string> = {
+  "App Development": "bg-cyan-600 text-white border-cyan-600",
+  "AI Development":  "bg-violet-600 text-white border-violet-600",
+  "Debugging":       "bg-amber-500 text-white border-amber-500",
+  "Workflow":        "bg-green-600 text-white border-green-600",
+  "LLM":             "bg-orange-500 text-white border-orange-500",
+};
+
+export const FALLBACK_TAG = "text-cyan-700 bg-cyan-50 border-cyan-100";
+export const FALLBACK_TAG_ACTIVE = "bg-cyan-600 text-white border-cyan-600";
+
 export const posts: BlogPost[] = [
   {
     slug: "building-potty-panda",

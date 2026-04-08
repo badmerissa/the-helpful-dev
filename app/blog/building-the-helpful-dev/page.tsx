@@ -146,14 +146,14 @@ function TakeawayCard({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden mb-4">
-      <div className="bg-slate-50 border-b border-slate-200 px-6 py-4 flex items-center gap-4">
+    <div className="border rounded-2xl overflow-hidden mb-4" style={{ background: "var(--bg-base)", borderColor: "var(--border-color)" }}>
+      <div className="border-b px-6 py-4 flex items-center gap-4" style={{ background: "var(--bg-surface)", borderColor: "var(--border-color)" }}>
         <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-cyan-100 text-cyan-700 text-sm font-bold shrink-0">
           {number}
         </span>
-        <h3 className="text-base font-semibold text-slate-900">{title}</h3>
+        <h3 className="text-base font-semibold" style={{ color: "var(--text-primary)" }}>{title}</h3>
       </div>
-      <div className="px-6 py-5 text-slate-600 text-sm leading-relaxed [&>p]:mb-3 [&>p:last-child]:mb-0">
+      <div className="px-6 py-5 text-sm leading-relaxed [&>p]:mb-3 [&>p:last-child]:mb-0" style={{ color: "var(--text-secondary)" }}>
         {children}
       </div>
     </div>
@@ -164,13 +164,13 @@ function TakeawayCard({
 
 export default function BuildingTheHelpfulDevPage() {
   return (
-    <main className="min-h-screen bg-white text-slate-900">
+    <main className="min-h-screen" style={{ background: "var(--bg-base)", color: "var(--text-primary)" }}>
       <JsonLd data={articleJsonLd} />
 
       {/* ── Hero ── */}
-      <section className="border-b border-slate-100 bg-white">
+      <section className="border-b" style={{ borderColor: "var(--border-color)", background: "var(--bg-base)" }}>
         <div className="max-w-3xl mx-auto px-6 py-14 lg:py-20">
-          <div className="flex items-center gap-3 mb-6 text-sm text-slate-400">
+          <div className="flex items-center gap-3 mb-6 text-sm" style={{ color: "var(--text-muted)" }}>
             <Link href="/" className="hover:text-cyan-600 transition-colors">
               The Helpful Dev
             </Link>
@@ -189,13 +189,13 @@ export default function BuildingTheHelpfulDevPage() {
             </span>
           </div>
 
-          <h1 className="text-3xl lg:text-5xl font-bold tracking-tight text-slate-900 leading-tight mb-5">
+          <h1 className="text-3xl lg:text-5xl font-bold tracking-tight leading-tight mb-5" style={{ color: "var(--text-primary)" }}>
             The App Idea{" "}
             <span className="gradient-text">Closet Cleanout</span>: How I
             Finally Shipped — and Built a Brand I&apos;m Proud Of
           </h1>
 
-          <p className="text-lg text-slate-500 leading-relaxed mb-6 max-w-2xl">
+          <p className="text-lg leading-relaxed mb-6 max-w-2xl" style={{ color: "var(--text-secondary)" }}>
             I&apos;m a tired mum of two with a head full of app ideas I&apos;d
             never shipped. One colleague&apos;s comment at a work function
             changed that. This is the story of everything that happened next —
@@ -203,7 +203,7 @@ export default function BuildingTheHelpfulDevPage() {
             agentic engineering that made it all click.
           </p>
 
-          <div className="flex flex-wrap items-center gap-4 text-sm text-slate-400">
+          <div className="flex flex-wrap items-center gap-4 text-sm" style={{ color: "var(--text-muted)" }}>
             <span>March 31, 2026</span>
             <span>·</span>
             <span>10 min read</span>
@@ -217,8 +217,8 @@ export default function BuildingTheHelpfulDevPage() {
       <div className="max-w-3xl mx-auto px-6 pb-20">
 
         {/* Table of Contents */}
-        <nav className="bg-slate-50 border border-slate-200 rounded-2xl px-7 py-6 my-10">
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-4">
+        <nav className="border rounded-2xl px-7 py-6 my-10" style={{ background: "var(--bg-surface)", borderColor: "var(--border-color)" }}>
+          <h3 className="text-xs font-semibold uppercase tracking-wider mb-4" style={{ color: "var(--text-muted)" }}>
             In this post
           </h3>
           <ol className="space-y-2 pl-5 list-decimal">
@@ -235,7 +235,8 @@ export default function BuildingTheHelpfulDevPage() {
               <li key={href}>
                 <a
                   href={href}
-                  className="text-sm text-slate-700 hover:text-cyan-600 transition-colors"
+                  className="text-sm hover:text-cyan-600 transition-colors"
+                  style={{ color: "var(--text-primary)" }}
                 >
                   {label}
                 </a>
@@ -246,17 +247,17 @@ export default function BuildingTheHelpfulDevPage() {
 
         {/* ── Context ── */}
         <section id="context" className="mb-12">
-          <h2 className="text-2xl font-bold text-slate-900 mb-4">
+          <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--text-primary)" }}>
             What The Helpful Dev actually is
           </h2>
-          <p className="text-slate-700 leading-relaxed mb-4">
+          <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
             The premise is simple: 12 free, privacy-first web apps in 12
             months. No ads, no login, no data collection. Just stuff that works
             in your browser. The site you&apos;re reading is the hub — a place
             to find the apps, follow the build-in-public journey, and come along
             for the ride.
           </p>
-          <p className="text-slate-700 leading-relaxed">
+          <p className="leading-relaxed" style={{ color: "var(--text-secondary)" }}>
             But the more honest story is that this site is an AI learning
             journey. It&apos;s what happens when someone who has always had
             ideas but never had the time finally finds the right tool — and
@@ -266,10 +267,10 @@ export default function BuildingTheHelpfulDevPage() {
 
         {/* ── Spark ── */}
         <section id="spark" className="mb-12">
-          <h2 className="text-2xl font-bold text-slate-900 mb-4">
+          <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--text-primary)" }}>
             The colleague who started it all
           </h2>
-          <p className="text-slate-700 leading-relaxed mb-4">
+          <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
             I&apos;ve always had app ideas. Lots of them. They lived in my head,
             in notes apps, in the back of conversations. I&apos;d had them for
             years. But I&apos;m also a mum of two, and anyone who&apos;s lived
@@ -277,16 +278,16 @@ export default function BuildingTheHelpfulDevPage() {
             tonight&quot; is a sentence that doesn&apos;t survive contact with
             reality.
           </p>
-          <p className="text-slate-700 leading-relaxed mb-4">
+          <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
             At a work function, a colleague asked me why I hadn&apos;t shipped
             any of them. I said exactly that — I&apos;m a tired mum, I
             don&apos;t have the time. His response stopped me:
           </p>
-          <blockquote className="border-l-4 border-cyan-400 pl-5 my-6 italic text-slate-600 text-lg leading-relaxed">
+          <blockquote className="border-l-4 border-cyan-400 pl-5 my-6 italic text-lg leading-relaxed" style={{ color: "var(--text-secondary)" }}>
             &ldquo;AI is the best thing someone who doesn&apos;t have time can
             leverage to make time.&rdquo;
           </blockquote>
-          <p className="text-slate-700 leading-relaxed">
+          <p className="leading-relaxed" style={{ color: "var(--text-secondary)" }}>
             That was the spark. I decided 2026 was going to be two things at
             once: an AI learning journey, and an app idea closet cleanout. Get
             those ideas off the shelf and into the world.
@@ -295,17 +296,17 @@ export default function BuildingTheHelpfulDevPage() {
 
         {/* ── V1 ── */}
         <section id="v1" className="mb-12">
-          <h2 className="text-2xl font-bold text-slate-900 mb-4">
+          <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--text-primary)" }}>
             v1: Vibe coding with Gemini — and being proud of it
           </h2>
-          <p className="text-slate-700 leading-relaxed mb-4">
+          <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
             I built v1 with Gemini. No brand guidelines, no design system, no
             SEO, no hooks. I hadn&apos;t yet made the switch to Claude. I was
             doing what I&apos;d later learn was called &quot;vibe coding&quot; —
             describing what I wanted, accepting what came back, iterating fast
             and loose. And I was proud of it.
           </p>
-          <p className="text-slate-700 leading-relaxed mb-4">
+          <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
             Here&apos;s the thing: I should have been. It was live. The DNS zone
             file was something I&apos;d configured myself for the first time in
             my life — for my own domain, my own project. The email subscriber
@@ -318,7 +319,7 @@ export default function BuildingTheHelpfulDevPage() {
 
           {/* v1 screenshot */}
           <figure className="my-8">
-            <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+            <div className="rounded-2xl overflow-hidden border shadow-sm" style={{ borderColor: "var(--border-color)" }}>
               <Image
                 src="/blog-v1-screenshot.jpg"
                 alt="The Helpful Dev v1 — a simple card grid with blue buttons, built with Gemini"
@@ -327,7 +328,7 @@ export default function BuildingTheHelpfulDevPage() {
                 className="w-full"
               />
             </div>
-            <figcaption className="text-center text-sm text-slate-400 mt-3">
+            <figcaption className="text-center text-sm mt-3" style={{ color: "var(--text-muted)" }}>
               The v1 homepage — card grid, blue buttons, disabled email input
               and all. Built with Gemini. I was so proud of this.
             </figcaption>
@@ -341,7 +342,7 @@ export default function BuildingTheHelpfulDevPage() {
             live, and it was mine. That matters.
           </Callout>
 
-          <p className="text-slate-700 leading-relaxed mb-4">
+          <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
             The first commit landed in January 2026. The hero copy was
             straightforward — helpful tools, no ads, no tracking. The card grid
             was called &quot;The Toolbox.&quot; Everything was blue because
@@ -375,7 +376,7 @@ export default function BuildingTheHelpfulDevPage() {
 </section>`}
           </CodeBlock>
 
-          <p className="text-slate-700 leading-relaxed">
+          <p className="leading-relaxed" style={{ color: "var(--text-secondary)" }}>
             That code is embarrassing now. But it shipped, it worked, and it
             taught me what I actually wanted the site to become. You need a v1
             before you can have a v2.
@@ -384,16 +385,16 @@ export default function BuildingTheHelpfulDevPage() {
 
         {/* ── The shift ── */}
         <section id="shift" className="mb-12">
-          <h2 className="text-2xl font-bold text-slate-900 mb-4">
+          <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--text-primary)" }}>
             The second conversation: agentic engineering
           </h2>
-          <p className="text-slate-700 leading-relaxed mb-4">
+          <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
             A few months into the journey, I had another conversation with the
             same colleague who&apos;d started it all. I was talking about vibe
             coding — excited, dorky probably — and he cut me off with two words:
             agentic engineering.
           </p>
-          <p className="text-slate-700 leading-relaxed mb-4">
+          <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
             I went home and researched it. The difference, as I came to
             understand it: vibe coding is prompting and hoping. Agentic
             engineering is providing structured context — a plan, a spec, a
@@ -409,7 +410,7 @@ export default function BuildingTheHelpfulDevPage() {
             you direct better.
           </Callout>
 
-          <p className="text-slate-700 leading-relaxed">
+          <p className="leading-relaxed" style={{ color: "var(--text-secondary)" }}>
             That research also coincided with switching from Gemini to Claude.
             The timing wasn&apos;t a coincidence — I was learning that the tool
             and the approach matter together. Better model, better workflow,
@@ -419,17 +420,17 @@ export default function BuildingTheHelpfulDevPage() {
 
         {/* ── Rebrand ── */}
         <section id="rebrand" className="mb-12">
-          <h2 className="text-2xl font-bold text-slate-900 mb-4">
+          <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--text-primary)" }}>
             The rebrand, the switch to Claude, and the color crisis
           </h2>
-          <p className="text-slate-700 leading-relaxed mb-4">
+          <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
             The redesign came in March. Four apps were live or nearly live, and
             the card grid wasn&apos;t doing them justice. I wanted something
             that felt like a real product site — a sticky navbar, alternating
             showcase sections with live app previews, a newsletter form that
             didn&apos;t apologize for existing.
           </p>
-          <p className="text-slate-700 leading-relaxed mb-4">
+          <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
             I gave Claude the full codebase as context, described the layout I
             wanted, and let it run. This was my first real agentic workflow. The
             result — shipped as a PR on March 14th — was a complete
@@ -468,10 +469,10 @@ export default function BuildingTheHelpfulDevPage() {
 />`}
           />
 
-          <p className="text-slate-700 leading-relaxed mb-4">
+          <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
             There was just one problem. Claude chose indigo as the brand color.
           </p>
-          <p className="text-slate-700 leading-relaxed mb-4">
+          <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
             Here&apos;s the honest version of how that got resolved: as an
             engineer, I didn&apos;t immediately care about the color. Indigo is
             fine. It&apos;s technically not wrong. But then the rebrand happened
@@ -499,7 +500,7 @@ export default function BuildingTheHelpfulDevPage() {
             is a great teacher.
           </Callout>
 
-          <p className="text-slate-700 leading-relaxed">
+          <p className="leading-relaxed" style={{ color: "var(--text-secondary)" }}>
             The logo also landed on March 14th — a cyberpunk animated coffee
             mug dropped into the navbar as an SVG. It immediately made the site
             feel like something specific. That single file had more impact than
@@ -510,16 +511,16 @@ export default function BuildingTheHelpfulDevPage() {
 
         {/* ── V3 ── */}
         <section id="v3" className="mb-12">
-          <h2 className="text-2xl font-bold text-slate-900 mb-4">
+          <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--text-primary)" }}>
             Stop being a portfolio, start being a journey
           </h2>
-          <p className="text-slate-700 leading-relaxed mb-4">
+          <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
             The v2 homepage looked polished. Four full showcase sections, live
             app previews, proper copywriting. But it had a problem: a new
             visitor would see four apps and think &quot;neat, a
             portfolio.&quot; There was no reason to come back.
           </p>
-          <p className="text-slate-700 leading-relaxed mb-4">
+          <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
             The real story was more interesting — 12 apps in 12 months, built in
             public, privacy-first, documented as I go. That&apos;s worth
             following. The homepage just wasn&apos;t saying it. So I changed it.
@@ -542,7 +543,7 @@ const CHALLENGE = {
 // "4 apps shipped · 9 months remaining" stats strip.`}
           </CodeBlock>
 
-          <p className="text-slate-700 leading-relaxed">
+          <p className="leading-relaxed" style={{ color: "var(--text-secondary)" }}>
             The blog launched as part of the same push — it documents how the
             apps get built, which feeds back into the homepage narrative. Posts
             surface on the homepage, the homepage links to the blog. A loop
@@ -552,16 +553,16 @@ const CHALLENGE = {
 
         {/* ── AI angle ── */}
         <section id="ai-angle" className="mb-12">
-          <h2 className="text-2xl font-bold text-slate-900 mb-4">
+          <h2 className="text-2xl font-bold mb-4" style={{ color: "var(--text-primary)" }}>
             How AI-assisted development shaped every decision
           </h2>
-          <p className="text-slate-700 leading-relaxed mb-4">
+          <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
             I started this project using Gemini and a vibe coding approach —
             describe what I want, accept what comes back, move fast. That got
             v1 live. It also meant no brand, no architecture, no SEO, and no
             real system holding it together.
           </p>
-          <p className="text-slate-700 leading-relaxed mb-4">
+          <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
             The switch to Claude and the shift to agentic engineering changed the
             output quality dramatically. The v2 redesign was the first real test:
             I provided the full codebase as context, a written spec of what I
@@ -571,7 +572,7 @@ const CHALLENGE = {
             because I hadn&apos;t given it the brand as context. The indigo
             situation taught me that.
           </p>
-          <p className="text-slate-700 leading-relaxed mb-4">
+          <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
             For the SEO and security audit work, I used a two-phase approach: an
             AI session to produce a written plan first, then a human review, then
             a separate AI session to implement what was approved. This
@@ -579,7 +580,7 @@ const CHALLENGE = {
             having to do the execution work myself. It also caught two
             suggestions I disagreed with before they touched the codebase.
           </p>
-          <p className="text-slate-700 leading-relaxed mb-4">
+          <p className="leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
             The v3 pivot — journey-first homepage — was co-authored in the truest
             sense. The idea was mine; I&apos;d been thinking about why the site
             felt like a dead end. Claude helped me translate it into a structural
@@ -600,7 +601,7 @@ const CHALLENGE = {
 
         {/* ── Takeaways ── */}
         <section id="takeaways" className="mb-6">
-          <h2 className="text-2xl font-bold text-slate-900 mb-6">
+          <h2 className="text-2xl font-bold mb-6" style={{ color: "var(--text-primary)" }}>
             Key takeaways
           </h2>
 
@@ -654,12 +655,7 @@ const CHALLENGE = {
               it has no pull. Give people a reason to check in again next month.
             </p>
           </TakeawayCard>
-
-          <div className="bg-cyan-50 border border-cyan-200 rounded-2xl px-7 py-6 mt-8">
-            <h3 className="text-base font-semibold text-slate-900 mb-2">
-              Where it&apos;s going
-            </h3>
-            <p className="text-sm text-slate-600 leading-relaxed">
+            <Callout variant="insight" icon="💡" label="Where it's going">
               The 12-apps challenge runs through 2026, but The Helpful Dev
               isn&apos;t ending there. After the challenge wraps I want this to
               be a proper AI-assisted engineering hub — more challenges, more
@@ -668,21 +664,22 @@ const CHALLENGE = {
               unlimited time. I&apos;m also working on a companion book covering
               the full challenge. Follow along — that&apos;s what the newsletter
               is for.
-            </p>
-          </div>
+            </Callout>
         </section>
 
         {/* ── Footer nav ── */}
-        <div className="border-t border-slate-100 pt-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div className="border-t pt-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4" style={{ borderColor: "var(--border-color)" }}>
           <Link
             href="/blog"
-            className="text-sm text-slate-500 hover:text-cyan-600 transition-colors"
+            className="text-sm hover:text-cyan-600 transition-colors"
+            style={{ color: "var(--text-secondary)" }}
           >
             &larr; Back to Blog
           </Link>
           <Link
             href="/"
-            className="text-sm text-slate-500 hover:text-cyan-600 transition-colors"
+            className="text-sm hover:text-cyan-600 transition-colors"
+            style={{ color: "var(--text-secondary)" }}
           >
             See the apps &rarr;
           </Link>

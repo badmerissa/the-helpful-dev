@@ -1,18 +1,10 @@
 "use client";
 
 import { useRef, useState, useEffect, useCallback } from "react";
-import Image from "next/image";
+import TerminalCard from "./TerminalCard";
+import type { CarouselApp } from "@/lib/app-data";
 
-export interface CarouselApp {
-  icon: string | null;
-  name: string;
-  tagline: string;
-  description: string;
-  href: string | null;
-  month: number;
-  accentClass: string;
-  comingSoon?: boolean;
-}
+export type { CarouselApp };
 
 interface AppsCarouselProps {
   apps: CarouselApp[];
@@ -22,8 +14,8 @@ export default function AppsCarousel({ apps }: AppsCarouselProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const CARD_WIDTH = 288; // w-72 = 288px
-  const GAP = 16; // gap-4 = 16px
+  const CARD_WIDTH = 304; // w-76 equivalent
+  const GAP = 16;
   const STEP = CARD_WIDTH + GAP;
 
   const scrollTo = useCallback((index: number) => {
@@ -51,7 +43,7 @@ export default function AppsCarousel({ apps }: AppsCarouselProps) {
         onClick={prev}
         disabled={activeIndex === 0}
         aria-label="Previous app"
-        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-9 h-9 rounded-full bg-white border border-slate-200 shadow-md flex items-center justify-center text-slate-500 hover:text-cyan-600 hover:border-cyan-300 transition-all disabled:opacity-0 disabled:pointer-events-none"
+        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-9 h-9 rounded-full bg-white dark:bg-[#1c2128] border border-slate-200 dark:border-[#30363d] shadow-md flex items-center justify-center text-slate-500 dark:text-[#8b949e] hover:text-cyan-600 dark:hover:text-cyan-400 hover:border-cyan-300 transition-all disabled:opacity-0 disabled:pointer-events-none"
       >
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
           <path d="M10 12L6 8l4-4" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
@@ -67,58 +59,54 @@ export default function AppsCarousel({ apps }: AppsCarouselProps) {
           app.comingSoon ? (
             <div
               key={app.name}
-              className="flex-none w-72 snap-start bg-white border border-dashed border-slate-200 rounded-2xl p-5 flex flex-col gap-3 opacity-75"
+              className="flex-none w-76 snap-start bg-white dark:bg-[#161b22] border border-dashed border-slate-200 dark:border-[#30363d] rounded-2xl p-5 flex flex-col gap-3 opacity-75"
             >
               <div className="flex items-start justify-between">
                 <div className={`inline-flex items-center px-2.5 py-0.5 rounded-full border text-xs font-medium ${app.accentClass}`}>
                   {app.tagline}
                 </div>
-                <span className="text-xs text-slate-400 font-mono">M{app.month}</span>
+                <span className="text-xs text-slate-400 dark:text-[#6e7681] font-mono">M{app.month}</span>
               </div>
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-lg bg-slate-100 flex items-center justify-center text-slate-400 text-lg">
-                  🌱
-                </div>
-                <h3 className="font-semibold text-slate-900 leading-tight">{app.name}</h3>
-              </div>
-              <p className="text-sm text-slate-500 leading-relaxed flex-1">{app.description}</p>
-              <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-400">
-                <span className="w-1.5 h-1.5 rounded-full bg-slate-300" />
+              <h3 className="font-semibold text-slate-900 dark:text-[#e6edf3] leading-tight">{app.name}</h3>
+              <p className="text-sm text-slate-500 dark:text-[#8b949e] leading-relaxed flex-1">{app.description}</p>
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-400 dark:text-[#6e7681]">
+                <span className="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-[#30363d]" />
                 Coming soon
               </span>
             </div>
           ) : (
-            <a
+            <div
               key={app.name}
-              href={app.href!}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`${app.name} (opens in new tab)`}
-              className="flex-none w-72 snap-start group bg-white border border-slate-200 rounded-2xl p-5 card-hover flex flex-col gap-3"
+              className="flex-none w-76 snap-start rounded-2xl border border-slate-200 dark:border-[#30363d] bg-white dark:bg-[#161b22] card-hover flex flex-col overflow-hidden"
             >
-              <div className="flex items-start justify-between">
-                <div className={`inline-flex items-center px-2.5 py-0.5 rounded-full border text-xs font-medium ${app.accentClass}`}>
-                  {app.tagline}
+              {/* Mini terminal */}
+              {app.terminalLines && (
+                <TerminalCard
+                  title={`~/${app.name.toLowerCase().replace(/\s+/g, "-")}`}
+                  lines={app.terminalLines}
+                  accentColor={app.accentColor}
+                  interactiveCommand={app.terminalCommand && app.href ? { command: app.terminalCommand, href: app.href } : undefined}
+                />
+              )}
+              {/* Card footer */}
+              <div className="p-4 flex items-center justify-between">
+                <div>
+                  <h3 className="font-semibold text-slate-900 dark:text-[#e6edf3] text-sm leading-tight">{app.name}</h3>
+                  <span className={`inline-flex items-center px-2 py-0.5 rounded-full border text-xs font-medium mt-1 ${app.accentClass}`}>
+                    {app.tagline}
+                  </span>
                 </div>
-                <span className="text-xs text-slate-400 font-mono">M{app.month}</span>
+                <a
+                  href={app.href!}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${app.name} (opens in new tab)`}
+                  className="text-xs font-semibold text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300 transition-colors shrink-0"
+                >
+                  Open →
+                </a>
               </div>
-              <div className="flex items-center gap-3">
-                {app.icon ? (
-                  <Image src={app.icon} alt="" width={36} height={36} className="object-contain rounded-lg" />
-                ) : (
-                  <div className="w-9 h-9 rounded-lg bg-slate-100 flex items-center justify-center text-slate-400 text-lg">
-                    🤖
-                  </div>
-                )}
-                <h3 className="font-semibold text-slate-900 group-hover:text-cyan-700 transition-colors leading-tight">
-                  {app.name}
-                </h3>
-              </div>
-              <p className="text-sm text-slate-500 leading-relaxed flex-1">{app.description}</p>
-              <span className="text-xs font-semibold text-cyan-600 group-hover:text-cyan-700 transition-colors">
-                Open app →
-              </span>
-            </a>
+            </div>
           )
         )}
       </div>
@@ -128,7 +116,7 @@ export default function AppsCarousel({ apps }: AppsCarouselProps) {
         onClick={next}
         disabled={activeIndex === apps.length - 1}
         aria-label="Next app"
-        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-9 h-9 rounded-full bg-white border border-slate-200 shadow-md flex items-center justify-center text-slate-500 hover:text-cyan-600 hover:border-cyan-300 transition-all disabled:opacity-0 disabled:pointer-events-none"
+        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-9 h-9 rounded-full bg-white dark:bg-[#1c2128] border border-slate-200 dark:border-[#30363d] shadow-md flex items-center justify-center text-slate-500 dark:text-[#8b949e] hover:text-cyan-600 dark:hover:text-cyan-400 hover:border-cyan-300 transition-all disabled:opacity-0 disabled:pointer-events-none"
       >
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
           <path d="M6 4l4 4-4 4" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
@@ -147,7 +135,7 @@ export default function AppsCarousel({ apps }: AppsCarouselProps) {
             className={`rounded-full transition-all ${
               i === activeIndex
                 ? "w-5 h-2 bg-cyan-600"
-                : "w-2 h-2 bg-slate-300 hover:bg-slate-400"
+                : "w-2 h-2 bg-slate-300 dark:bg-[#30363d] hover:bg-slate-400 dark:hover:bg-[#6e7681]"
             }`}
           />
         ))}
